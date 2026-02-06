@@ -1,0 +1,38 @@
+{
+  "register": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Account openen",
+    "description": "Duidelijke interface, essentiële informatie, geen onnodige decoratie.",
+    "fullName": "Volledige naam",
+    "address": "Adres",
+    "birthDate": "Geboortedatum",
+    "birthDatePlaceholder": "DD/MM/JJJJ",
+    "country": "Land",
+    "countryPlaceholder": "Selecteer een land",
+    "phone": "Telefoon",
+    "gender": "Geslacht",
+    "genderMale": "Man",
+    "genderFemale": "Vrouw",
+    "email": "E-mail",
+    "password": "Wachtwoord",
+    "confirmPassword": "Bevestig wachtwoord",
+    "submit": "Account aanmaken",
+    "submitting": "Account wordt aangemaakt…",
+    "successMessage": "Account aangemaakt. Rekeningnummer: {accountNumber}",
+    "errorNetwork": "Netwerkfout",
+    "errorGeneric": "Fout"
+  },
+  "login": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Inloggen",
+    "description": "Toegang tot uw bankrekening.",
+    "email": "E-mail",
+    "password": "Wachtwoord",
+    "submit": "Inloggen",
+    "submitting": "Inloggen…",
+    "noAccount": "Nog geen account?",
+    "register": "Registreren",
+    "errorGeneric": "Fout",
+    "errorNetwork": "Netwerkfout"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "register": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Odpiranje računa",
+    "description": "Jasen vmesnik, bistvene informacije, brez nepotrebne dekoracije.",
+    "fullName": "Polno ime",
+    "address": "Naslov",
+    "birthDate": "Datum rojstva",
+    "birthDatePlaceholder": "DD.MM.LLLL",
+    "country": "Država",
+    "countryPlaceholder": "Izberite državo",
+    "phone": "Telefon",
+    "gender": "Spol",
+    "genderMale": "Moški",
+    "genderFemale": "Ženska",
+    "email": "E-pošta",
+    "password": "Geslo",
+    "confirmPassword": "Potrdite geslo",
+    "submit": "Ustvari račun",
+    "submitting": "Ustvarjanje računa…",
+    "successMessage": "Račun ustvarjen. Številka računa: {accountNumber}",
+    "errorNetwork": "Napaka omrežja",
+    "errorGeneric": "Napaka"
+  },
+    "login": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Prijava",
+    "description": "Dostop do vašega bančnega računa.",
+    "email": "E-pošta",
+    "password": "Geslo",
+    "submit": "Prijava",
+    "submitting": "Prijavljanje…",
+    "noAccount": "Nimate računa?",
+    "register": "Registrirajte se",
+    "errorGeneric": "Napaka",
+    "errorNetwork": "Napaka omrežja"
+  }
+}

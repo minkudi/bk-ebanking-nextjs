@@ -1,0 +1,38 @@
+{
+  "register": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Άνοιγμα λογαριασμού",
+    "description": "Καθαρή διεπαφή, βασικές πληροφορίες, χωρίς περιττή διακόσμηση.",
+    "fullName": "Πλήρες όνομα",
+    "address": "Διεύθυνση",
+    "birthDate": "Ημερομηνία γέννησης",
+    "birthDatePlaceholder": "ΗΗ/ΜΜ/ΕΕΕΕ",
+    "country": "Χώρα",
+    "countryPlaceholder": "Επιλέξτε χώρα",
+    "phone": "Τηλέφωνο",
+    "gender": "Φύλο",
+    "genderMale": "Άνδρας",
+    "genderFemale": "Γυναίκα",
+    "email": "Email",
+    "password": "Κωδικός πρόσβασης",
+    "confirmPassword": "Επιβεβαίωση κωδικού",
+    "submit": "Δημιουργία λογαριασμού",
+    "submitting": "Δημιουργία λογαριασμού…",
+    "successMessage": "Λογαριασμός δημιουργήθηκε. Αριθμός λογαριασμού: {accountNumber}",
+    "errorNetwork": "Σφάλμα δικτύου",
+    "errorGeneric": "Σφάλμα"
+  },
+    "login": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Σύνδεση",
+    "description": "Πρόσβαση στον τραπεζικό σας λογαριασμό.",
+    "email": "Email",
+    "password": "Κωδικός πρόσβασης",
+    "submit": "Σύνδεση",
+    "submitting": "Σύνδεση…",
+    "noAccount": "Δεν έχετε λογαριασμό;",
+    "register": "Εγγραφή",
+    "errorGeneric": "Σφάλμα",
+    "errorNetwork": "Σφάλμα δικτύου"
+  }
+}

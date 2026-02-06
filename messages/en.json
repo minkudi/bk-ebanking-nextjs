@@ -1,0 +1,38 @@
+{
+  "register": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Account Opening",
+    "description": "Clear interface, essential information, no unnecessary decoration.",
+    "fullName": "Full Name",
+    "address": "Address",
+    "birthDate": "Date of Birth",
+    "birthDatePlaceholder": "DD/MM/YYYY",
+    "country": "Country",
+    "countryPlaceholder": "Select a country",
+    "phone": "Phone",
+    "gender": "Gender",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "submit": "Create my account",
+    "submitting": "Creating account…",
+    "successMessage": "Account created. Account number: {accountNumber}",
+    "errorNetwork": "Network error",
+    "errorGeneric": "Error"
+  },
+    "login": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Login",
+    "description": "Access your bank account.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "submitting": "Signing in…",
+    "noAccount": "Don't have an account?",
+    "register": "Sign up",
+    "errorGeneric": "Error",
+    "errorNetwork": "Network error"
+  }
+}

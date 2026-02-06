@@ -1,0 +1,38 @@
+{
+  "register": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Sąskaitos atidarymas",
+    "description": "Aiški sąsaja, esminė informacija, be nereikalingų dekoracijų.",
+    "fullName": "Pilnas vardas",
+    "address": "Adresas",
+    "birthDate": "Gimimo data",
+    "birthDatePlaceholder": "YYYY-MM-DD",
+    "country": "Šalis",
+    "countryPlaceholder": "Pasirinkite šalį",
+    "phone": "Telefonas",
+    "gender": "Lytis",
+    "genderMale": "Vyras",
+    "genderFemale": "Moteris",
+    "email": "El. paštas",
+    "password": "Slaptažodis",
+    "confirmPassword": "Patvirtinti slaptažodį",
+    "submit": "Sukurti paskyrą",
+    "submitting": "Kuriama paskyra…",
+    "successMessage": "Paskyra sukurta. Sąskaitos numeris: {accountNumber}",
+    "errorNetwork": "Tinklo klaida",
+    "errorGeneric": "Klaida"
+  },
+    "login": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Prisijungimas",
+    "description": "Prieiga prie jūsų banko sąskaitos.",
+    "email": "El. paštas",
+    "password": "Slaptažodis",
+    "submit": "Prisijungti",
+    "submitting": "Prisijungiama…",
+    "noAccount": "Neturite paskyros?",
+    "register": "Registruotis",
+    "errorGeneric": "Klaida",
+    "errorNetwork": "Tinklo klaida"
+  }
+}

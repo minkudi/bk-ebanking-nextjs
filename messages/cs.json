@@ -1,0 +1,38 @@
+{
+  "register": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Otevření účtu",
+    "description": "Přehledné rozhraní, základní informace, žádná zbytečná výzdoba.",
+    "fullName": "Celé jméno",
+    "address": "Adresa",
+    "birthDate": "Datum narození",
+    "birthDatePlaceholder": "DD.MM.RRRR",
+    "country": "Země",
+    "countryPlaceholder": "Vyberte zemi",
+    "phone": "Telefon",
+    "gender": "Pohlaví",
+    "genderMale": "Muž",
+    "genderFemale": "Žena",
+    "email": "E-mail",
+    "password": "Heslo",
+    "confirmPassword": "Potvrdit heslo",
+    "submit": "Vytvořit účet",
+    "submitting": "Vytváření účtu…",
+    "successMessage": "Účet vytvořen. Číslo účtu: {accountNumber}",
+    "errorNetwork": "Chyba sítě",
+    "errorGeneric": "Chyba"
+  },
+    "login": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Přihlášení",
+    "description": "Přístup k vašemu bankovnímu účtu.",
+    "email": "E-mail",
+    "password": "Heslo",
+    "submit": "Přihlásit se",
+    "submitting": "Přihlašování…",
+    "noAccount": "Nemáte účet?",
+    "register": "Zaregistrovat se",
+    "errorGeneric": "Chyba",
+    "errorNetwork": "Chyba sítě"
+  }
+}

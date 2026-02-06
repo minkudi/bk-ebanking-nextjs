@@ -1,0 +1,38 @@
+{
+  "register": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Отваряне на сметка",
+    "description": "Ясен интерфейс, основна информация, без ненужна декорация.",
+    "fullName": "Пълно име",
+    "address": "Адрес",
+    "birthDate": "Дата на раждане",
+    "birthDatePlaceholder": "ДД.ММ.ГГГГ",
+    "country": "Държава",
+    "countryPlaceholder": "Изберете държава",
+    "phone": "Телефон",
+    "gender": "Пол",
+    "genderMale": "Мъж",
+    "genderFemale": "Жена",
+    "email": "Имейл",
+    "password": "Парола",
+    "confirmPassword": "Потвърдете паролата",
+    "submit": "Създайте акаунт",
+    "submitting": "Създаване на акаунт…",
+    "successMessage": "Акаунт създаден. Номер на сметка: {accountNumber}",
+    "errorNetwork": "Мрежова грешка",
+    "errorGeneric": "Грешка"
+  },
+    "login": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Вход",
+    "description": "Достъп до вашата банкова сметка.",
+    "email": "Имейл",
+    "password": "Парола",
+    "submit": "Влезте",
+    "submitting": "Влизане…",
+    "noAccount": "Нямате акаунт?",
+    "register": "Регистрирайте се",
+    "errorGeneric": "Грешка",
+    "errorNetwork": "Мрежова грешка"
+  }
+}

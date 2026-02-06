@@ -1,0 +1,38 @@
+{
+  "register": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Konta atvēršana",
+    "description": "Skaidra saskarne, būtiska informācija, bez nevajadzīgas dekorācijas.",
+    "fullName": "Pilns vārds",
+    "address": "Adrese",
+    "birthDate": "Dzimšanas datums",
+    "birthDatePlaceholder": "DD.MM.GGGG",
+    "country": "Valsts",
+    "countryPlaceholder": "Izvēlieties valsti",
+    "phone": "Tālrunis",
+    "gender": "Dzimums",
+    "genderMale": "Vīrietis",
+    "genderFemale": "Sieviete",
+    "email": "E-pasts",
+    "password": "Parole",
+    "confirmPassword": "Apstiprināt paroli",
+    "submit": "Izveidot kontu",
+    "submitting": "Izveido kontu…",
+    "successMessage": "Konts izveidots. Konta numurs: {accountNumber}",
+    "errorNetwork": "Tīkla kļūda",
+    "errorGeneric": "Kļūda"
+  },
+    "login": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Pieteikšanās",
+    "description": "Piekļūstiet savam bankas kontam.",
+    "email": "E-pasts",
+    "password": "Parole",
+    "submit": "Pieteikties",
+    "submitting": "Pieteikšanās…",
+    "noAccount": "Nav konta?",
+    "register": "Reģistrēties",
+    "errorGeneric": "Kļūda",
+    "errorNetwork": "Tīkla kļūda"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "register": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Apertura de cuenta",
+    "description": "Interfaz clara, información esencial, sin decoración innecesaria.",
+    "fullName": "Nombre completo",
+    "address": "Dirección",
+    "birthDate": "Fecha de nacimiento",
+    "birthDatePlaceholder": "DD/MM/AAAA",
+    "country": "País",
+    "countryPlaceholder": "Seleccionar un país",
+    "phone": "Teléfono",
+    "gender": "Género",
+    "genderMale": "Hombre",
+    "genderFemale": "Mujer",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "submit": "Crear mi cuenta",
+    "submitting": "Creando cuenta…",
+    "successMessage": "Cuenta creada. Número de cuenta: {accountNumber}",
+    "errorNetwork": "Error de red",
+    "errorGeneric": "Error"
+  },
+   "login": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Iniciar sesión",
+    "description": "Acceda a su cuenta bancaria.",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Iniciar sesión",
+    "submitting": "Iniciando sesión…",
+    "noAccount": "¿No tienes cuenta?",
+    "register": "Regístrate",
+    "errorGeneric": "Error",
+    "errorNetwork": "Error de red"
+  }
+}

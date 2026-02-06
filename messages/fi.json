@@ -1,0 +1,38 @@
+{
+  "register": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Tilin avaaminen",
+    "description": "Selkeä käyttöliittymä, olennaiset tiedot, ei turhia koristeita.",
+    "fullName": "Koko nimi",
+    "address": "Osoite",
+    "birthDate": "Syntymäaika",
+    "birthDatePlaceholder": "PP.KK.VVVV",
+    "country": "Maa",
+    "countryPlaceholder": "Valitse maa",
+    "phone": "Puhelin",
+    "gender": "Sukupuoli",
+    "genderMale": "Mies",
+    "genderFemale": "Nainen",
+    "email": "Sähköposti",
+    "password": "Salasana",
+    "confirmPassword": "Vahvista salasana",
+    "submit": "Luo tili",
+    "submitting": "Luodaan tiliä…",
+    "successMessage": "Tili luotu. Tilinumero: {accountNumber}",
+    "errorNetwork": "Verkkovirhe",
+    "errorGeneric": "Virhe"
+  },
+   "login": {
+    "subtitle": "BK E‑BANKING",
+    "title": "Kirjaudu sisään",
+    "description": "Käytä pankkitiliäsi.",
+    "email": "Sähköposti",
+    "password": "Salasana",
+    "submit": "Kirjaudu",
+    "submitting": "Kirjaudutaan…",
+    "noAccount": "Ei tiliä?",
+    "register": "Rekisteröidy",
+    "errorGeneric": "Virhe",
+    "errorNetwork": "Verkkovirhe"
+  }
+}
