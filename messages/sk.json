@@ -23,6 +23,8 @@
     "errorGeneric": "Chyba"
   },
    "login": {
+    "remember": "Zapamätať si ma",
+    "forgot": "Zabudli ste heslo?",
     "subtitle": "BK E‑BANKING",
     "title": "Prihlásenie",
     "description": "Prístup k vášmu bankovému účtu.",

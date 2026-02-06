@@ -6,114 +6,114 @@ import nodemailer from 'nodemailer';
 const emailTemplates = {
   fr: {
     subject: 'Bienvenue sur BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Bonjour ${fullName},\n\nVotre compte e‑banking a été créé.\n\nNuméro de compte : ${accountNumber}\n\n(Environnement de test)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Bonjour ${fullName},</p><p>Votre compte e‑banking a été créé.</p><p><strong>Numéro de compte :</strong> ${accountNumber}</p><p><em>(Environnement de test)</em></p>`,
   },
   en: {
     subject: 'Welcome to BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Hello ${fullName},\n\nYour e-banking account has been created.\n\nAccount number: ${accountNumber}\n\n(Test environment)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Hello ${fullName},</p><p>Your e-banking account has been created.</p><p><strong>Account number:</strong> ${accountNumber}</p><p><em>(Test environment)</em></p>`,
   },
   de: {
     subject: 'Willkommen bei BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Hallo ${fullName},\n\nIhr E-Banking-Konto wurde erstellt.\n\nKontonummer: ${accountNumber}\n\n(Testumgebung)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Hallo ${fullName},</p><p>Ihr E-Banking-Konto wurde erstellt.</p><p><strong>Kontonummer:</strong> ${accountNumber}</p><p><em>(Testumgebung)</em></p>`,
   },
   nl: {
     subject: 'Welkom bij BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Hallo ${fullName},\n\nUw e-banking account is aangemaakt.\n\nRekeningnummer: ${accountNumber}\n\n(Testomgeving)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Hallo ${fullName},</p><p>Uw e-banking account is aangemaakt.</p><p><strong>Rekeningnummer:</strong> ${accountNumber}</p><p><em>(Testomgeving)</em></p>`,
   },
   fi: {
     subject: 'Tervetuloa BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Hei ${fullName},\n\nE-banking-tilisi on luotu.\n\nTilinumero: ${accountNumber}\n\n(Testiympäristö)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Hei ${fullName},</p><p>E-banking-tilisi on luotu.</p><p><strong>Tilinumero:</strong> ${accountNumber}</p><p><em>(Testiympäristö)</em></p>`,
   },
   es: {
     subject: 'Bienvenido a BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Hola ${fullName},\n\nSu cuenta de e-banking ha sido creada.\n\nNúmero de cuenta: ${accountNumber}\n\n(Entorno de prueba)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Hola ${fullName},</p><p>Su cuenta de e-banking ha sido creada.</p><p><strong>Número de cuenta:</strong> ${accountNumber}</p><p><em>(Entorno de prueba)</em></p>`,
   },
   pl: {
     subject: 'Witamy w BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Witaj ${fullName},\n\nTwoje konto e-banking zostało utworzone.\n\nNumer konta: ${accountNumber}\n\n(Środowisko testowe)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Witaj ${fullName},</p><p>Twoje konto e-banking zostało utworzone.</p><p><strong>Numer konta:</strong> ${accountNumber}</p><p><em>(Środowisko testowe)</em></p>`,
   },
   pt: {
     subject: 'Bem-vindo ao BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Olá ${fullName},\n\nSua conta de e-banking foi criada.\n\nNúmero da conta: ${accountNumber}\n\n(Ambiente de teste)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Olá ${fullName},</p><p>Sua conta de e-banking foi criada.</p><p><strong>Número da conta:</strong> ${accountNumber}</p><p><em>(Ambiente de teste)</em></p>`,
   },
   sk: {
     subject: 'Vitajte v BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Ahoj ${fullName},\n\nVáš účet e-banking bol vytvorený.\n\nČíslo účtu: ${accountNumber}\n\n(Testové prostredie)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Ahoj ${fullName},</p><p>Váš účet e-banking bol vytvorený.</p><p><strong>Číslo účtu:</strong> ${accountNumber}</p><p><em>(Testové prostredie)</em></p>`,
   },
   bg: {
     subject: 'Добре дошли в BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Здравей ${fullName},\n\nВашият акаунт за електронно банкиране беше създаден.\n\nНомер на сметка: ${accountNumber}\n\n(Тестова среда)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Здравей ${fullName},</p><p>Вашият акаунт за електронно банкиране беше създаден.</p><p><strong>Номер на сметка:</strong> ${accountNumber}</p><p><em>(Тестова среда)</em></p>`,
   },
   el: {
     subject: 'Καλώς ήρθατε στο BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Γεια σου ${fullName},\n\nΟ λογαριασμός σας e-banking έχει δημιουργηθεί.\n\nΑριθμός λογαριασμού: ${accountNumber}\n\n(Περιβάλλον δοκιμών)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Γεια σου ${fullName},</p><p>Ο λογαριασμός σας e-banking έχει δημιουργηθεί.</p><p><strong>Αριθμός λογαριασμού:</strong> ${accountNumber}</p><p><em>(Περιβάλλον δοκιμών)</em></p>`,
   },
   sl: {
     subject: 'Dobrodošli v BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Pozdravljeni ${fullName},\n\nVaš račun za e-banking je bil ustvarjen.\n\nŠtevilka računa: ${accountNumber}\n\n(Testno okolje)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Pozdravljeni ${fullName},</p><p>Vaš račun za e-banking je bil ustvarjen.</p><p><strong>Številka računa:</strong> ${accountNumber}</p><p><em>(Testno okolje)</em></p>`,
   },
   lt: {
     subject: 'Sveiki atvykę į BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Sveiki ${fullName},\n\nJūsų e-banking paskyra buvo sukurta.\n\nSąskaitos numeris: ${accountNumber}\n\n(Testavimo aplinka)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Sveiki ${fullName},</p><p>Jūsų e-banking paskyra buvo sukurta.</p><p><strong>Sąskaitos numeris:</strong> ${accountNumber}</p><p><em>(Testavimo aplinka)</em></p>`,
   },
   lv: {
     subject: 'Laipni lūdzam BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Sveiki ${fullName},\n\nJūsu e-banking konts ir izveidots.\n\nKonta numurs: ${accountNumber}\n\n(Testa vide)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Sveiki ${fullName},</p><p>Jūsu e-banking konts ir izveidots.</p><p><strong>Konta numurs:</strong> ${accountNumber}</p><p><em>(Testa vide)</em></p>`,
   },
   it: {
     subject: 'Benvenuto su BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Ciao ${fullName},\n\nIl tuo account e-banking è stato creato.\n\nNumero di conto: ${accountNumber}\n\n(Ambiente di test)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Ciao ${fullName},</p><p>Il tuo account e-banking è stato creato.</p><p><strong>Numero di conto:</strong> ${accountNumber}</p><p><em>(Ambiente di test)</em></p>`,
   },
   cs: {
     subject: 'Vítejte v BK e‑Banking',
-    text: (fullName, accountNumber) => 
+    text: (fullName, accountNumber) =>
       `Ahoj ${fullName},\n\nVáš účet e-banking byl vytvořen.\n\nČíslo účtu: ${accountNumber}\n\n(Testovací prostředí)`,
-    html: (fullName, accountNumber) => 
+    html: (fullName, accountNumber) =>
       `<p>Ahoj ${fullName},</p><p>Váš účet e-banking byl vytvořen.</p><p><strong>Číslo účtu:</strong> ${accountNumber}</p><p><em>(Testovací prostředí)</em></p>`,
   },
 };
@@ -129,7 +129,6 @@ async function sendWelcomeEmail(to, fullName, accountNumber, locale = 'fr') {
     },
   });
 
-  // Choisir le template selon la locale, fallback sur français
   const template = emailTemplates[locale] || emailTemplates.fr;
 
   await transporter.sendMail({
@@ -157,7 +156,6 @@ export async function POST(req) {
       locale,
     } = body;
 
-    // Vérifs basiques
     if (
       !fullName ||
       !address ||
@@ -226,7 +224,7 @@ export async function POST(req) {
       { status: 201 }
     );
   } catch (err) {
-    console.error(err);
+    console.error('REGISTER ERROR', err);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }
