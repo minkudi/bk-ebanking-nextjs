@@ -1,12 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PhoneInput } from 'react-international-phone';
-import { COUNTRIES } from '../countries';
-import { useAutoTranslate } from 'react-autolocalise';
+import { COUNTRIES } from '../../countries';
+import { useParams, useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 export default function RegisterPage() {
-  const { t } = useAutoTranslate();
+  const params = useParams();
+  const router = useRouter();
+  const locale = params.locale || 'fr';
+  const t = useTranslations('register');
 
   const [fullName, setFullName] = useState('');
   const [address, setAddress] = useState('');
