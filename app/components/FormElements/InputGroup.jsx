@@ -1,37 +1,42 @@
-'use client';
-
-export default function InputGroup({ 
-  type, 
-  label, 
-  placeholder, 
-  name, 
-  value, 
-  handleChange, 
-  icon, 
-  className = '' 
+// app/components/FormElements/InputGroup.jsx
+export default function InputGroup({
+  label,
+  type = "text",
+  name,
+  value,
+  handleChange,   // <== on garde ton nom
+  placeholder,
+  Icon,
+  htmlFor,
+  className = "",
 }) {
+  const readOnly = !handleChange;
+
   return (
-    <div className={className}>
+    <div className={`space-y-1 ${className}`}>
       {label && (
-        <label className="mb-3 block text-body-sm font-medium text-dark dark:text-white">
+        <label
+          htmlFor={htmlFor || name}
+          className="block text-xs font-medium text-gray-700"
+        >
           {label}
         </label>
       )}
-      <div className="relative">
-        <input
-          type={type}
-          placeholder={placeholder}
-          name={name}
-          value={value}
-          onChange={handleChange}
-          required
-          className="w-full rounded-lg border border-stroke bg-transparent py-3 pl-6 pr-11 text-dark outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
-        />
-        {icon && (
-          <span className="absolute right-4.5 top-1/2 -translate-y-1/2">
-            {icon}
-          </span>
+
+      <div className="flex items-center rounded-lg border border-gray-200 px-3 py-2 focus-within:border-black">
+        {typeof Icon === "function" && (
+          <Icon className="mr-2 h-4 w-4 text-gray-400" aria-hidden="true" />
         )}
+        <input
+          id={htmlFor || name}
+          name={name}
+          type={type}
+          value={value}
+          onChange={handleChange}  // <== ici
+          placeholder={placeholder}
+          readOnly={readOnly}
+          className="flex-1 border-0 bg-transparent text-sm text-gray-900 placeholder-gray-400 focus:ring-0"
+        />
       </div>
     </div>
   );

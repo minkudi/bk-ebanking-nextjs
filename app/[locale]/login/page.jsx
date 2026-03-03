@@ -4,9 +4,10 @@ import { useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import InputGroup from '@/app/components/FormElements/InputGroup';
-import { Checkbox } from '@/app/components/FormElements/checkbox';
-import { EmailIcon, PasswordIcon } from '@/app/components/icons';
+
+import InputGroup from "../../components/FormElements/InputGroup";
+import { Checkbox } from "../../components/FormElements/checkbox";
+import { EmailIcon, PasswordIcon, LockIcon } from "../../components/icons";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -14,35 +15,25 @@ export default function LoginPage() {
   const locale = params.locale || 'fr';
   const t = useTranslations('login');
 
-  const [data, setData] = useState({
-    email: '',
-    password: '',
-    remember: false,
-  });
+  const [data, setData] = useState({ email: '', password: '', remember: false });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
+    setData({ ...data, [e.target.name]: e.target.value });
   };
 
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
     setError('');
-
     try {
       const res = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: data.email, password: data.password }),
       });
-
       const responseData = await res.json();
-
       if (!res.ok) {
         setError(responseData.error || t('errorGeneric'));
       } else {
@@ -56,24 +47,22 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[#f1f5f9] dark:bg-[#1c2434] py-8">
+    <main className="min-h-screen flex items-center justify-center bg-[#f1f5f9] py-8">
       <div className="w-full max-w-[1170px] mx-auto px-4">
-        <div className="rounded-xl bg-white shadow-lg dark:bg-[#1c2434] overflow-hidden">
+        <div className="rounded-xl bg-white shadow-lg overflow-hidden">
           <div className="flex flex-wrap items-stretch">
-            {/* Formulaire gauche */}
+
             <div className="w-full xl:w-1/2">
               <div className="w-full p-8 sm:p-12 xl:p-16">
-                {/* Titre */}
                 <div className="mb-9">
-                  <h2 className="mb-3 text-3xl font-bold text-[#1c2434] dark:text-white">
+                  <h2 className="mb-3 text-3xl font-bold text-[#1c2434]">
                     {t('title')}
                   </h2>
-                  <p className="text-base text-[#64748b] dark:text-[#8a99af]">
+                  <p className="text-base text-[#64748b]">
                     {t('description')}
                   </p>
                 </div>
 
-                {/* Formulaire */}
                 <form onSubmit={handleSubmit}>
                   <InputGroup
                     type="email"
@@ -83,9 +72,8 @@ export default function LoginPage() {
                     name="email"
                     handleChange={handleChange}
                     value={data.email}
-                    icon={<EmailIcon />}
+                    Icon={<EmailIcon />}
                   />
-
                   <InputGroup
                     type="password"
                     label={t('password')}
@@ -94,24 +82,16 @@ export default function LoginPage() {
                     name="password"
                     handleChange={handleChange}
                     value={data.password}
-                    icon={<PasswordIcon />}
+                    Icon={<PasswordIcon />}
                   />
 
                   <div className="mb-6 flex items-center justify-between gap-2 font-medium">
                     <Checkbox
                       label={t('remember')}
                       name="remember"
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          remember: e.target.checked,
-                        })
-                      }
+                      onChange={(e) => setData({ ...data, remember: e.target.checked })}
                     />
-                    <Link
-                      href={`/${locale}/forgot-password`}
-                      className="text-sm text-[#64748b] hover:text-[#3c50e0] dark:text-[#8a99af]"
-                    >
+                    <Link href={`/${locale}/forgot-password`} className="text-sm text-[#64748b] hover:text-[#3c50e0]">
                       {t('forgot')}
                     </Link>
                   </div>
@@ -147,22 +127,22 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* Image/Texte droite (caché sur mobile) */}
             <div className="hidden w-full xl:block xl:w-1/2 bg-gradient-to-br from-[#3c50e0]/10 to-[#3c50e0]/5">
               <div className="flex h-full flex-col justify-center px-12 py-16">
                 <div className="mb-10">
-                  <h3 className="mb-3 text-2xl font-bold text-[#1c2434] dark:text-white">
+                  <h3 className="mb-3 text-2xl font-bold text-[#1c2434]">
                     {t('subtitle')}
                   </h3>
-                  <h1 className="mb-4 text-4xl font-bold text-[#1c2434] dark:text-white">
+                  <h1 className="mb-4 text-4xl font-bold text-[#1c2434]">
                     Bienvenue!
                   </h1>
-                  <p className="max-w-md text-lg text-[#64748b] dark:text-[#8a99af]">
+                  <p className="max-w-md text-lg text-[#64748b]">
                     Connectez-vous pour accéder à votre espace bancaire sécurisé.
                   </p>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>

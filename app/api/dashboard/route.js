@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { getDb } from '../../../lib/db';
 import { cookies } from 'next/headers';
 
 export async function GET() {
@@ -39,10 +39,21 @@ export async function GET() {
 
     const account = accounts[0];
 
-    // Dernières 5 transactions
+    // Dernières 10 transactions AVEC référence style 7053-13
     const [transactions] = await db.execute(
-      'SELECT id, type, amount, description, counterparty_name, created_at FROM transactions WHERE account_id = ? ORDER BY created_at DESC LIMIT 5',
-      [account.id]
+      `SELECT 
+         id,
+         type,
+         amount,
+         description,
+         counterparty_name,
+         created_at,
+         CONCAT(RIGHT(?, 4), '-', id) AS reference
+       FROM transactions
+       WHERE account_id = ?
+       ORDER BY created_at DESC
+       LIMIT 10`,
+      [account.account_number, account.id]
     );
 
     // Virements en attente
@@ -67,22 +78,33 @@ export async function GET() {
       },
       account: {
         id: account.id,
-        accountNumber: account.account_number,
-        balance: account.balance,
+        accountNumber: String(account.account_number),
+        balance: Number(account.balance),
         currency: account.currency,
       },
-      transactions: transactions,
+      transactions: transactions.map((tx) => ({
+        id: tx.id,
+        type: tx.type,
+        amount: Number(tx.amount),
+        description: tx.description,
+        counterparty_name: tx.counterparty_name,
+        created_at: tx.created_at,
+        reference: tx.reference,
+      })),
       pending: {
         count: pendingTransfers[0].count || 0,
         total: pendingTransfers[0].total || 0,
       },
-      card: cards.length > 0 ? {
-        id: cards[0].id,
-        cardNumber: cards[0].card_number,
-        expiryDate: cards[0].expiry_date,
-        cardholderName: cards[0].cardholder_name,
-        status: cards[0].status,
-      } : null,
+      card:
+        cards.length > 0
+          ? {
+              id: cards[0].id,
+              cardNumber: cards[0].card_number,
+              expiryDate: cards[0].expiry_date,
+              cardholderName: cards[0].cardholder_name,
+              status: cards[0].status,
+            }
+          : null,
     });
   } catch (err) {
     console.error(err);

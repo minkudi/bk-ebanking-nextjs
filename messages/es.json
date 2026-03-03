@@ -2,7 +2,7 @@
   "register": {
     "subtitle": "BK E‑BANKING",
     "title": "Apertura de cuenta",
-    "description": "Interfaz clara, información esencial, sin decoración innecesaria.",
+    "description": "Interfaz limpia, información esencial, sin decoración innecesaria.",
     "fullName": "Nombre completo",
     "address": "Dirección",
     "birthDate": "Fecha de nacimiento",
@@ -22,17 +22,76 @@
     "errorNetwork": "Error de red",
     "errorGeneric": "Error"
   },
-   "login": {
+  "login": {
     "subtitle": "BK E‑BANKING",
     "title": "Iniciar sesión",
-    "description": "Acceda a su cuenta bancaria.",
+    "description": "Accede a tu cuenta bancaria.",
     "email": "Correo electrónico",
     "password": "Contraseña",
+    "remember": "Recuérdame",
+    "forgot": "¿Has olvidado tu contraseña?",
     "submit": "Iniciar sesión",
     "submitting": "Iniciando sesión…",
-    "noAccount": "¿No tienes cuenta?",
+    "noAccount": "¿Aún no tienes cuenta?",
     "register": "Regístrate",
     "errorGeneric": "Error",
     "errorNetwork": "Error de red"
+  },
+  "dashboard": {
+    "loading": "Cargando…",
+    "title": "Panel de control",
+    "menu": {
+      "dashboard": "Inicio",
+      "transfer": "Transferencia",
+      "history": "Historial",
+      "profile": "Perfil",
+      "logout": "Cerrar sesión"
+    },
+    "balance": "Saldo disponible",
+    "accountNumber": "Número de cuenta",
+    "pendingTransfers": "Transferencias pendientes",
+    "recentTransactions": "Últimas transacciones",
+    "recentTransactionsSubtitle": "Seguimiento de las últimas operaciones en tu cuenta",
+    "noTransactions": "No hay transacciones",
+    "newTransfer": "Nueva transferencia",
+    "table": {
+      "date": "Fecha",
+      "beneficiary": "Beneficiario",
+      "type": "Tipo",
+      "amount": "Importe",
+      "status": "Estado",
+      "operations": "operaciones"
+    },
+    "card": {
+      "title": "Mi Mastercard",
+      "add": "Añadir mi tarjeta",
+      "generate": "Generar tarjeta",
+      "freeze": "Bloquear tarjeta",
+      "unfreeze": "Desbloquear tarjeta",
+      "delete": "Eliminar tarjeta",
+      "frozen": "BLOQUEADA",
+      "number": "Número de tarjeta",
+      "holder": "Titular",
+      "expiry": "Vencimiento",
+      "cvv": "CVC",
+      "clickToView": "Haz clic para ver los detalles",
+      "viewDetails": "Ver todos los detalles",
+      "addTitle": "Añadir tarjeta",
+      "cardNumber": "Número de tarjeta",
+      "holderName": "Nombre en la tarjeta",
+      "cancel": "Cancelar",
+      "submit": "Añadir",
+      "verificationMessage": "Se realizará un cargo temporal de 2 € para la verificación. Se te enviará un código por SMS.",
+      "smsVerification": "Verificación por SMS",
+      "smsSent": "Código SMS enviado a tu teléfono.",
+      "smsCode": "Código SMS",
+      "verify": "Verificar",
+      "detailsTitle": "Detalles de la tarjeta",
+      "reveal": "Mostrar",
+      "status": "Estado",
+      "active": "Activa",
+      "close": "Cerrar",
+      "clickToFlip": "Haz clic para girar la tarjeta"
+    }
   }
 }

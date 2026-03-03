@@ -1,121 +1,2090 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { getDb } from "../../../lib/db";
 import nodemailer from 'nodemailer';
 
 // Templates d'email multilingues
 const emailTemplates = {
-  fr: {
-    subject: 'Bienvenue sur BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Bonjour ${fullName},\n\nVotre compte e‑banking a été créé.\n\nNuméro de compte : ${accountNumber}\n\n(Environnement de test)`,
-    html: (fullName, accountNumber) =>
-      `<p>Bonjour ${fullName},</p><p>Votre compte e‑banking a été créé.</p><p><strong>Numéro de compte :</strong> ${accountNumber}</p><p><em>(Environnement de test)</em></p>`,
+fr: {
+  subject: "Bienvenue sur BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Cher client";
+    return [
+      `Bonjour ${name},`,
+      ``,
+      `Bienvenue sur BK e‑Banking.`,
+      ``,
+      `Votre espace bancaire en ligne a été créé avec succès.`,
+      `Numéro de compte : ${accountNumber}`,
+      ``,
+      `Vous pouvez dès à présent vous connecter pour :`,
+      `- consulter le solde de vos comptes,`,
+      `- suivre vos transactions en temps réel,`,
+      `- effectuer vos opérations courantes en toute sécurité.`,
+      ``,
+      `Pour votre sécurité, ne partagez jamais vos identifiants ou codes de connexion.`,
+      ``,
+      `Cordialement,`,
+      `L'équipe BK e‑Banking`,
+    ].join("\n");
   },
-  en: {
-    subject: 'Welcome to BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Hello ${fullName},\n\nYour e-banking account has been created.\n\nAccount number: ${accountNumber}\n\n(Test environment)`,
-    html: (fullName, accountNumber) =>
-      `<p>Hello ${fullName},</p><p>Your e-banking account has been created.</p><p><strong>Account number:</strong> ${accountNumber}</p><p><em>(Test environment)</em></p>`,
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Cher client";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Bienvenue sur BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    <!-- Remplace par un <img src="https://.../logo.png" /> si tu veux -->
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Confirmation de création de compte
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Contenu -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Bonjour ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Nous avons le plaisir de vous confirmer la création de votre compte BK e‑Banking.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Numéro de compte
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Vous pouvez dès maintenant vous connecter à votre espace sécurisé pour :
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>consulter le solde de vos comptes,</li>
+                <li>suivre vos transactions en temps réel,</li>
+                <li>effectuer vos virements et opérations courantes,</li>
+                <li>mettre à jour vos informations personnelles.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Accéder à mon espace
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Pour votre sécurité, ne communiquez jamais vos identifiants ou codes de connexion à une autre personne, y compris quelqu'un se présentant comme un conseiller bancaire.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                En cas de doute, contactez immédiatement votre service client.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Plateforme de services bancaires en ligne.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Ce message est généré automatiquement, merci de ne pas y répondre.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Tous droits réservés.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
   },
-  de: {
-    subject: 'Willkommen bei BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Hallo ${fullName},\n\nIhr E-Banking-Konto wurde erstellt.\n\nKontonummer: ${accountNumber}\n\n(Testumgebung)`,
-    html: (fullName, accountNumber) =>
-      `<p>Hallo ${fullName},</p><p>Ihr E-Banking-Konto wurde erstellt.</p><p><strong>Kontonummer:</strong> ${accountNumber}</p><p><em>(Testumgebung)</em></p>`,
+},
+
+en: {
+  subject: "Welcome to BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Dear customer";
+    return [
+      `Hello ${name},`,
+      ``,
+      `Welcome to BK e‑Banking.`,
+      ``,
+      `Your online banking profile has been successfully created.`,
+      `Account number: ${accountNumber}`,
+      ``,
+      `You can now log in to:`,
+      `- check your account balances,`,
+      `- monitor your transactions in real time,`,
+      `- perform your everyday banking operations securely.`,
+      ``,
+      `For your security, never share your login details or security codes with anyone.`,
+      ``,
+      `Best regards,`,
+      `The BK e‑Banking Team`,
+    ].join("\n");
   },
-  nl: {
-    subject: 'Welkom bij BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Hallo ${fullName},\n\nUw e-banking account is aangemaakt.\n\nRekeningnummer: ${accountNumber}\n\n(Testomgeving)`,
-    html: (fullName, accountNumber) =>
-      `<p>Hallo ${fullName},</p><p>Uw e-banking account is aangemaakt.</p><p><strong>Rekeningnummer:</strong> ${accountNumber}</p><p><em>(Testomgeving)</em></p>`,
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Dear customer";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Welcome to BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Account creation confirmation
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Content -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Hello ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                We are pleased to confirm that your BK e‑Banking account has been created.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Account number
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                You can now log in to your secure online banking space to:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>check your account balances,</li>
+                <li>monitor your transactions in real time,</li>
+                <li>make transfers and everyday payments,</li>
+                <li>update your personal information.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Log in to my account
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                For your security, never share your login details or security codes with anyone, including someone claiming to be a bank representative.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                If you ever have any doubts, please contact customer support immediately.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Online banking services platform.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                This is an automated message, please do not reply to this email.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. All rights reserved.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
   },
-  fi: {
-    subject: 'Tervetuloa BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Hei ${fullName},\n\nE-banking-tilisi on luotu.\n\nTilinumero: ${accountNumber}\n\n(Testiympäristö)`,
-    html: (fullName, accountNumber) =>
-      `<p>Hei ${fullName},</p><p>E-banking-tilisi on luotu.</p><p><strong>Tilinumero:</strong> ${accountNumber}</p><p><em>(Testiympäristö)</em></p>`,
+},
+
+de: {
+  subject: "Willkommen bei BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Sehr geehrte Kundin, sehr geehrter Kunde";
+    return [
+      `Hallo ${name},`,
+      ``,
+      `willkommen bei BK e‑Banking.`,
+      ``,
+      `Ihr Online‑Banking-Zugang wurde erfolgreich eingerichtet.`,
+      `Kontonummer: ${accountNumber}`,
+      ``,
+      `Sie können sich jetzt anmelden, um:`,
+      `- Ihre Kontostände zu prüfen,`,
+      `- Ihre Umsätze in Echtzeit zu verfolgen,`,
+      `- Ihre täglichen Bankgeschäfte sicher durchzuführen.`,
+      ``,
+      `Zu Ihrer Sicherheit geben Sie Ihre Zugangsdaten oder Sicherheitscodes niemals an Dritte weiter.`,
+      ``,
+      `Mit freundlichen Grüßen`,
+      `Ihr BK e‑Banking Team`,
+    ].join("\n");
   },
-  es: {
-    subject: 'Bienvenido a BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Hola ${fullName},\n\nSu cuenta de e-banking ha sido creada.\n\nNúmero de cuenta: ${accountNumber}\n\n(Entorno de prueba)`,
-    html: (fullName, accountNumber) =>
-      `<p>Hola ${fullName},</p><p>Su cuenta de e-banking ha sido creada.</p><p><strong>Número de cuenta:</strong> ${accountNumber}</p><p><em>(Entorno de prueba)</em></p>`,
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Sehr geehrte Kundin, sehr geehrter Kunde";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <title>Willkommen bei BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Bestätigung der Kontoeröffnung
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Inhalt -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Hallo ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                wir freuen uns, Ihnen die erfolgreiche Einrichtung Ihres BK e‑Banking‑Kontos bestätigen zu können.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Kontonummer
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Sie können sich jetzt in Ihrem sicheren Online‑Banking‑Bereich anmelden, um:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>Ihre Kontostände einzusehen,</li>
+                <li>Ihre Umsätze in Echtzeit zu verfolgen,</li>
+                <li>Überweisungen und Zahlungen durchzuführen,</li>
+                <li>Ihre persönlichen Daten zu aktualisieren.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Zum Online‑Banking anmelden
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Aus Sicherheitsgründen dürfen Sie Ihre Zugangsdaten oder Sicherheitscodes niemals an andere Personen weitergeben – auch nicht an Personen, die sich als Bankmitarbeitende ausgeben.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Bei Unsicherheit wenden Sie sich bitte umgehend an unseren Kundenservice.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Plattform für digitales Bankwesen.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Diese Nachricht wurde automatisch erstellt. Bitte antworten Sie nicht auf diese E‑Mail.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Alle Rechte vorbehalten.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
   },
-  pl: {
-    subject: 'Witamy w BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Witaj ${fullName},\n\nTwoje konto e-banking zostało utworzone.\n\nNumer konta: ${accountNumber}\n\n(Środowisko testowe)`,
-    html: (fullName, accountNumber) =>
-      `<p>Witaj ${fullName},</p><p>Twoje konto e-banking zostało utworzone.</p><p><strong>Numer konta:</strong> ${accountNumber}</p><p><em>(Środowisko testowe)</em></p>`,
+},
+
+nl: {
+  subject: "Welkom bij BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Beste klant";
+    return [
+      `Hallo ${name},`,
+      ``,
+      `Welkom bij BK e‑Banking.`,
+      ``,
+      `Uw online bankomgeving is succesvol aangemaakt.`,
+      `Rekeningnummer: ${accountNumber}`,
+      ``,
+      `U kunt nu inloggen om:`,
+      `- uw rekeningsaldi te bekijken,`,
+      `- uw transacties in real time te volgen,`,
+      `- uw dagelijkse bankzaken veilig uit te voeren.`,
+      ``,
+      `Deel uw inloggegevens of beveiligingscodes nooit met iemand anders.`,
+      ``,
+      `Met vriendelijke groet,`,
+      `Het BK e‑Banking team`,
+    ].join("\n");
   },
-  pt: {
-    subject: 'Bem-vindo ao BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Olá ${fullName},\n\nSua conta de e-banking foi criada.\n\nNúmero da conta: ${accountNumber}\n\n(Ambiente de teste)`,
-    html: (fullName, accountNumber) =>
-      `<p>Olá ${fullName},</p><p>Sua conta de e-banking foi criada.</p><p><strong>Número da conta:</strong> ${accountNumber}</p><p><em>(Ambiente de teste)</em></p>`,
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Beste klant";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <title>Welkom bij BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Bevestiging van rekeningopening
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Inhoud -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Hallo ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                We bevestigen graag dat uw BK e‑Banking account succesvol is aangemaakt.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Rekeningnummer
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                U kunt nu inloggen in uw beveiligde online bankomgeving om:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>uw rekeningsaldi te controleren,</li>
+                <li>uw transacties in real time te volgen,</li>
+                <li>overschrijvingen en betalingen uit te voeren,</li>
+                <li>uw persoonlijke gegevens bij te werken.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Inloggen op mijn account
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Deel uw inloggegevens of beveiligingscodes nooit met iemand anders, ook niet met iemand die zich voordoet als bankmedewerker.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Neem bij twijfel onmiddellijk contact op met onze klantenservice.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Platform voor online bankdiensten.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Dit is een automatisch gegenereerd bericht. Gelieve niet op deze e‑mail te antwoorden.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Alle rechten voorbehouden.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
   },
-  sk: {
-    subject: 'Vitajte v BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Ahoj ${fullName},\n\nVáš účet e-banking bol vytvorený.\n\nČíslo účtu: ${accountNumber}\n\n(Testové prostredie)`,
-    html: (fullName, accountNumber) =>
-      `<p>Ahoj ${fullName},</p><p>Váš účet e-banking bol vytvorený.</p><p><strong>Číslo účtu:</strong> ${accountNumber}</p><p><em>(Testové prostredie)</em></p>`,
+},
+
+fi: {
+  subject: "Tervetuloa BK e‑Bankingiin",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Hyvä asiakas";
+    return [
+      `Hei ${name},`,
+      ``,
+      `Tervetuloa BK e‑Bankingiin.`,
+      ``,
+      `Verkkopankkitilisi on luotu onnistuneesti.`,
+      `Tilinumero: ${accountNumber}`,
+      ``,
+      `Voit nyt kirjautua sisään ja:`,
+      `- tarkastella tiliesi saldoja,`,
+      `- seurata tapahtumia reaaliajassa,`,
+      `- hoitaa päivittäiset pankkiasiasi turvallisesti.`,
+      ``,
+      `Älä koskaan jaa kirjautumistietojasi tai turvakoodejasi muiden kanssa.`,
+      ``,
+      `Ystävällisin terveisin,`,
+      `BK e‑Banking -tiimi`,
+    ].join("\n");
   },
-  bg: {
-    subject: 'Добре дошли в BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Здравей ${fullName},\n\nВашият акаунт за електронно банкиране беше създаден.\n\nНомер на сметка: ${accountNumber}\n\n(Тестова среда)`,
-    html: (fullName, accountNumber) =>
-      `<p>Здравей ${fullName},</p><p>Вашият акаунт за електронно банкиране беше създаден.</p><p><strong>Номер на сметка:</strong> ${accountNumber}</p><p><em>(Тестова среда)</em></p>`,
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Hyvä asiakas";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <title>Tervetuloa BK e‑Bankingiin</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Tilin avaamisen vahvistus
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Sisältö -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Hei ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Meillä on ilo vahvistaa, että BK e‑Banking -verkkopankkitilisi on luotu onnistuneesti.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Tilinumero
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Voit nyt kirjautua turvalliseen verkkopankkiisi ja:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>tarkastella tiliesi saldoja,</li>
+                <li>seurata tapahtumia reaaliajassa,</li>
+                <li>tehdä tilisiirtoja ja maksuja,</li>
+                <li>päivittää omia tietojasi.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Kirjaudu verkkopankkiin
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Älä koskaan jaa kirjautumistietojasi tai turvakoodejasi kenellekään, ei edes henkilölle, joka väittää olevansa pankin edustaja.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Jos sinulla on epäilyksiä, ota välittömästi yhteyttä asiakaspalveluun.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Verkkopankkipalvelualusta.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Tämä viesti on lähetetty automaattisesti. Älä vastaa tähän sähköpostiin.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Kaikki oikeudet pidätetään.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
   },
-  el: {
-    subject: 'Καλώς ήρθατε στο BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Γεια σου ${fullName},\n\nΟ λογαριασμός σας e-banking έχει δημιουργηθεί.\n\nΑριθμός λογαριασμού: ${accountNumber}\n\n(Περιβάλλον δοκιμών)`,
-    html: (fullName, accountNumber) =>
-      `<p>Γεια σου ${fullName},</p><p>Ο λογαριασμός σας e-banking έχει δημιουργηθεί.</p><p><strong>Αριθμός λογαριασμού:</strong> ${accountNumber}</p><p><em>(Περιβάλλον δοκιμών)</em></p>`,
+},
+
+es: {
+  subject: "Bienvenido a BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Estimado cliente";
+    return [
+      `Hola ${name},`,
+      ``,
+      `Bienvenido a BK e‑Banking.`,
+      ``,
+      `Su banca en línea se ha creado correctamente.`,
+      `Número de cuenta: ${accountNumber}`,
+      ``,
+      `Ahora puede iniciar sesión para:`,
+      `- consultar los saldos de sus cuentas,`,
+      `- seguir sus movimientos en tiempo real,`,
+      `- realizar sus operaciones diarias de forma segura.`,
+      ``,
+      `Por su seguridad, no comparta nunca sus credenciales ni sus códigos de seguridad con nadie.`,
+      ``,
+      `Atentamente,`,
+      `El equipo de BK e‑Banking`,
+    ].join("\n");
   },
-  sl: {
-    subject: 'Dobrodošli v BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Pozdravljeni ${fullName},\n\nVaš račun za e-banking je bil ustvarjen.\n\nŠtevilka računa: ${accountNumber}\n\n(Testno okolje)`,
-    html: (fullName, accountNumber) =>
-      `<p>Pozdravljeni ${fullName},</p><p>Vaš račun za e-banking je bil ustvarjen.</p><p><strong>Številka računa:</strong> ${accountNumber}</p><p><em>(Testno okolje)</em></p>`,
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Estimado cliente";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Bienvenido a BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Encabezado -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Confirmación de apertura de cuenta
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Contenido -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Hola ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Nos complace confirmar que su cuenta de BK e‑Banking se ha creado correctamente.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Número de cuenta
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Ahora puede acceder a su banca en línea segura para:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>consultar los saldos de sus cuentas,</li>
+                <li>seguir sus movimientos en tiempo real,</li>
+                <li>realizar transferencias y pagos,</li>
+                <li>actualizar sus datos personales.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Acceder a mi cuenta
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Por su seguridad, no comparta jamás sus credenciales ni códigos de seguridad con nadie, tampoco con personas que se identifiquen como representantes del banco.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Si tiene alguna duda, póngase en contacto de inmediato con nuestro servicio de atención al cliente.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Pie -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Plataforma de servicios bancarios en línea.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Este es un mensaje automático, por favor no responda a este correo.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Todos los derechos reservados.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
   },
-  lt: {
-    subject: 'Sveiki atvykę į BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Sveiki ${fullName},\n\nJūsų e-banking paskyra buvo sukurta.\n\nSąskaitos numeris: ${accountNumber}\n\n(Testavimo aplinka)`,
-    html: (fullName, accountNumber) =>
-      `<p>Sveiki ${fullName},</p><p>Jūsų e-banking paskyra buvo sukurta.</p><p><strong>Sąskaitos numeris:</strong> ${accountNumber}</p><p><em>(Testavimo aplinka)</em></p>`,
+},
+
+pl: {
+  subject: "Witamy w BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Drogi Kliencie";
+    return [
+      `Witaj ${name},`,
+      ``,
+      `Witamy w BK e‑Banking.`,
+      ``,
+      `Twoje konto bankowości internetowej zostało pomyślnie utworzone.`,
+      `Numer konta: ${accountNumber}`,
+      ``,
+      `Możesz teraz zalogować się, aby:`,
+      `- sprawdzać salda swoich rachunków,`,
+      `- śledzić transakcje w czasie rzeczywistym,`,
+      `- bezpiecznie wykonywać codzienne operacje bankowe.`,
+      ``,
+      `Ze względów bezpieczeństwa nigdy nie udostępniaj swoich danych logowania ani kodów bezpieczeństwa osobom trzecim.`,
+      ``,
+      `Z poważaniem,`,
+      `Zespół BK e‑Banking`,
+    ].join("\n");
   },
-  lv: {
-    subject: 'Laipni lūdzam BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Sveiki ${fullName},\n\nJūsu e-banking konts ir izveidots.\n\nKonta numurs: ${accountNumber}\n\n(Testa vide)`,
-    html: (fullName, accountNumber) =>
-      `<p>Sveiki ${fullName},</p><p>Jūsu e-banking konts ir izveidots.</p><p><strong>Konta numurs:</strong> ${accountNumber}</p><p><em>(Testa vide)</em></p>`,
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Drogi Kliencie";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <title>Witamy w BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Nagłówek -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Potwierdzenie utworzenia konta
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Treść -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Witaj ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Z przyjemnością potwierdzamy, że Twoje konto BK e‑Banking zostało pomyślnie utworzone.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Numer konta
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Możesz teraz zalogować się do swojego bezpiecznego panelu BK e‑Banking, aby:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>sprawdzać salda swoich rachunków,</li>
+                <li>śledzić transakcje w czasie rzeczywistym,</li>
+                <li>wykonywać przelewy i płatności,</li>
+                <li>aktualizować swoje dane osobowe.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Zaloguj się do mojego konta
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Ze względów bezpieczeństwa nigdy nie udostępniaj swoich danych logowania ani kodów bezpieczeństwa innym osobom, nawet jeśli podają się za pracowników banku.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                W razie wątpliwości niezwłocznie skontaktuj się z naszym działem obsługi klienta.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Stopka -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Platforma bankowości internetowej.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Ta wiadomość została wygenerowana automatycznie. Prosimy na nią nie odpowiadać.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Wszystkie prawa zastrzeżone.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
   },
-  it: {
-    subject: 'Benvenuto su BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Ciao ${fullName},\n\nIl tuo account e-banking è stato creato.\n\nNumero di conto: ${accountNumber}\n\n(Ambiente di test)`,
-    html: (fullName, accountNumber) =>
-      `<p>Ciao ${fullName},</p><p>Il tuo account e-banking è stato creato.</p><p><strong>Numero di conto:</strong> ${accountNumber}</p><p><em>(Ambiente di test)</em></p>`,
+},
+
+pt: {
+  subject: "Bem-vindo ao BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Caro cliente";
+    return [
+      `Olá ${name},`,
+      ``,
+      `Bem-vindo ao BK e‑Banking.`,
+      ``,
+      `A sua conta de banca online foi criada com sucesso.`,
+      `Número da conta: ${accountNumber}`,
+      ``,
+      `Agora pode iniciar sessão para:`,
+      `- consultar os saldos das suas contas,`,
+      `- acompanhar as suas movimentações em tempo real,`,
+      `- realizar as suas operações diárias em segurança.`,
+      ``,
+      `Por motivos de segurança, nunca partilhe as suas credenciais ou códigos de segurança com terceiros.`,
+      ``,
+      `Com os melhores cumprimentos,`,
+      `Equipa BK e‑Banking`,
+    ].join("\n");
   },
-  cs: {
-    subject: 'Vítejte v BK e‑Banking',
-    text: (fullName, accountNumber) =>
-      `Ahoj ${fullName},\n\nVáš účet e-banking byl vytvořen.\n\nČíslo účtu: ${accountNumber}\n\n(Testovací prostředí)`,
-    html: (fullName, accountNumber) =>
-      `<p>Ahoj ${fullName},</p><p>Váš účet e-banking byl vytvořen.</p><p><strong>Číslo účtu:</strong> ${accountNumber}</p><p><em>(Testovací prostředí)</em></p>`,
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Caro cliente";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <title>Bem-vindo ao BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Cabeçalho -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Confirmação de criação de conta
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Conteúdo -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Olá ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Temos o prazer de confirmar que a sua conta BK e‑Banking foi criada com sucesso.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Número da conta
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Pode agora aceder à sua área segura de banca online para:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>consultar os saldos das suas contas,</li>
+                <li>acompanhar as suas movimentações em tempo real,</li>
+                <li>efetuar transferências e pagamentos,</li>
+                <li>atualizar os seus dados pessoais.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Aceder à minha conta
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Por motivos de segurança, nunca partilhe as suas credenciais de acesso ou códigos de segurança com ninguém, mesmo que a pessoa se identifique como colaborador do banco.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Em caso de dúvida, contacte de imediato o nosso serviço de apoio ao cliente.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Rodapé -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Plataforma de serviços bancários online.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Esta é uma mensagem automática, por favor não responda a este e‑mail.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Todos os direitos reservados.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
   },
+},
+
+sk: {
+  subject: "Vitajte v BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Vážený klient";
+    return [
+      `Ahoj ${name},`,
+      ``,
+      `Vitajte v BK e‑Banking.`,
+      ``,
+      `Váš účet internetového bankovníctva bol úspešne vytvorený.`,
+      `Číslo účtu: ${accountNumber}`,
+      ``,
+      `Teraz sa môžete prihlásiť a:`,
+      `- kontrolovať zostatky na svojich účtoch,`,
+      `- sledovať svoje transakcie v reálnom čase,`,
+      `- bezpečne vykonávať svoje každodenné bankové operácie.`,
+      ``,
+      `Z bezpečnostných dôvodov nikdy nezdieľajte svoje prihlasovacie údaje ani bezpečnostné kódy s tretími osobami.`,
+      ``,
+      `S pozdravom,`,
+      `Tím BK e‑Banking`,
+    ].join("\n");
+  },
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Vážený klient";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8" />
+  <title>Vitajte v BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Hlavička -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Potvrdenie vytvorenia účtu
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Obsah -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Ahoj ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                s radosťou potvrdzujeme, že váš účet BK e‑Banking bol úspešne vytvorený.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Číslo účtu
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Teraz sa môžete prihlásiť do svojho zabezpečeného internetového bankovníctva a:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>kontrolovať zostatky na svojich účtoch,</li>
+                <li>sledovať transakcie v reálnom čase,</li>
+                <li>vykonávať prevody a platby,</li>
+                <li>aktualizovať svoje osobné údaje.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Prihlásiť sa do môjho účtu
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Z bezpečnostných dôvodov nikdy neposkytujte svoje prihlasovacie údaje ani bezpečnostné kódy iným osobám, ani tým, ktoré sa vydávajú za pracovníkov banky.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                V prípade pochybností sa okamžite obráťte na zákaznícky servis.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Pätička -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Platforma pre internetové bankovníctvo.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Táto správa bola vygenerovaná automaticky. Prosím, neodpovedajte na tento e‑mail.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Všetky práva vyhradené.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+  },
+},
+
+bg: {
+  subject: "Добре дошли в BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Уважаеми клиент";
+    return [
+      `Здравейте ${name},`,
+      ``,
+      `Добре дошли в BK e‑Banking.`,
+      ``,
+      `Вашият профил за онлайн банкиране беше успешно създаден.`,
+      `Номер на сметка: ${accountNumber}`,
+      ``,
+      `Сега можете да влезете, за да:`,
+      `- проверявате салдата по своите сметки,`,
+      `- следите транзакциите си в реално време,`,
+      `- извършвате ежедневните си банкови операции по сигурен начин.`,
+      ``,
+      `От съображения за сигурност никога не споделяйте своите данни за вход или защитни кодове с трети лица.`,
+      ``,
+      `С уважение,`,
+      `Екипът на BK e‑Banking`,
+    ].join("\n");
+  },
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Уважаеми клиент";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <title>Добре дошли в BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Хедър -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Потвърждение за създаване на сметка
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Съдържание -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Здравейте ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                С удоволствие потвърждаваме, че вашият акаунт в BK e‑Banking беше успешно създаден.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Номер на сметка
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Сега можете да влезете в своя защитен профил за онлайн банкиране, за да:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>проверявате салдата по своите сметки,</li>
+                <li>следите транзакциите си в реално време,</li>
+                <li>извършвате преводи и плащания,</li>
+                <li>актуализирате своите лични данни.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Вход в моя профил
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                От съображения за сигурност никога не предоставяйте своите данни за вход или защитни кодове на други лица, дори ако се представят за служители на банката.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                При съмнение незабавно се свържете с отдела за обслужване на клиенти.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Футър -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Платформа за онлайн банкови услуги.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Това съобщение е генерирано автоматично. Моля, не отговаряйте на този имейл.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Всички права запазени.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+  },
+},
+
+el: {
+  subject: "Καλώς ήρθατε στο BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Αγαπητέ πελάτη";
+    return [
+      `Γεια σας ${name},`,
+      ``,
+      `Καλώς ήρθατε στο BK e‑Banking.`,
+      ``,
+      `Ο λογαριασμός σας για ηλεκτρονική τραπεζική δημιουργήθηκε με επιτυχία.`,
+      `Αριθμός λογαριασμού: ${accountNumber}`,
+      ``,
+      `Μπορείτε τώρα να συνδεθείτε για να:`,
+      `- ελέγχετε τα υπόλοιπα των λογαριασμών σας,`,
+      `- παρακολουθείτε τις κινήσεις σας σε πραγματικό χρόνο,`,
+      `- πραγματοποιείτε τις καθημερινές σας τραπεζικές συναλλαγές με ασφάλεια.`,
+      ``,
+      `Για λόγους ασφαλείας, μην κοινοποιείτε ποτέ τα στοιχεία σύνδεσης ή τους κωδικούς ασφαλείας σας σε τρίτους.`,
+      ``,
+      `Με εκτίμηση,`,
+      `Η ομάδα του BK e‑Banking`,
+    ].join("\n");
+  },
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Αγαπητέ πελάτη";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8" />
+  <title>Καλώς ήρθατε στο BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Επιβεβαίωση δημιουργίας λογαριασμού
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Περιεχόμενο -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Γεια σας ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Με χαρά σας ενημερώνουμε ότι ο λογαριασμός σας στο BK e‑Banking δημιουργήθηκε με επιτυχία.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Αριθμός λογαριασμού
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Μπορείτε τώρα να συνδεθείτε στον ασφαλή χώρο ηλεκτρονικής τραπεζικής για να:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>ελέγχετε τα υπόλοιπα των λογαριασμών σας,</li>
+                <li>παρακολουθείτε τις κινήσεις σας σε πραγματικό χρόνο,</li>
+                <li>πραγματοποιείτε μεταφορές και πληρωμές,</li>
+                <li>ενημερώνετε τα προσωπικά σας στοιχεία.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Σύνδεση στον λογαριασμό μου
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Για λόγους ασφαλείας, μην κοινοποιείτε ποτέ τα στοιχεία σύνδεσης ή τους κωδικούς ασφαλείας σας σε άλλους, ακόμη και αν ισχυρίζονται ότι είναι εκπρόσωποι της τράπεζας.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Σε περίπτωση αμφιβολιών, επικοινωνήστε άμεσα με την εξυπηρέτηση πελατών.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Πλατφόρμα υπηρεσιών ηλεκτρονικής τραπεζικής.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Αυτό είναι αυτοματοποιημένο μήνυμα· παρακαλούμε μην απαντάτε σε αυτό το email.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Με επιφύλαξη παντός δικαιώματος.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+  },
+},
+
+sl: {
+  subject: "Dobrodošli v BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Spoštovani klient";
+    return [
+      `Pozdravljeni ${name},`,
+      ``,
+      `Dobrodošli v BK e‑Banking.`,
+      ``,
+      `Vaš račun za spletno bančništvo je bil uspešno ustvarjen.`,
+      `Številka računa: ${accountNumber}`,
+      ``,
+      `Zdaj se lahko prijavite in:`,
+      `- preverjate stanja na svojih računih,`,
+      `- spremljate svoje transakcije v realnem času,`,
+      `- varno izvajate vsakodnevne bančne operacije.`,
+      ``,
+      `Zaradi varnosti svojih podatkov svojih prijavnih podatkov ali varnostnih kod nikoli ne delite z drugimi osebami.`,
+      ``,
+      `Lep pozdrav,`,
+      `Ekipa BK e‑Banking`,
+    ].join("\n");
+  },
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Spoštovani klient";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8" />
+  <title>Dobrodošli v BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Glava -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Potrditev odprtja računa
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Vsebina -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Pozdravljeni ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Z veseljem potrjujemo, da je bil vaš račun BK e‑Banking uspešno ustvarjen.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Številka računa
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Zdaj se lahko prijavite v svoj varni spletni bančni prostor in:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>preverjate stanja na svojih računih,</li>
+                <li>spremljate transakcije v realnem času,</li>
+                <li>izvajate nakazila in plačila,</li>
+                <li>posodabljate svoje osebne podatke.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Prijava v moj račun
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Zaradi varnosti nikoli ne razkrivajte svojih prijavnih podatkov ali varnostnih kod drugim osebam, tudi če se predstavijo kot bančni svetovalci.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                V primeru dvoma se nemudoma obrnite na službo za podporo strankam.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Noga -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Platforma za spletne bančne storitve.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                To sporočilo je bilo ustvarjeno samodejno. Prosimo, ne odgovarjajte na ta e‑poštni naslov.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Vse pravice pridržane.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+  },
+},
+
+lt: {
+  subject: "Sveiki atvykę į BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Gerbiamas kliente";
+    return [
+      `Sveiki ${name},`,
+      ``,
+      `Sveiki atvykę į BK e‑Banking.`,
+      ``,
+      `Jūsų internetinės bankininkystės paskyra sėkmingai sukurta.`,
+      `Sąskaitos numeris: ${accountNumber}`,
+      ``,
+      `Dabar galite prisijungti ir:`,
+      `- peržiūrėti savo sąskaitų likučius,`,
+      `- stebėti operacijas realiuoju laiku,`,
+      `- saugiai vykdyti kasdienes banko operacijas.`,
+      ``,
+      `Saugumo sumetimais niekada nesidalykite savo prisijungimo duomenimis ar saugos kodais su trečiosiomis šalimis.`,
+      ``,
+      `Pagarbiai,`,
+      `BK e‑Banking komanda`,
+    ].join("\n");
+  },
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Gerbiamas kliente";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8" />
+  <title>Sveiki atvykę į BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Antraštė -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Paskyros sukūrimo patvirtinimas
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Turinys -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Sveiki ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Su džiaugsmu patvirtiname, kad jūsų BK e‑Banking paskyra buvo sėkmingai sukurta.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Sąskaitos numeris
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Dabar galite prisijungti prie savo saugios internetinės bankininkystės ir:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>peržiūrėti savo sąskaitų likučius,</li>
+                <li>stebėti operacijas realiuoju laiku,</li>
+                <li>vykdyti pervedimus ir mokėjimus,</li>
+                <li>atnaujinti savo asmens duomenis.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Prisijungti prie mano paskyros
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Saugumo sumetimais niekada neatskleiskite savo prisijungimo duomenų ar saugos kodų kitiems asmenims, net jei jie prisistato kaip banko darbuotojai.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Kilus abejonių, nedelsdami susisiekite su klientų aptarnavimo centru.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Poraštė -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Internetinės bankininkystės paslaugų platforma.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Ši žinutė sukurta automatiškai. Prašome neatsakinėti į šį el. laišką.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Visos teisės saugomos.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+  },
+},
+
+lv: {
+  subject: "Laipni lūdzam BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Cienījamais klients";
+    return [
+      `Sveicināti, ${name},`,
+      ``,
+      `Laipni lūdzam BK e‑Banking.`,
+      ``,
+      `Jūsu internetbankas konts ir veiksmīgi izveidots.`,
+      `Konta numurs: ${accountNumber}`,
+      ``,
+      `Tagad varat pierakstīties, lai:`,
+      `- pārbaudītu savu kontu atlikumus,`,
+      `- sekotu līdzi darījumiem reāllaikā,`,
+      `- droši veiktu ikdienas bankas operācijas.`,
+      ``,
+      `Drošības nolūkos nekad nekopīgojiet savus pieteikšanās datus vai drošības kodus ar trešajām personām.`,
+      ``,
+      `Ar cieņu,`,
+      `BK e‑Banking komanda`,
+    ].join("\n");
+  },
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Cienījamais klients";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="lv">
+<head>
+  <meta charset="utf-8" />
+  <title>Laipni lūdzam BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Galvene -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Konta izveides apstiprinājums
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Saturs -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Sveicināti, ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Ar prieku apstiprinām, ka jūsu BK e‑Banking konts ir veiksmīgi izveidots.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Konta numurs
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Tagad varat pieslēgties savam drošajam internetbankas profilam, lai:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>pārbaudītu savu kontu atlikumus,</li>
+                <li>sekotu līdzi darījumiem reāllaikā,</li>
+                <li>veiktu pārskaitījumus un maksājumus,</li>
+                <li>atjauninātu savus personas datus.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Pieslēgties manam kontam
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Drošības nolūkos nekad neizpaudiet savus pieteikšanās datus vai drošības kodus citām personām, pat ja tās uzdodas par bankas darbiniekiem.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Ja rodas šaubas, nekavējoties sazinieties ar klientu apkalpošanas dienestu.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Kājene -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Tiešsaistes bankas pakalpojumu platforma.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Šis ir automātiski ģenerēts ziņojums. Lūdzu, neatbildiet uz šo e‑pastu.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Visas tiesības aizsargātas.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+  },
+},
+
+it: {
+  subject: "Benvenuto su BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Gentile cliente";
+    return [
+      `Ciao ${name},`,
+      ``,
+      `Benvenuto su BK e‑Banking.`,
+      ``,
+      `Il tuo profilo di internet banking è stato creato con successo.`,
+      `Numero di conto: ${accountNumber}`,
+      ``,
+      `Ora puoi accedere per:`,
+      `- verificare i saldi dei tuoi conti,`,
+      `- monitorare le tue operazioni in tempo reale,`,
+      `- effettuare in sicurezza le operazioni bancarie di tutti i giorni.`,
+      ``,
+      `Per motivi di sicurezza non condividere mai le tue credenziali di accesso o i codici di sicurezza con terzi.`,
+      ``,
+      `Cordiali saluti,`,
+      `Il team BK e‑Banking`,
+    ].join("\n");
+  },
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Gentile cliente";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <title>Benvenuto su BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Intestazione -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Conferma creazione conto
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Contenuto -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Ciao ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Siamo lieti di confermare che il tuo conto BK e‑Banking è stato creato con successo.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Numero di conto
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Ora puoi accedere alla tua area sicura di internet banking per:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>verificare i saldi dei tuoi conti,</li>
+                <li>monitorare le operazioni in tempo reale,</li>
+                <li>effettuare bonifici e pagamenti,</li>
+                <li>aggiornare i tuoi dati personali.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Accedi al mio conto
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Per la tua sicurezza non comunicare mai le tue credenziali di accesso o i codici di sicurezza ad altre persone, nemmeno a chi si presenta come operatore della banca.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                In caso di dubbi contatta immediatamente il servizio clienti.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Piè di pagina -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Piattaforma di servizi bancari online.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Questo è un messaggio automatico, si prega di non rispondere a questa email.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Tutti i diritti riservati.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+  },
+},
+
+cs: {
+  subject: "Vítejte v BK e‑Banking",
+  text: (fullName, accountNumber) => {
+    const name = fullName || "Vážený kliente";
+    return [
+      `Ahoj ${name},`,
+      ``,
+      `Vítejte v BK e‑Banking.`,
+      ``,
+      `Váš účet pro internetové bankovnictví byl úspěšně vytvořen.`,
+      `Číslo účtu: ${accountNumber}`,
+      ``,
+      `Nyní se můžete přihlásit a:`,
+      `- kontrolovat zůstatky na svých účtech,`,
+      `- sledovat své transakce v reálném čase,`,
+      `- bezpečně provádět každodenní bankovní operace.`,
+      ``,
+      `Z bezpečnostních důvodů nikdy nesdílejte své přihlašovací údaje ani bezpečnostní kódy s třetími osobami.`,
+      ``,
+      `S pozdravem,`,
+      `Tým BK e‑Banking`,
+    ].join("\n");
+  },
+  html: (fullName, accountNumber) => {
+    const name = fullName || "Vážený kliente";
+    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    return `<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <title>Vítejte v BK e‑Banking</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;">
+          <!-- Hlavička -->
+          <tr>
+            <td style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;color:#FFFFFF;">
+              <table width="100%" role="presentation">
+                <tr>
+                  <td style="font-size:20px;font-weight:700;">
+                    BK e‑Banking
+                  </td>
+                  <td align="right" style="font-size:12px;opacity:0.9;">
+                    Potvrzení vytvoření účtu
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Obsah -->
+          <tr>
+            <td style="padding:24px;">
+              <p style="margin:0 0 12px 0;font-size:14px;color:#111827;">
+                Ahoj ${name},
+              </p>
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                s potěšením potvrzujeme, že váš účet BK e‑Banking byl úspěšně vytvořen.
+              </p>
+
+              <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
+                <tr>
+                  <td style="padding:14px 16px;border-radius:10px;border:1px solid #E5E7EB;background-color:#F9FAFB;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#6B7280;margin-bottom:4px;">
+                      Číslo účtu
+                    </div>
+                    <div style="font-size:18px;font-weight:700;color:#111827;font-family:monospace;">
+                      ${accountNumber}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
+                Nyní se můžete přihlásit do svého zabezpečeného internetového bankovnictví, kde můžete:
+              </p>
+              <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
+                <li>kontrolovat zůstatky na svých účtech,</li>
+                <li>sledovat transakce v reálném čase,</li>
+                <li>provádět převody a platby,</li>
+                <li>aktualizovat své osobní údaje.</li>
+              </ul>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td>
+                    <a href="${baseUrl}/login"
+                       style="display:inline-block;padding:10px 18px;border-radius:999px;background-color:#0F766E;color:#FFFFFF;font-size:13px;font-weight:600;text-decoration:none;">
+                      Přihlásit se do mého účtu
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
+                Z bezpečnostních důvodů nikdy nesdělujte své přihlašovací údaje ani bezpečnostní kódy jiným osobám, ani těm, které se vydávají za pracovníky banky.
+              </p>
+              <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
+                V případě pochybností kontaktujte neprodleně zákaznickou podporu.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Patička -->
+          <tr>
+            <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
+              <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
+                BK e‑Banking – Platforma pro internetové bankovnictví.
+              </p>
+              <p style="margin:0;font-size:11px;color:#9CA3AF;">
+                Tato zpráva byla vygenerována automaticky. Prosím, neodpovídejte na tento e‑mail.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
+          &copy; ${new Date().getFullYear()} BK e‑Banking. Všechna práva vyhrazena.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+  },
+},
+
 };
 
 async function sendWelcomeEmail(to, fullName, accountNumber, locale = 'fr') {
@@ -131,13 +2100,18 @@ async function sendWelcomeEmail(to, fullName, accountNumber, locale = 'fr') {
 
   const template = emailTemplates[locale] || emailTemplates.fr;
 
-  await transporter.sendMail({
-    from: process.env.SMTP_FROM,
-    to,
-    subject: template.subject,
-    text: template.text(fullName, accountNumber),
-    html: template.html(fullName, accountNumber),
-  });
+await transporter.sendMail({
+  from: {
+    name: "OLAKRED",
+    address: process.env.SMTP_FROM,
+  },
+  to,
+  subject: template.subject,
+  text: template.text(fullName, accountNumber),
+  html: template.html(fullName, accountNumber),
+});
+
+
 }
 
 export async function POST(req) {
@@ -193,13 +2167,34 @@ export async function POST(req) {
     }
 
     // Création utilisateur (mot de passe en clair pour DEV UNIQUEMENT)
-    const [resultUser] = await db.execute(
-      `
-        INSERT INTO users (email, password, full_name, address, birth_date, country, phone, gender)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-      `,
-      [email, password, fullName, address, birthDate, country, phone, gender]
-    );
+const [resultUser] = await db.execute(
+  `
+    INSERT INTO users (
+      email,
+      password,
+      full_name,
+      address,
+      birth_date,
+      country,
+      phone,
+      gender,
+      locale
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `,
+  [
+    email,
+    password,
+    fullName,
+    address,
+    birthDate,
+    country,
+    phone,
+    gender,
+    (locale || "fr").toLowerCase(),
+  ]
+);
+
     const userId = resultUser.insertId;
 
     // Numéro de compte sans préfixe BK

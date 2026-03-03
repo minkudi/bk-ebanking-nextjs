@@ -1,17 +1,24 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter, useParams, usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import LanguageSwitcher from '../../components/LanguageSwitcher';
+import {
+  HomeIcon,
+  ArrowPathRoundedSquareIcon,
+  ClockIcon,
+} from '@heroicons/react/24/outline';
+import { UserCircleIcon } from '@heroicons/react/24/outline';
 
 export default function DashboardPage() {
   const router = useRouter();
   const params = useParams();
   const locale = params.locale || 'fr';
+  const pathname = usePathname();
   const t = useTranslations('dashboard');
 
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [showAddCardModal, setShowAddCardModal] = useState(false);
   const [showCardDetailsModal, setShowCardDetailsModal] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -29,285 +36,388 @@ export default function DashboardPage() {
         setData(json);
       } catch (err) {
         console.error(err);
-      } finally {
-        setLoading(false);
       }
     }
     fetchData();
   }, [router, locale]);
 
-  if (loading) {
-    return (
-      <main className="min-h-screen flex items-center justify-center bg-[#f3f4f6]">
-        <div className="animate-pulse text-gray-600">{t('loading')}</div>
-      </main>
-    );
-  }
-
+  // Tant que les données ne sont pas là, on ne rend rien (0 skeleton)
   if (!data) return null;
 
   const menuItems = [
-    { key: 'dashboard', href: `/${locale}/dashboard`, icon: '🏠', label: t('menu.dashboard') },
-    { key: 'transfer', href: `/${locale}/transfer`, icon: '💸', label: t('menu.transfer') },
-    { key: 'history', href: `/${locale}/transactions`, icon: '📋', label: t('menu.history') },
+    { key: 'dashboard', href: `/${locale}/dashboard`, label: t('menu.dashboard'), icon: HomeIcon },
+    { key: 'transfer', href: `/${locale}/transfer`, label: t('menu.transfer'), icon: ArrowPathRoundedSquareIcon },
+    { key: 'history', href: `/${locale}/transactions`, label: t('menu.history'), icon: ClockIcon },
+    { key: 'profile', href: `/${locale}/profile`, label: t('menu.profile'), icon: UserCircleIcon },
   ];
 
   return (
-    <div className="min-h-screen bg-[#f3f4f6] flex">
+    <div className="min-h-screen bg-slate-50 flex text-slate-900">
       {/* Sidebar Desktop */}
-      <aside className="hidden md:flex md:flex-col w-64 bg-white border-r border-[#e5e7eb] fixed h-full">
-        <div className="p-6 border-b border-[#e5e7eb]">
-          <h1 className="text-xl font-bold text-[#111827]">BK E‑BANKING</h1>
-          <p className="text-xs text-[#6b7280] mt-1">{t('subtitle')}</p>
+      <aside className="hidden lg:flex lg:flex-col w-64 bg-white border-r border-gray-200">
+        <div className="h-16 px-6 flex items-center">
+          <div className="flex items-center gap-3">
+            <div className="h-9 w-9 rounded-2xl bg-gradient-to-tr from-indigo-500 to-sky-500 flex items-center justify-center text-white">
+              <span className="text-[18px] font-bold">BK</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-slate-900 tracking-tight">
+                BK E‑BANKING
+              </span>
+              <span className="text-[11px] text-slate-400 uppercase tracking-[0.16em]">
+                Menu
+              </span>
+            </div>
+          </div>
         </div>
-        <nav className="flex-1 p-4 space-y-2">
-          {menuItems.map(item => (
-            <a
-              key={item.key}
-              href={item.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition ${
-                item.key === 'dashboard' 
-                  ? 'bg-[#047857] text-white font-semibold' 
-                  : 'text-[#6b7280] hover:bg-[#f3f4f6]'
-              }`}
-            >
-              <span className="text-xl">{item.icon}</span>
-              <span className="text-sm">{item.label}</span>
-            </a>
-          ))}
+
+        <div className="h-px bg-slate-100 mx-6" />
+
+        <nav className="flex-1 px-3 py-4 space-y-1">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = pathname.startsWith(item.href);
+
+            return (
+              <a
+                key={item.key}
+                href={item.href}
+                className={`group flex items-center justify-between rounded-2xl px-3 py-2 text-sm transition ${
+                  isActive
+                    ? 'bg-indigo-50 text-indigo-600'
+                    : 'text-slate-500 hover:bg-slate-50'
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <span
+                    className={`h-9 w-9 rounded-xl inline-flex items-center justify-center text-xs ${
+                      isActive
+                        ? 'bg-white text-indigo-500'
+                        : 'bg-slate-100 text-slate-400 group-hover:text-slate-600'
+                    }`}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <span className="truncate">{item.label}</span>
+                </div>
+              </a>
+            );
+          })}
         </nav>
-        <div className="p-4 border-t border-[#e5e7eb]">
-          <p className="text-xs text-[#9ca3af] text-center">© 2026 BK E-Banking</p>
+        <div className="px-6 pb-3">
+          <LanguageSwitcher currentLocale={locale} />
+        </div>
+        <div className="px-6 py-2 text-[11px] text-slate-400">
+          © 2026 BK E‑BANKING
         </div>
       </aside>
 
-      {/* Sidebar Mobile (overlay) */}
+      {/* Sidebar Mobile */}
       {sidebarOpen && (
-        <div className="md:hidden fixed inset-0 bg-black/50 z-40 animate-fade-in" onClick={() => setSidebarOpen(false)}>
-          <aside className="w-64 bg-white h-full animate-slide-right" onClick={(e) => e.stopPropagation()}>
-            <div className="p-6 border-b border-[#e5e7eb] flex items-center justify-between">
-              <div>
-                <h1 className="text-xl font-bold text-[#111827]">BK E‑BANKING</h1>
-                <p className="text-xs text-[#6b7280] mt-1">{t('subtitle')}</p>
+        <div
+          className="lg:hidden fixed inset-0 z-40 bg-black/40"
+          onClick={() => setSidebarOpen(false)}
+        >
+          <aside
+            className="w-64 bg-white h-full shadow-lg border-r border-gray-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="h-16 px-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="h-9 w-9 rounded-2xl bg-gradient-to-tr from-indigo-500 to-sky-500 flex items-center justify-center text-white">
+                  <span className="text-[18px] font-bold">BK</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-semibold text-slate-900 tracking-tight">
+                    BK E‑BANKING
+                  </span>
+                  <span className="text-[11px] text-slate-400 uppercase tracking-[0.16em]">
+                    Menu
+                  </span>
+                </div>
               </div>
-              <button onClick={() => setSidebarOpen(false)} className="text-2xl text-gray-400">&times;</button>
+              <button
+                onClick={() => setSidebarOpen(false)}
+                className="h-7 w-7 inline-flex items-center justify-center rounded-full border border-slate-200 text-slate-400 text-sm hover:bg-slate-50"
+              >
+                ×
+              </button>
             </div>
-            <nav className="p-4 space-y-2">
-              {menuItems.map(item => (
-                <a
-                  key={item.key}
-                  href={item.href}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition ${
-                    item.key === 'dashboard' 
-                      ? 'bg-[#047857] text-white font-semibold' 
-                      : 'text-[#6b7280] hover:bg-[#f3f4f6]'
-                  }`}
-                >
-                  <span className="text-xl">{item.icon}</span>
-                  <span className="text-sm">{item.label}</span>
-                </a>
-              ))}
+
+            <div className="h-px bg-slate-100 mx-4" />
+
+            <nav className="px-3 py-4 space-y-1">
+              {menuItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = pathname.startsWith(item.href);
+
+                return (
+                  <a
+                    key={item.key}
+                    href={item.href}
+                    className={`group flex items-center justify-between rounded-2xl px-3 py-2 text-sm transition ${
+                      isActive
+                        ? 'bg-indigo-50 text-indigo-600'
+                        : 'text-slate-500 hover:bg-slate-50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span
+                        className={`h-9 w-9 rounded-xl inline-flex items-center justify-center text-xs ${
+                          isActive
+                            ? 'bg-white text-indigo-500'
+                            : 'bg-slate-100 text-slate-400 group-hover:text-slate-600'
+                        }`}
+                      >
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <span className="truncate">{item.label}</span>
+                    </div>
+                  </a>
+                );
+              })}
             </nav>
+            <div className="px-4 pb-4">
+              <LanguageSwitcher />
+            </div>
           </aside>
         </div>
       )}
 
-      {/* Contenu principal */}
-      <main className="flex-1 md:ml-64">
+      {/* Main */}
+      <main className="flex-1 flex flex-col min-h-screen">
         {/* Header */}
-        <header className="bg-white border-b border-[#e5e7eb] px-6 py-4 sticky top-0 z-30 shadow-sm">
-          <div className="flex items-center justify-between">
-            {/* Burger menu mobile */}
-            <button 
+        <header className="h-16 bg-white border-b border-slate-200 px-4 lg:px-8 flex items-center justify-between sticky top-0 z-20">
+          <div className="flex items-center gap-3">
+            <button
+              className="lg:hidden h-8 w-8 inline-flex items-center justify-center rounded-md border border-slate-200 text-slate-500 text-lg"
               onClick={() => setSidebarOpen(true)}
-              className="md:hidden text-2xl text-[#6b7280]"
             >
               ☰
             </button>
-
-            <h2 className="text-lg font-semibold text-[#111827] hidden md:block">{t('title')}</h2>
-
-            {/* Avatar + menu utilisateur */}
-            <div className="relative ml-auto">
-              <button 
-                onClick={() => setShowUserMenu(!showUserMenu)}
-                className="flex items-center gap-3 hover:bg-[#f3f4f6] px-3 py-2 rounded-lg transition"
-              >
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#047857] to-[#059669] flex items-center justify-center text-white font-bold text-sm">
-                  {data.user.fullName.charAt(0)}
-                </div>
-                <div className="hidden md:block text-left">
-                  <p className="text-sm font-semibold text-[#111827]">{data.user.fullName}</p>
-                  <p className="text-xs text-[#6b7280]">{data.user.email}</p>
-                </div>
-                <span className="text-[#6b7280]">▼</span>
-              </button>
-
-              {/* Dropdown menu */}
-              {showUserMenu && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-[#e5e7eb] rounded-lg shadow-lg py-2 animate-fade-in">
-                  <a 
-                    href={`/${locale}/profile`}
-                    className="block px-4 py-2 text-sm text-[#6b7280] hover:bg-[#f3f4f6] transition"
-                  >
-                    👤 {t('menu.profile')}
-                  </a>
-                  <div className="border-t border-[#e5e7eb] my-1"></div>
-                  <button 
-                    onClick={() => router.push(`/${locale}/logout`)}
-                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition"
-                  >
-                    🚪 {t('menu.logout')}
-                  </button>
-                </div>
-              )}
+            <div className="hidden lg:flex flex-col">
+              <span className="text-sm font-semibold tracking-tight">{t('title')}</span>
+              <span className="text-xs text-slate-400">
+                {t('balance')}: {data.account.balance} {data.account.currency}
+              </span>
             </div>
+          </div>
+
+          <div className="relative">
+            <button
+              onClick={() => setShowUserMenu((v) => !v)}
+              className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm hover:bg-slate-50 transition"
+            >
+              <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-sky-500 to-emerald-500 flex items-center justify-center text-white text-xs font-semibold">
+                {data.user.fullName.charAt(0)}
+              </div>
+              <div className="hidden md:flex flex-col items-start">
+                <span className="text-xs font-medium text-slate-900 truncate max-w-[140px]">
+                  {data.user.fullName}
+                </span>
+                <span className="text-[11px] text-slate-400 truncate max-w-[140px]">
+                  {data.user.email}
+                </span>
+              </div>
+              <span className="text-[10px] text-slate-400">▼</span>
+            </button>
+
+            {showUserMenu && (
+              <div className="absolute right-0 mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-lg text-sm py-1">
+                <button
+                  onClick={() => {
+                    setShowUserMenu(false);
+                    router.push(`/${locale}/profile`);
+                  }}
+                  className="w-full text-left px-3 py-2 hover:bg-slate-50 text-slate-600"
+                >
+                  {t('menu.profile')}
+                </button>
+                <div className="my-1 border-t border-slate-100" />
+                <button
+                  onClick={() => router.push(`/${locale}/logout`)}
+                  className="w-full text-left px-3 py-2 hover:bg-red-50 text-red-600"
+                >
+                  {t('menu.logout')}
+                </button>
+              </div>
+            )}
           </div>
         </header>
 
-        {/* Contenu */}
-        <div className="p-6">
-          {/* Cartes principales */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white border border-[#e5e7eb] rounded-xl p-6 hover:shadow-md transition">
-              <p className="text-xs uppercase tracking-wide text-[#6b7280] mb-2">{t('balance')}</p>
-              <p className="text-3xl font-bold text-[#111827]">
+        {/* Content */}
+        <div className="flex-1 px-4 lg:px-8 py-6 space-y-6">
+          {/* Top metrics */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="rounded-xl bg-white border border-slate-200/80 shadow-sm shadow-slate-100 px-4 py-4 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">
+                  {t('balance')}
+                </span>
+                <span className="h-6 w-6 rounded-full bg-emerald-50 text-emerald-600 text-xs inline-flex items-center justify-center">
+                  €
+                </span>
+              </div>
+              <p className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
                 {data.account.balance} {data.account.currency}
               </p>
-            </div>
-
-            <div className="bg-white border border-[#e5e7eb] rounded-xl p-6 hover:shadow-md transition">
-              <p className="text-xs uppercase tracking-wide text-[#6b7280] mb-2">{t('accountNumber')}</p>
-              <p className="text-lg font-mono text-[#111827]">
-                {data.account.accountNumber.slice(0, 4)}••••{data.account.accountNumber.slice(-4)}
+              <p className="mt-1 text-[11px] text-emerald-600">
+                {t('accountNumber')}: {data.account.accountNumber.slice(0, 4)}••••{data.account.accountNumber.slice(-4)}
               </p>
             </div>
 
-            <div className="bg-white border border-[#e5e7eb] rounded-xl p-6 hover:shadow-md transition">
-              <p className="text-xs uppercase tracking-wide text-[#6b7280] mb-2">{t('pendingTransfers')}</p>
-              <p className="text-xl font-bold text-orange-600">
-                {data.pending.count} ({data.pending.total} EUR)
+            <div className="rounded-xl bg-white border border-slate-200/80 shadow-sm shadow-slate-100 px-4 py-4 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">
+                  {t('pendingTransfers')}
+                </span>
+                <span className="h-6 w-6 rounded-full bg-amber-50 text-amber-600 text-xs inline-flex items-center justify-center">
+                  ●
+                </span>
+              </div>
+              <p className="mt-3 text-xl font-semibold tracking-tight text-slate-900">
+                {data.pending.count}
               </p>
+              <p className="mt-1 text-[11px] text-amber-600">
+                {data.pending.total} EUR
+              </p>
+            </div>
+
+            <div className="rounded-xl bg-gradient-to-tr from-sky-500 to-emerald-500 text-white px-4 py-4 shadow-sm shadow-emerald-200 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium uppercase tracking-wide opacity-90">
+                  Mastercard
+                </span>
+                <span className="text-[11px] bg-white/10 px-2 py-0.5 rounded-full">
+                  {data.card ? t('card.title') : t('card.add')}
+                </span>
+              </div>
+              <p className="mt-3 text-sm opacity-90">
+                {data.card
+                  ? `${t('card.holder')}: ${data.card.cardholderName}`
+                  : t('card.verificationMessage')}
+              </p>
+              <div className="mt-3 flex justify-between items-center">
+                <button
+                  onClick={() => (data.card ? setShowCardDetailsModal(true) : setShowAddCardModal(true))}
+                  className="text-xs font-medium bg-white text-emerald-700 rounded-full px-3 py-1 hover:bg-slate-50 transition"
+                >
+                  {data.card ? t('card.viewDetails') : t('card.add')}
+                </button>
+                {data.card && (
+                  <span className="text-[11px] opacity-90">
+                    **** {data.card.cardNumber.slice(-4)}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
 
-          {/* Section Carte */}
-          <div className="bg-white border border-[#e5e7eb] rounded-xl p-6 mb-8 hover:shadow-md transition">
-            <h2 className="text-lg font-semibold text-[#111827] mb-6">{t('card.title')}</h2>
-            
-            {!data.card ? (
-              <div className="flex items-center gap-6">
-                <div 
-                  className="w-80 h-48 border-2 border-dashed border-[#d1d5db] rounded-xl flex items-center justify-center bg-gradient-to-br from-[#f9fafb] to-[#f3f4f6] hover:border-[#047857] hover:shadow-lg transition cursor-pointer group"
-                  onClick={() => setShowAddCardModal(true)}
-                >
-                  <div className="text-center">
-                    <div className="text-5xl mb-3 group-hover:scale-110 transition-transform">💳</div>
-                    <p className="text-sm font-semibold text-[#047857]">+ {t('card.add')}</p>
-                  </div>
+          <button
+            onClick={() => router.push(`/${locale}/transfer`)}
+            className="inline-flex items-center gap-2 rounded-full bg-rose-500 px-4 py-2 text-xs font-medium text-white shadow-sm hover:bg-rose-600 active:bg-rose-700"
+          >
+            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/15">
+              +
+            </span>
+            {t('newTransfer')}
+          </button>
+
+          {/* Dernières transactions */}
+          <div className="rounded-2xl bg-white border border-slate-100 px-5 py-4 space-y-3 mt-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="h-7 w-7 rounded-full bg-slate-100 inline-flex items-center justify-center text-slate-500">
+                  <ClockIcon className="h-4 w-4" />
+                </span>
+                <div>
+                  <h2 className="text-sm font-semibold text-slate-900">
+                    {t('recentTransactions')}
+                  </h2>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    {t('recentTransactionsSubtitle')}
+                  </p>
                 </div>
               </div>
-            ) : (
-              <div className="flex flex-col lg:flex-row items-start gap-6">
-                <div 
-                  className="w-80 h-48 bg-gradient-to-br from-[#1a1a1a] via-[#2d2d2d] to-[#1f1f1f] rounded-xl p-6 text-white shadow-xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 group"
-                  onClick={() => setShowCardDetailsModal(true)}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                  
-                  <div className="absolute top-4 right-4 z-10 flex gap-1">
-                    <div className="w-8 h-8 rounded-full bg-red-500 opacity-90"></div>
-                    <div className="w-8 h-8 rounded-full bg-orange-400 opacity-90 -ml-4"></div>
-                  </div>
+              <span className="text-xs text-slate-400">
+                {data.transactions.length} opérations
+              </span>
+            </div>
 
-                  <div className="w-12 h-10 bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-md shadow-md"></div>
+            <div className="w-full overflow-x-auto">
+              <table className="min-w-full text-xs">
+                <thead>
+                  <tr className="text-left text-[11px] text-slate-400 border-b border-slate-100">
+                    <th className="py-2 pr-4 font-medium">{t('table.date')}</th>
+                    <th className="py-2 pr-4 font-medium">{t('table.beneficiary')}</th>
+                    <th className="py-2 pr-4 font-medium">{t('table.type')}</th>
+                    <th className="py-2 pr-4 font-medium text-right">{t('table.amount')}</th>
+                    <th className="py-2 pl-4 font-medium text-right">N Transaction</th>
+                  </tr>
+                </thead>
+<tbody className="divide-y divide-slate-50">
+  {data.transactions.length === 0 && (
+    <tr>
+      <td
+        colSpan={5}
+        className="py-3 text-center text-xs text-slate-400"
+      >
+        Aucune transaction pour le moment.
+      </td>
+    </tr>
+  )}
 
-                  <div className="mt-8">
-                    <p className="text-xs opacity-60 mb-1">{t('card.number')}</p>
-                    <p className="text-lg font-mono tracking-widest">
-                      •••• •••• •••• {data.card.cardNumber.slice(-4)}
-                    </p>
-                  </div>
+  {data.transactions.slice(0, 10).map((tx) => (
+    <tr key={tx.id} className="hover:bg-gray-2/60">
+      <td className="py-2 pr-4 whitespace-nowrap text-dark-4">
+        {tx.created_at
+          ? new Date(tx.created_at).toLocaleDateString()
+          : "—"}
+      </td>
+      <td className="py-2 pr-4 whitespace-nowrap text-dark">
+        {tx.counterparty_name || tx.description || "—"}
+      </td>
+      <td className="py-2 pr-4 whitespace-nowrap text-dark-4">
+        {tx.type === "CREDIT" ? "Crédit" : "Débit"}
+      </td>
+      <td
+        className={`py-2 pr-4 text-right whitespace-nowrap font-semibold ${
+          tx.type === "CREDIT" ? "text-emerald-600" : "text-red-500"
+        }`}
+      >
+        {Number.isFinite(Number(tx.amount))
+          ? `${tx.type === "CREDIT" ? "+" : "-"}${Number(
+              tx.amount
+            ).toFixed(2)} EUR`
+          : "—"}
+      </td>
+      <td className="py-2 pl-4 text-right whitespace-nowrap text-[11px] text-slate-500 font-mono">
+        {tx.reference || `${tx.id}` || "—"}
+      </td>
+    </tr>
+  ))}
+</tbody>
 
-                  <div className="mt-4 flex justify-between items-end">
-                    <div>
-                      <p className="text-xs opacity-60">{t('card.holder')}</p>
-                      <p className="text-sm font-semibold">{data.card.cardholderName}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs opacity-60">{t('card.expiry')}</p>
-                      <p className="text-sm font-mono">{data.card.expiryDate}</p>
-                    </div>
-                  </div>
-
-                  {data.card.status === 'FROZEN' && (
-                    <div className="absolute inset-0 bg-blue-500/30 backdrop-blur-sm flex items-center justify-center">
-                      <span className="bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg">
-                        ❄️ {t('card.frozen')}
-                      </span>
-                    </div>
-                  )}
-
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition bg-black/70 px-3 py-1 rounded-full whitespace-nowrap">
-                    👁️ {t('card.clickToView')}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 lg:flex lg:flex-col gap-2">
-                  <button className="px-4 py-2 bg-[#047857] text-white rounded-lg text-sm font-semibold hover:bg-[#03624a] transition">
-                    ✨ {t('card.generate')}
-                  </button>
-                  <button className="px-4 py-2 bg-orange-600 text-white rounded-lg text-sm font-semibold hover:bg-orange-700 transition">
-                    {data.card.status === 'FROZEN' ? '🔓 ' + t('card.unfreeze') : '🧊 ' + t('card.freeze')}
-                  </button>
-                  <button className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-semibold hover:bg-red-700 transition">
-                    🗑️ {t('card.delete')}
-                  </button>
-                  <button 
-                    onClick={() => setShowCardDetailsModal(true)}
-                    className="px-4 py-2 border border-[#d1d5db] text-[#6b7280] rounded-lg text-sm font-semibold hover:border-[#047857] hover:text-[#047857] transition"
-                  >
-                    👁️ {t('card.viewDetails')}
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Transactions */}
-          <div className="bg-white border border-[#e5e7eb] rounded-xl p-6 hover:shadow-md transition">
-            <h2 className="text-lg font-semibold text-[#111827] mb-4">{t('recentTransactions')}</h2>
-            {data.transactions.length === 0 ? (
-              <p className="text-sm text-[#6b7280] text-center py-8">{t('noTransactions')}</p>
-            ) : (
-              <div className="space-y-2">
-                {data.transactions.map(tx => (
-                  <div 
-                    key={tx.id} 
-                    className="flex justify-between items-center border-b border-[#f3f4f6] pb-2 hover:bg-[#f9fafb] px-3 py-2 rounded-lg transition"
-                  >
-                    <div>
-                      <p className="text-sm font-medium text-[#111827]">{tx.counterparty_name || tx.description}</p>
-                      <p className="text-xs text-[#6b7280]">{new Date(tx.created_at).toLocaleDateString()}</p>
-                    </div>
-                    <p className={`text-sm font-semibold ${tx.type === 'CREDIT' ? 'text-green-600' : 'text-red-600'}`}>
-                      {tx.type === 'CREDIT' ? '+' : '-'}{tx.amount} EUR
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
+              </table>
+            </div>
           </div>
         </div>
-      </main>
 
-      {/* Modals */}
-      {showAddCardModal && <AddCardModal onClose={() => setShowAddCardModal(false)} locale={locale} t={t} />}
-      {showCardDetailsModal && data.card && <CardDetailsModal card={data.card} onClose={() => setShowCardDetailsModal(false)} t={t} />}
+        {/* Modals */}
+        {showAddCardModal && (
+          <AddCardModal onClose={() => setShowAddCardModal(false)} locale={locale} t={t} />
+        )}
+        {showCardDetailsModal && data.card && (
+          <CardDetailsModal
+            card={data.card}
+            onClose={() => setShowCardDetailsModal(false)}
+            t={t}
+          />
+        )}
+      </main>
     </div>
   );
 }
-
 // Modal Ajout Carte
 function AddCardModal({ onClose, locale, t }) {
   const [step, setStep] = useState(1);
@@ -323,99 +433,113 @@ function AddCardModal({ onClose, locale, t }) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 px-4 animate-fade-in">
-      <div className="bg-white rounded-2xl p-6 md:p-8 w-full max-w-md shadow-2xl animate-slide-up">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm px-4">
+      <div className="w-full max-w-md rounded-2xl bg-white shadow-2xl border border-slate-200">
         {step === 1 ? (
           <>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold text-[#111827]">{t('card.addTitle')}</h2>
-              <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-2xl transition">&times;</button>
-            </div>
-
-            {/* Message statique */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-6">
-              <p className="text-xs text-blue-800">
-                ℹ️ {t('card.verificationMessage')}
-              </p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200">
               <div>
-                <label className="block text-xs font-medium uppercase tracking-wide text-[#6b7280] mb-1">
-                  {t('card.cardNumber')}
-                </label>
-                <input
-                  type="text"
-                  maxLength="19"
-                  placeholder="1234 5678 9012 3456"
-                  className="w-full border border-[#d1d5db] rounded-lg px-3 py-2 text-sm text-[#111827] focus:ring-2 focus:ring-[#047857] transition"
-                  value={cardNumber}
-                  onChange={(e) => setCardNumber(e.target.value.replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim())}
-                  required
-                />
+                <h2 className="text-sm font-semibold tracking-tight text-slate-900">
+                  {t('card.addTitle')}
+                </h2>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  {t('card.verificationMessage')}
+                </p>
               </div>
+              <button
+                onClick={onClose}
+                className="h-7 w-7 inline-flex items-center justify-center rounded-full border border-slate-200 text-slate-400 text-sm hover:bg-slate-50"
+              >
+                ×
+              </button>
+            </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-medium uppercase tracking-wide text-[#6b7280] mb-1">
-                    {t('card.expiry')}
+            <form onSubmit={handleSubmit} className="px-5 py-4 space-y-4 text-sm">
+              <div className="grid gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-medium text-slate-500">
+                    {t('card.cardNumber')}
                   </label>
                   <input
                     type="text"
-                    maxLength="5"
-                    placeholder="MM/YY"
-                    className="w-full border border-[#d1d5db] rounded-lg px-3 py-2 text-sm text-[#111827] focus:ring-2 focus:ring-[#047857] transition"
-                    value={expiryDate}
-                    onChange={(e) => {
-                      let val = e.target.value.replace(/\D/g, '');
-                      if (val.length >= 2) val = val.slice(0, 2) + '/' + val.slice(2, 4);
-                      setExpiryDate(val);
-                    }}
+                    maxLength={19}
+                    placeholder="1234 5678 9012 3456"
+                    className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 focus:border-emerald-500/60"
+                    value={cardNumber}
+                    onChange={(e) =>
+                      setCardNumber(
+                        e.target.value
+                          .replace(/\s/g, '')
+                          .replace(/(.{4})/g, '$1 ')
+                          .trim()
+                      )
+                    }
                     required
                   />
                 </div>
 
-                <div>
-                  <label className="block text-xs font-medium uppercase tracking-wide text-[#6b7280] mb-1">
-                    {t('card.cvv')}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium text-slate-500">
+                      {t('card.expiry')}
+                    </label>
+                    <input
+                      type="text"
+                      maxLength={5}
+                      placeholder="MM/YY"
+                      className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 focus:border-emerald-500/60"
+                      value={expiryDate}
+                      onChange={(e) => {
+                        let val = e.target.value.replace(/\D/g, '');
+                        if (val.length >= 2) val = val.slice(0, 2) + '/' + val.slice(2, 4);
+                        setExpiryDate(val);
+                      }}
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium text-slate-500">
+                      {t('card.cvv')}
+                    </label>
+                    <input
+                      type="text"
+                      maxLength={3}
+                      placeholder="123"
+                      className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 focus:border-emerald-500/60"
+                      value={cvv}
+                      onChange={(e) => setCvv(e.target.value.replace(/\D/g, ''))}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-medium text-slate-500">
+                    {t('card.holderName')}
                   </label>
                   <input
                     type="text"
-                    maxLength="3"
-                    placeholder="123"
-                    className="w-full border border-[#d1d5db] rounded-lg px-3 py-2 text-sm text-[#111827] focus:ring-2 focus:ring-[#047857] transition"
-                    value={cvv}
-                    onChange={(e) => setCvv(e.target.value.replace(/\D/g, ''))}
+                    placeholder="JOHN DOE"
+                    className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 focus:border-emerald-500/60"
+                    value={cardholderName}
+                    onChange={(e) => setCardholderName(e.target.value.toUpperCase())}
                     required
                   />
                 </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-medium uppercase tracking-wide text-[#6b7280] mb-1">
-                  {t('card.holderName')}
-                </label>
-                <input
-                  type="text"
-                  placeholder="JOHN DOE"
-                  className="w-full border border-[#d1d5db] rounded-lg px-3 py-2 text-sm text-[#111827] focus:ring-2 focus:ring-[#047857] transition"
-                  value={cardholderName}
-                  onChange={(e) => setCardholderName(e.target.value.toUpperCase())}
-                  required
-                />
-              </div>
-
-              <div className="flex gap-3 mt-6">
+              <div className="mt-4 flex items-center justify-end gap-2">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex-1 px-4 py-2.5 border border-[#d1d5db] text-[#6b7280] rounded-full text-sm font-semibold hover:bg-[#f9fafb] transition"
+                  className="px-3 py-1.5 rounded-full border border-slate-200 text-xs font-medium text-slate-500 hover:bg-slate-50"
                 >
                   {t('card.cancel')}
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2.5 bg-[#047857] text-white rounded-full text-sm font-semibold hover:bg-[#03624a] transition"
+                  className="px-4 py-1.5 rounded-full bg-slate-900 text-white text-xs font-medium hover:bg-slate-800"
                 >
                   {t('card.submit')}
                 </button>
@@ -424,45 +548,52 @@ function AddCardModal({ onClose, locale, t }) {
           </>
         ) : (
           <>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold text-[#111827]">{t('card.smsVerification')}</h2>
-              <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-2xl transition">&times;</button>
-            </div>
-
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-              <p className="text-sm text-green-800 flex items-center gap-2">
-                <span className="text-xl">✅</span>
-                {t('card.smsSent')}
-              </p>
-            </div>
-
-            <div className="mb-6">
-              <label className="block text-xs font-medium uppercase tracking-wide text-[#6b7280] mb-1">
-                {t('card.smsCode')}
-              </label>
-              <input
-                type="text"
-                maxLength="6"
-                placeholder="123456"
-                className="w-full border-2 border-[#d1d5db] rounded-lg px-4 py-3 text-center text-2xl font-mono text-[#111827] focus:ring-2 focus:ring-[#047857] transition"
-                value={smsCode}
-                onChange={(e) => setSmsCode(e.target.value.replace(/\D/g, ''))}
-                autoFocus
-              />
-            </div>
-
-            <div className="flex gap-3">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200">
+              <div>
+                <h2 className="text-sm font-semibold tracking-tight text-slate-900">
+                  {t('card.smsVerification')}
+                </h2>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  {t('card.smsSent')}
+                </p>
+              </div>
               <button
                 onClick={onClose}
-                className="flex-1 px-4 py-2.5 border border-[#d1d5db] text-[#6b7280] rounded-full text-sm font-semibold hover:bg-[#f9fafb] transition"
+                className="h-7 w-7 inline-flex items-center justify-center rounded-full border border-slate-200 text-slate-400 text-sm hover:bg-slate-50"
               >
-                {t('card.cancel')}
+                ×
               </button>
-              <button
-                className="flex-1 px-4 py-2.5 bg-[#047857] text-white rounded-full text-sm font-semibold hover:bg-[#03624a] transition"
-              >
-                ✓ {t('card.verify')}
-              </button>
+            </div>
+
+            <div className="px-5 py-4 space-y-4 text-sm">
+              <div className="space-y-1.5">
+                <label className="text-xs font-medium text-slate-500">
+                  {t('card.smsCode')}
+                </label>
+                <input
+                  type="text"
+                  maxLength={6}
+                  placeholder="123456"
+                  className="w-full rounded-lg border border-slate-200 px-4 py-3 text-center text-lg font-mono tracking-[0.3em] text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 focus:border-emerald-500/60"
+                  value={smsCode}
+                  onChange={(e) => setSmsCode(e.target.value.replace(/\D/g, ''))}
+                  autoFocus
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-2">
+                <button
+                  onClick={onClose}
+                  className="px-3 py-1.5 rounded-full border border-slate-200 text-xs font-medium text-slate-500 hover:bg-slate-50"
+                >
+                  {t('card.cancel')}
+                </button>
+                <button
+                  className="px-4 py-1.5 rounded-full bg-emerald-500 text-white text-xs font-medium hover:bg-emerald-600"
+                >
+                  {t('card.verify')}
+                </button>
+              </div>
             </div>
           </>
         )}
@@ -477,112 +608,143 @@ function CardDetailsModal({ card, onClose, t }) {
   const [cvvRevealed, setCvvRevealed] = useState(false);
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 px-4 animate-fade-in">
-      <div className="bg-white rounded-2xl p-6 md:p-8 w-full max-w-lg shadow-2xl animate-slide-up">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold text-[#111827]">{t('card.detailsTitle')}</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-2xl transition">&times;</button>
-        </div>
-
-        {/* Carte flip */}
-        <div className="mb-6" style={{ perspective: '1000px' }}>
-          <div 
-            className="relative w-full h-56 cursor-pointer transition-transform duration-700"
-            style={{ 
-              transformStyle: 'preserve-3d',
-              transform: showBack ? 'rotateY(180deg)' : 'rotateY(0)'
-            }}
-            onClick={() => setShowBack(!showBack)}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm px-4">
+      <div className="w-full max-w-lg rounded-2xl bg-white shadow-2xl border border-slate-200">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200">
+          <h2 className="text-sm font-semibold tracking-tight text-slate-900">
+            {t('card.detailsTitle')}
+          </h2>
+          <button
+            onClick={onClose}
+            className="h-7 w-7 inline-flex items-center justify-center rounded-full border border-slate-200 text-slate-400 text-sm hover:bg-slate-50"
           >
-            {/* Recto */}
-            <div 
-              className="absolute inset-0 rounded-xl"
-              style={{ backfaceVisibility: 'hidden' }}
-            >
-              <div className="w-full h-full bg-gradient-to-br from-[#1a1a1a] via-[#2d2d2d] to-[#1f1f1f] rounded-xl p-6 text-white shadow-2xl">
-                <div className="flex gap-1 justify-end mb-4">
-                  <div className="w-10 h-10 rounded-full bg-red-500 opacity-90"></div>
-                  <div className="w-10 h-10 rounded-full bg-orange-400 opacity-90 -ml-5"></div>
-                </div>
-                <div className="w-14 h-12 bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-md mb-8"></div>
-                <p className="text-xl font-mono tracking-widest mb-8">
-                  {card.cardNumber.replace(/(.{4})/g, '$1 ').trim()}
-                </p>
-                <div className="flex justify-between">
-                  <div>
-                    <p className="text-xs opacity-60">{t('card.holder')}</p>
-                    <p className="text-sm font-semibold">{card.cardholderName}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs opacity-60">{t('card.expiry')}</p>
-                    <p className="text-sm font-mono">{card.expiryDate}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ×
+          </button>
+        </div>
 
-            {/* Verso */}
-            <div 
-              className="absolute inset-0 rounded-xl"
-              style={{ 
-                backfaceVisibility: 'hidden',
-                transform: 'rotateY(180deg)'
+        <div className="px-5 py-4 space-y-4">
+          {/* Carte flip */}
+          <div className="w-full" style={{ perspective: '1000px' }}>
+            <div
+              className="relative w-full h-56 cursor-pointer transition-transform duration-700"
+              style={{
+                transformStyle: 'preserve-3d',
+                transform: showBack ? 'rotateY(180deg)' : 'rotateY(0)',
               }}
+              onClick={() => setShowBack(!showBack)}
             >
-              <div className="w-full h-full bg-gradient-to-br from-[#2d2d2d] via-[#1a1a1a] to-[#1f1f1f] rounded-xl overflow-hidden shadow-2xl">
-                <div className="bg-black h-12 mt-6"></div>
-                <div className="px-6 mt-8">
-                  <div className="bg-white h-10 rounded flex items-center justify-end px-4">
-                    <span className="font-mono text-sm italic text-gray-400">Signature</span>
+              {/* Recto */}
+              <div
+                className="absolute inset-0 rounded-xl"
+                style={{ backfaceVisibility: 'hidden' }}
+              >
+                <div className="w-full h-full rounded-xl bg-gradient-to-tr from-slate-900 via-slate-800 to-slate-900 text-white px-6 py-5 shadow-md">
+                  <div className="flex justify-between items-start">
+                    <span className="text-[11px] uppercase tracking-wide opacity-70">
+                      BK • Mastercard
+                    </span>
+                    <div className="flex gap-1">
+                      <span className="h-7 w-7 rounded-full bg-amber-500/90" />
+                      <span className="h-7 w-7 rounded-full bg-red-500/80 -ml-2" />
+                    </div>
                   </div>
-                  <div className="mt-6 text-right">
-                    <p className="text-xs text-white/60 mb-1">{t('card.cvv')}</p>
-                    <p className="text-2xl font-mono text-white font-bold">***</p>
+
+                  <p className="mt-8 text-xl font-mono tracking-[0.25em]">
+                    {card.cardNumber.replace(/(.{4})/g, '$1 ').trim()}
+                  </p>
+
+                  <div className="mt-8 flex justify-between text-[11px]">
+                    <div>
+                      <p className="opacity-60">{t('card.holder')}</p>
+                      <p className="text-xs font-medium">{card.cardholderName}</p>
+                    </div>
+                    <div>
+                      <p className="opacity-60">{t('card.expiry')}</p>
+                      <p className="text-xs font-mono">{card.expiryDate}</p>
+                    </div>
                   </div>
                 </div>
-                <p className="text-center text-xs text-white/40 mt-6">{t('card.clickToFlip')}</p>
               </div>
+
+              {/* Verso */}
+              <div
+                className="absolute inset-0 rounded-xl"
+                style={{
+                  backfaceVisibility: 'hidden',
+                  transform: 'rotateY(180deg)',
+                }}
+              >
+                <div className="w-full h-full rounded-xl bg-gradient-to-tr from-slate-800 via-slate-900 to-slate-900 text-white shadow-md overflow-hidden">
+                  <div className="mt-6 h-10 bg-slate-950" />
+                  <div className="px-6 mt-8">
+                    <div className="bg-white h-10 rounded flex items-center justify-end px-4">
+                      <span className="font-mono text-xs text-slate-400">Signature</span>
+                    </div>
+                    <div className="mt-6 text-right">
+                      <p className="text-[11px] text-white/60 mb-1">{t('card.cvv')}</p>
+                      <p className="text-2xl font-mono font-semibold">
+                        ***
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-5 text-center text-[11px] text-white/40">
+                    {t('card.clickToFlip')}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Détails */}
+          <div className="rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 space-y-2 text-xs">
+            <div className="flex justify-between">
+              <span className="text-slate-500">{t('card.number')}</span>
+              <span className="font-mono text-slate-900">
+                {card.cardNumber.replace(/(.{4})/g, '$1 ').trim()}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-slate-500">{t('card.holder')}</span>
+              <span className="font-medium text-slate-900">
+                {card.cardholderName}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-slate-500">{t('card.expiry')}</span>
+              <span className="font-mono text-slate-900">
+                {card.expiryDate}
+              </span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-slate-500">{t('card.cvv')}</span>
+              <button
+                onClick={() => setCvvRevealed(!cvvRevealed)}
+                className="text-[11px] font-medium text-emerald-600 hover:text-emerald-700"
+              >
+                {cvvRevealed ? '123' : t('card.reveal')}
+              </button>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-slate-500">{t('card.status')}</span>
+              <span
+                className={`text-[11px] font-semibold ${
+                  card.status === 'ACTIVE' ? 'text-emerald-600' : 'text-sky-600'
+                }`}
+              >
+                {card.status === 'ACTIVE' ? t('card.active') : t('card.frozen')}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Détails */}
-        <div className="space-y-3 bg-[#f9fafb] rounded-lg p-4">
-          <div className="flex justify-between">
-            <span className="text-xs uppercase text-[#6b7280]">{t('card.number')}</span>
-            <span className="text-sm font-mono text-[#111827]">{card.cardNumber.replace(/(.{4})/g, '$1 ').trim()}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-xs uppercase text-[#6b7280]">{t('card.holder')}</span>
-            <span className="text-sm font-semibold text-[#111827]">{card.cardholderName}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-xs uppercase text-[#6b7280]">{t('card.expiry')}</span>
-            <span className="text-sm font-mono text-[#111827]">{card.expiryDate}</span>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-xs uppercase text-[#6b7280]">{t('card.cvv')}</span>
-            <button 
-              onClick={() => setCvvRevealed(!cvvRevealed)}
-              className="text-sm font-mono text-[#047857] hover:text-[#03624a] font-semibold transition"
-            >
-              {cvvRevealed ? '123' : '👁️ ' + t('card.reveal')}
-            </button>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-xs uppercase text-[#6b7280]">{t('card.status')}</span>
-            <span className={`text-sm font-semibold ${card.status === 'ACTIVE' ? 'text-green-600' : 'text-blue-600'}`}>
-              {card.status === 'ACTIVE' ? '✓ ' + t('card.active') : '❄️ ' + t('card.frozen')}
-            </span>
-          </div>
+        <div className="px-5 pb-4 pt-1 flex justify-end">
+          <button
+            onClick={onClose}
+            className="px-4 py-1.5 rounded-full bg-slate-900 text-white text-xs font-medium hover:bg-slate-800"
+          >
+            {t('card.close')}
+          </button>
         </div>
-
-        <button
-          onClick={onClose}
-          className="w-full mt-6 px-4 py-2.5 bg-[#047857] text-white rounded-full text-sm font-semibold hover:bg-[#03624a] transition"
-        >
-          {t('card.close')}
-        </button>
       </div>
     </div>
   );

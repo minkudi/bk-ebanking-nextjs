@@ -1,14 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PhoneInput } from 'react-international-phone';
 import { COUNTRIES } from '../../countries';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 export default function RegisterPage() {
   const params = useParams();
+  const router = useRouter();
   const locale = params.locale || 'fr';
   const t = useTranslations('register');
 
@@ -43,6 +44,34 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
+  // Modal succès + redirection
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [redirectCountdown, setRedirectCountdown] = useState(5);
+
+  // 1) Gestion du compte à rebours (UNIQUEMENT le compteur)
+  useEffect(() => {
+    if (!showSuccessModal) return;
+
+    const interval = setInterval(() => {
+      setRedirectCountdown((prev) => {
+        if (prev <= 1) {
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [showSuccessModal]);
+
+  // 2) Redirection quand le compteur arrive à 0
+  useEffect(() => {
+    if (!showSuccessModal) return;
+    if (redirectCountdown === 0) {
+      router.push(`/${locale}/login`);
+    }
+  }, [redirectCountdown, showSuccessModal, router, locale]);
+
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
@@ -70,7 +99,11 @@ export default function RegisterPage() {
       if (!res.ok) {
         setMessage(data.error || t('errorGeneric'));
       } else {
-        setMessage(t('successMessage', { accountNumber: data.accountNumber }));
+        // On ouvre le modal "propre"
+        setShowSuccessModal(true);
+        setRedirectCountdown(5);
+
+        // Reset du formulaire
         setFullName('');
         setAddress('');
         setBirthDate('');
@@ -285,6 +318,58 @@ export default function RegisterPage() {
           </div>
         </div>
       </div>
+
+      {/* Modal de succès */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+          <div className="relative w-full max-w-md rounded-2xl bg-white shadow-2xl border border-neutral-200/70">
+            {/* Header */}
+            <div className="flex items-center gap-3 border-b border-neutral-100 px-6 py-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50">
+                <span className="text-2xl">✅</span>
+              </div>
+              <div>
+                <h2 className="text-base font-semibold text-neutral-900">
+                  Compte créé avec succès
+                </h2>
+                <p className="text-xs text-neutral-500">
+                  Bienvenue dans BK E‑BANKING.
+                </p>
+              </div>
+            </div>
+
+            {/* Contenu */}
+            <div className="px-6 py-5 space-y-3">
+              <p className="text-sm text-neutral-800">
+                Félicitations, votre compte a été enregistré avec succès dans notre système.
+              </p>
+              <p className="text-sm text-neutral-600">
+                Vous allez être redirigé vers la page de connexion dans{' '}
+                <span className="font-semibold text-emerald-600">
+                  {redirectCountdown} seconde{redirectCountdown > 1 ? 's' : ''}
+                </span>.
+              </p>
+              <p className="text-xs text-neutral-400">
+                Si la redirection ne se fait pas automatiquement, vous pouvez continuer manuellement.
+              </p>
+            </div>
+
+            {/* Footer */}
+            <div className="flex items-center justify-end gap-3 border-t border-neutral-100 px-6 py-4">
+              <button
+                type="button"
+                onClick={() => router.push(`/${locale}/login`)}
+                className="inline-flex items-center justify-center rounded-full border border-neutral-200 px-4 py-2 text-xs font-medium text-neutral-700 hover:bg-neutral-50 transition"
+              >
+                Aller à la connexion maintenant
+              </button>
+            </div>
+
+            {/* Accent bas */}
+            <div className="absolute inset-x-6 -bottom-[1px] h-[3px] rounded-full bg-gradient-to-r from-emerald-500 via-sky-500 to-indigo-500" />
+          </div>
+        </div>
+      )}
     </main>
   );
 }

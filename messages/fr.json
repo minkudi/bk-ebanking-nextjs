@@ -51,7 +51,17 @@
     "accountNumber": "Numéro de compte",
     "pendingTransfers": "Virements en attente",
     "recentTransactions": "Dernières transactions",
+    "recentTransactionsSubtitle": "Suivi des dernières opérations sur votre compte",
     "noTransactions": "Aucune transaction",
+    "newTransfer": "Nouveau virement",
+    "table": {
+      "date": "Date",
+      "beneficiary": "Bénéficiaire",
+      "type": "Type",
+      "amount": "Montant",
+      "status": "Statut",
+      "operations": "opérations"
+    },
     "card": {
       "title": "Ma carte Mastercard",
       "add": "Ajouter ma carte",
