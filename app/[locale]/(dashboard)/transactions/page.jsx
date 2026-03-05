@@ -50,7 +50,6 @@ export default function TransactionsPage() {
   if (!data) return null;
 
   const transactions = data.transactions || [];
-  // adapte selon ce que renvoie ton API
   const accountNumber = data.account?.accountNumber || "";
   const balance = data.account?.balance ?? null;
   const currency = data.account?.currency || "EUR";
@@ -89,6 +88,7 @@ export default function TransactionsPage() {
                 accountNumber,
                 balance,
                 currency,
+                locale, // ⬅️ important pour la langue du PDF
               })
             }
             disabled={!transactions.length}
