@@ -333,7 +333,7 @@ export default function RegisterPage() {
                   Compte créé avec succès
                 </h2>
                 <p className="text-xs text-neutral-500">
-                  Bienvenue dans BK E‑BANKING.
+                  Bienvenue dans OLAKRED.
                 </p>
               </div>
             </div>
