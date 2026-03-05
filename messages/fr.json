@@ -60,7 +60,7 @@
       "type": "Type",
       "amount": "Montant",
       "status": "Statut",
-      "operations": "opérations"
+      "operations": "Opérations"
     },
     "card": {
       "title": "Ma carte Mastercard",
@@ -91,7 +91,45 @@
       "status": "Statut",
       "active": "Active",
       "close": "Fermer",
-      "clickToFlip": "Cliquez pour retourner"
+      "clickToFlip": "Cliquez pour retourner",
+      "sendingSms": "Envoi du SMS…"
+    }
+  },
+  "transactions": {
+  "title": "Historique des transactions",
+  "subtitle": "Suivez l’ensemble des mouvements sur votre compte",
+  "table": {
+    "date": "Date",
+    "beneficiary": "Bénéficiaire",
+    "type": "Type",
+    "amount": "Montant",
+    "operations": "Opérations"
+  }
+},
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Gérez vos informations personnelles et vos préférences",
+    "sections": {
+      "identity": "Identité",
+      "preferences": "Préférences",
+      "security": "Sécurité"
+    },
+    "fields": {
+      "fullName": "Nom complet",
+      "phone": "Téléphone",
+      "country": "Pays",
+      "email": "Email",
+      "address": "Adresse",
+      "language": "Langue",
+      "dateFormat": "Format de date",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmation du mot de passe"
+    },
+    "actions": {
+      "saveIdentity": "Enregistrer l'identité",
+      "savePreferences": "Enregistrer les préférences",
+      "savePassword": "Mettre à jour le mot de passe"
     }
   }
 }

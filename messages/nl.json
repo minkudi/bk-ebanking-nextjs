@@ -2,7 +2,7 @@
   "register": {
     "subtitle": "BK E‑BANKING",
     "title": "Rekening openen",
-    "description": "Duidelijke interface, essentiële informatie, geen onnodige decoratie.",
+    "description": "Duidelijke interface, alleen essentiële informatie, geen overbodige franje.",
     "fullName": "Volledige naam",
     "address": "Adres",
     "birthDate": "Geboortedatum",
@@ -15,8 +15,8 @@
     "genderFemale": "Vrouw",
     "email": "E‑mail",
     "password": "Wachtwoord",
-    "confirmPassword": "Bevestig wachtwoord",
-    "submit": "Mijn rekening aanmaken",
+    "confirmPassword": "Wachtwoord bevestigen",
+    "submit": "Mijn rekening openen",
     "submitting": "Rekening wordt aangemaakt…",
     "successMessage": "Rekening aangemaakt. Rekeningnummer: {accountNumber}",
     "errorNetwork": "Netwerkfout",
@@ -25,14 +25,14 @@
   "login": {
     "subtitle": "BK E‑BANKING",
     "title": "Inloggen",
-    "description": "Toegang tot uw bankrekening.",
+    "description": "Log in op uw bankrekening.",
     "email": "E‑mail",
     "password": "Wachtwoord",
     "remember": "Ingelogd blijven",
     "forgot": "Wachtwoord vergeten?",
     "submit": "Inloggen",
     "submitting": "Bezig met inloggen…",
-    "noAccount": "Nog geen account?",
+    "noAccount": "Nog geen rekening?",
     "register": "Registreren",
     "errorGeneric": "Fout",
     "errorNetwork": "Netwerkfout"
@@ -43,15 +43,15 @@
     "menu": {
       "dashboard": "Start",
       "transfer": "Overschrijving",
-      "history": "Historiek",
+      "history": "Geschiedenis",
       "profile": "Profiel",
-      "logout": "Afmelden"
+      "logout": "Uitloggen"
     },
     "balance": "Beschikbaar saldo",
     "accountNumber": "Rekeningnummer",
     "pendingTransfers": "In afwachting zijnde overschrijvingen",
     "recentTransactions": "Recente transacties",
-    "recentTransactionsSubtitle": "Overzicht van de laatste verrichtingen op uw rekening",
+    "recentTransactionsSubtitle": "Volg de laatste verrichtingen op uw rekening",
     "noTransactions": "Geen transacties",
     "newTransfer": "Nieuwe overschrijving",
     "table": {
@@ -60,38 +60,76 @@
       "type": "Type",
       "amount": "Bedrag",
       "status": "Status",
-      "operations": "verrichtingen"
+      "operations": "Verrichtingen"
     },
     "card": {
       "title": "Mijn Mastercard",
       "add": "Mijn kaart toevoegen",
       "generate": "Kaart genereren",
-      "freeze": "Kaart blokkeren",
-      "unfreeze": "Kaart deblokkeren",
-      "delete": "Kaart verwijderen",
+      "freeze": "Mijn kaart blokkeren",
+      "unfreeze": "Mijn kaart deblokkeren",
+      "delete": "Mijn kaart verwijderen",
       "frozen": "GEBLOKKEERD",
       "number": "Kaartnummer",
       "holder": "Kaarthouder",
       "expiry": "Vervaldatum",
       "cvv": "CVC",
-      "clickToView": "Klik om details te zien",
+      "clickToView": "Klik om details te bekijken",
       "viewDetails": "Alle details bekijken",
       "addTitle": "Kaart toevoegen",
       "cardNumber": "Kaartnummer",
       "holderName": "Naam op de kaart",
       "cancel": "Annuleren",
       "submit": "Toevoegen",
-      "verificationMessage": "Voor verificatie wordt een tijdelijke debitering van €2 uitgevoerd. Er wordt een sms‑code naar u verzonden.",
-      "smsVerification": "SMS‑verificatie",
-      "smsSent": "SMS‑code verzonden naar uw telefoon.",
-      "smsCode": "SMS‑code",
+      "verificationMessage": "Voor verificatie wordt tijdelijk 2 € aangerekend. Er wordt een sms-code naar u verstuurd.",
+      "smsVerification": "SMS-verificatie",
+      "smsSent": "SMS-code naar uw telefoon verzonden.",
+      "smsCode": "SMS-code",
       "verify": "Verifiëren",
-      "detailsTitle": "Kaartdetails",
+      "detailsTitle": "Kaartgegevens",
       "reveal": "Tonen",
       "status": "Status",
       "active": "Actief",
       "close": "Sluiten",
-      "clickToFlip": "Klik om de kaart om te draaien"
+      "clickToFlip": "Klik om om te draaien",
+      "sendingSms": "SMS wordt verzonden…"
+    }
+  },
+  "transactions": {
+    "title": "Transactiegeschiedenis",
+    "subtitle": "Volg alle bewegingen op uw rekening",
+    "table": {
+      "date": "Datum",
+      "beneficiary": "Begunstigde",
+      "type": "Type",
+      "amount": "Bedrag",
+      "operations": "Verrichtingen"
+    }
+  },
+  "profile": {
+    "title": "Profiel",
+    "subtitle": "Beheer uw persoonlijke gegevens en voorkeuren",
+    "sections": {
+      "identity": "Identiteit",
+      "preferences": "Voorkeuren",
+      "security": "Beveiliging"
+    },
+    "fields": {
+      "fullName": "Volledige naam",
+      "phone": "Telefoon",
+      "country": "Land",
+      "email": "E‑mail",
+      "address": "Adres",
+      "language": "Taal",
+      "dateFormat": "Datumnotatie",
+      "currentPassword": "Huidig wachtwoord",
+      "newPassword": "Nieuw wachtwoord",
+      "confirmPassword": "Wachtwoord bevestigen"
+    },
+    "actions": {
+      "saveIdentity": "Identiteit opslaan",
+      "savePreferences": "Voorkeuren opslaan",
+      "savePassword": "Wachtwoord bijwerken"
     }
   }
 }

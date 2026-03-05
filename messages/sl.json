@@ -2,8 +2,8 @@
   "register": {
     "subtitle": "BK E‑BANKING",
     "title": "Odprtje računa",
-    "description": "Pregleden vmesnik, samo ključne informacije, brez nepotrebnih okrasov.",
-    "fullName": "Polno ime",
+    "description": "Pregleden vmesnik, ključne informacije, brez odvečnih elementov.",
+    "fullName": "Ime in priimek",
     "address": "Naslov",
     "birthDate": "Datum rojstva",
     "birthDatePlaceholder": "DD/MM/LLLL",
@@ -15,10 +15,10 @@
     "genderFemale": "Ženska",
     "email": "E‑pošta",
     "password": "Geslo",
-    "confirmPassword": "Potrdi geslo",
+    "confirmPassword": "Potrditev gesla",
     "submit": "Ustvari račun",
     "submitting": "Ustvarjanje računa…",
-    "successMessage": "Račun je ustvarjen. Številka računa: {accountNumber}",
+    "successMessage": "Račun je bil ustvarjen. Številka računa: {accountNumber}",
     "errorNetwork": "Napaka omrežja",
     "errorGeneric": "Napaka"
   },
@@ -31,7 +31,7 @@
     "remember": "Zapomni si me",
     "forgot": "Ste pozabili geslo?",
     "submit": "Prijava",
-    "submitting": "Poteka prijava…",
+    "submitting": "Prijavljanje…",
     "noAccount": "Še nimate računa?",
     "register": "Registracija",
     "errorGeneric": "Napaka",
@@ -50,8 +50,8 @@
     "balance": "Razpoložljivo stanje",
     "accountNumber": "Številka računa",
     "pendingTransfers": "Čakajoča nakazila",
-    "recentTransactions": "Nedavne transakcije",
-    "recentTransactionsSubtitle": "Pregled zadnjih operacij na vašem računu",
+    "recentTransactions": "Zadnje transakcije",
+    "recentTransactionsSubtitle": "Spremljajte zadnje operacije na svojem računu",
     "noTransactions": "Ni transakcij",
     "newTransfer": "Novo nakazilo",
     "table": {
@@ -59,39 +59,77 @@
       "beneficiary": "Prejemnik",
       "type": "Vrsta",
       "amount": "Znesek",
-      "status": "Stanje",
-      "operations": "operacije"
+      "status": "Status",
+      "operations": "Operacije"
     },
     "card": {
-      "title": "Moja Mastercard kartica",
+      "title": "Moja kartica Mastercard",
       "add": "Dodaj mojo kartico",
       "generate": "Ustvari kartico",
-      "freeze": "Zamrzni kartico",
-      "unfreeze": "Odmrzni kartico",
+      "freeze": "Blokiraj kartico",
+      "unfreeze": "Odblokiraj kartico",
       "delete": "Izbriši kartico",
-      "frozen": "ZAMRZNJENA",
+      "frozen": "BLOKIRANA",
       "number": "Številka kartice",
       "holder": "Imetnik kartice",
-      "expiry": "Veljavnost",
+      "expiry": "Veljavna do",
       "cvv": "CVC",
       "clickToView": "Kliknite za prikaz podrobnosti",
       "viewDetails": "Prikaži vse podrobnosti",
-      "addTitle": "Dodajanje kartice",
+      "addTitle": "Dodaj kartico",
       "cardNumber": "Številka kartice",
       "holderName": "Ime na kartici",
       "cancel": "Prekliči",
       "submit": "Dodaj",
-      "verificationMessage": "Za preverjanje bo začasno bremenjen znesek 2 €. Prejeli boste SMS kodo.",
-      "smsVerification": "Preverjanje preko SMS",
+      "verificationMessage": "Za preverjanje bo začasno zaračunan znesek 2 €. Prejeli boste SMS kodo.",
+      "smsVerification": "SMS preverjanje",
       "smsSent": "SMS koda je bila poslana na vaš telefon.",
       "smsCode": "SMS koda",
       "verify": "Preveri",
       "detailsTitle": "Podrobnosti kartice",
       "reveal": "Prikaži",
-      "status": "Stanje",
+      "status": "Status",
       "active": "Aktivna",
       "close": "Zapri",
-      "clickToFlip": "Kliknite za obrat kartice"
+      "clickToFlip": "Kliknite, da obrnete",
+      "sendingSms": "Pošiljanje SMS…"
+    }
+  },
+  "transactions": {
+    "title": "Zgodovina transakcij",
+    "subtitle": "Spremljajte vse operacije na svojem računu",
+    "table": {
+      "date": "Datum",
+      "beneficiary": "Prejemnik",
+      "type": "Vrsta",
+      "amount": "Znesek",
+      "operations": "Operacije"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Upravljajte svoje osebne podatke in nastavitve",
+    "sections": {
+      "identity": "Identiteta",
+      "preferences": "Nastavitve",
+      "security": "Varnost"
+    },
+    "fields": {
+      "fullName": "Ime in priimek",
+      "phone": "Telefon",
+      "country": "Država",
+      "email": "E‑pošta",
+      "address": "Naslov",
+      "language": "Jezik",
+      "dateFormat": "Oblika datuma",
+      "currentPassword": "Trenutno geslo",
+      "newPassword": "Novo geslo",
+      "confirmPassword": "Potrditev gesla"
+    },
+    "actions": {
+      "saveIdentity": "Shrani identiteto",
+      "savePreferences": "Shrani nastavitve",
+      "savePassword": "Posodobi geslo"
     }
   }
 }

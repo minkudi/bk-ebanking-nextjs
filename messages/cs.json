@@ -2,7 +2,7 @@
   "register": {
     "subtitle": "BK E‑BANKING",
     "title": "Otevření účtu",
-    "description": "Přehledné rozhraní, jen podstatné informace, bez zbytečných prvků.",
+    "description": "Přehledné rozhraní, pouze důležité informace, žádné zbytečnosti.",
     "fullName": "Jméno a příjmení",
     "address": "Adresa",
     "birthDate": "Datum narození",
@@ -17,7 +17,7 @@
     "password": "Heslo",
     "confirmPassword": "Potvrzení hesla",
     "submit": "Vytvořit účet",
-    "submitting": "Probíhá vytváření účtu…",
+    "submitting": "Vytváření účtu…",
     "successMessage": "Účet byl vytvořen. Číslo účtu: {accountNumber}",
     "errorNetwork": "Chyba sítě",
     "errorGeneric": "Chyba"
@@ -28,10 +28,10 @@
     "description": "Přihlaste se ke svému bankovnímu účtu.",
     "email": "E‑mail",
     "password": "Heslo",
-    "remember": "Zapamatovat přihlášení",
+    "remember": "Zapamatovat si mě",
     "forgot": "Zapomněli jste heslo?",
     "submit": "Přihlásit se",
-    "submitting": "Probíhá přihlašování…",
+    "submitting": "Probíhá přihlášení…",
     "noAccount": "Ještě nemáte účet?",
     "register": "Zaregistrovat se",
     "errorGeneric": "Chyba",
@@ -39,7 +39,7 @@
   },
   "dashboard": {
     "loading": "Načítání…",
-    "title": "Hlavní panel",
+    "title": "Přehled",
     "menu": {
       "dashboard": "Domů",
       "transfer": "Převod",
@@ -51,7 +51,7 @@
     "accountNumber": "Číslo účtu",
     "pendingTransfers": "Čekající převody",
     "recentTransactions": "Poslední transakce",
-    "recentTransactionsSubtitle": "Přehled posledních operací na vašem účtu",
+    "recentTransactionsSubtitle": "Sledujte nejnovější operace na svém účtu",
     "noTransactions": "Žádné transakce",
     "newTransfer": "Nový převod",
     "table": {
@@ -60,11 +60,11 @@
       "type": "Typ",
       "amount": "Částka",
       "status": "Stav",
-      "operations": "operace"
+      "operations": "Operace"
     },
     "card": {
       "title": "Moje karta Mastercard",
-      "add": "Přidat mou kartu",
+      "add": "Přidat moji kartu",
       "generate": "Vygenerovat kartu",
       "freeze": "Zablokovat kartu",
       "unfreeze": "Odblokovat kartu",
@@ -72,11 +72,11 @@
       "frozen": "ZABLOKOVANÁ",
       "number": "Číslo karty",
       "holder": "Držitel karty",
-      "expiry": "Datum platnosti",
+      "expiry": "Datum expirace",
       "cvv": "CVC",
-      "clickToView": "Klikněte pro zobrazení podrobností",
-      "viewDetails": "Zobrazit všechny podrobnosti",
-      "addTitle": "Přidání karty",
+      "clickToView": "Klikněte pro zobrazení detailů",
+      "viewDetails": "Zobrazit všechny detaily",
+      "addTitle": "Přidat kartu",
       "cardNumber": "Číslo karty",
       "holderName": "Jméno na kartě",
       "cancel": "Zrušit",
@@ -86,12 +86,50 @@
       "smsSent": "SMS kód byl odeslán na váš telefon.",
       "smsCode": "SMS kód",
       "verify": "Ověřit",
-      "detailsTitle": "Podrobnosti karty",
+      "detailsTitle": "Detail karty",
       "reveal": "Zobrazit",
       "status": "Stav",
       "active": "Aktivní",
       "close": "Zavřít",
-      "clickToFlip": "Klikněte pro otočení karty"
+      "clickToFlip": "Klikněte pro otočení karty",
+      "sendingSms": "Odesílání SMS…"
+    }
+  },
+  "transactions": {
+    "title": "Historie transakcí",
+    "subtitle": "Sledujte všechny operace na svém účtu",
+    "table": {
+      "date": "Datum",
+      "beneficiary": "Příjemce",
+      "type": "Typ",
+      "amount": "Částka",
+      "operations": "Operace"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Spravujte své osobní údaje a preference",
+    "sections": {
+      "identity": "Identita",
+      "preferences": "Předvolby",
+      "security": "Zabezpečení"
+    },
+    "fields": {
+      "fullName": "Jméno a příjmení",
+      "phone": "Telefon",
+      "country": "Země",
+      "email": "E‑mail",
+      "address": "Adresa",
+      "language": "Jazyk",
+      "dateFormat": "Formát data",
+      "currentPassword": "Aktuální heslo",
+      "newPassword": "Nové heslo",
+      "confirmPassword": "Potvrzení hesla"
+    },
+    "actions": {
+      "saveIdentity": "Uložit identitu",
+      "savePreferences": "Uložit předvolby",
+      "savePassword": "Aktualizovat heslo"
     }
   }
 }

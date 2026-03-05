@@ -2,13 +2,13 @@
   "register": {
     "subtitle": "BK E‑BANKING",
     "title": "Apertura de cuenta",
-    "description": "Interfaz limpia, información esencial, sin decoración innecesaria.",
+    "description": "Interfaz clara, información esencial, sin decoración innecesaria.",
     "fullName": "Nombre completo",
     "address": "Dirección",
     "birthDate": "Fecha de nacimiento",
     "birthDatePlaceholder": "DD/MM/AAAA",
     "country": "País",
-    "countryPlaceholder": "Seleccionar un país",
+    "countryPlaceholder": "Seleccione un país",
     "phone": "Teléfono",
     "gender": "Género",
     "genderMale": "Hombre",
@@ -17,29 +17,29 @@
     "password": "Contraseña",
     "confirmPassword": "Confirmar contraseña",
     "submit": "Crear mi cuenta",
-    "submitting": "Creando cuenta…",
+    "submitting": "Creando la cuenta…",
     "successMessage": "Cuenta creada. Número de cuenta: {accountNumber}",
     "errorNetwork": "Error de red",
     "errorGeneric": "Error"
   },
   "login": {
     "subtitle": "BK E‑BANKING",
-    "title": "Iniciar sesión",
-    "description": "Accede a tu cuenta bancaria.",
+    "title": "Inicio de sesión",
+    "description": "Acceda a su cuenta bancaria.",
     "email": "Correo electrónico",
     "password": "Contraseña",
-    "remember": "Recuérdame",
-    "forgot": "¿Has olvidado tu contraseña?",
+    "remember": "Recordarme",
+    "forgot": "¿Olvidó su contraseña?",
     "submit": "Iniciar sesión",
     "submitting": "Iniciando sesión…",
-    "noAccount": "¿Aún no tienes cuenta?",
-    "register": "Regístrate",
+    "noAccount": "¿Todavía no tiene cuenta?",
+    "register": "Registrarse",
     "errorGeneric": "Error",
     "errorNetwork": "Error de red"
   },
   "dashboard": {
     "loading": "Cargando…",
-    "title": "Panel de control",
+    "title": "Panel",
     "menu": {
       "dashboard": "Inicio",
       "transfer": "Transferencia",
@@ -50,9 +50,9 @@
     "balance": "Saldo disponible",
     "accountNumber": "Número de cuenta",
     "pendingTransfers": "Transferencias pendientes",
-    "recentTransactions": "Últimas transacciones",
-    "recentTransactionsSubtitle": "Seguimiento de las últimas operaciones en tu cuenta",
-    "noTransactions": "No hay transacciones",
+    "recentTransactions": "Transacciones recientes",
+    "recentTransactionsSubtitle": "Siga las últimas operaciones de su cuenta",
+    "noTransactions": "Sin transacciones",
     "newTransfer": "Nueva transferencia",
     "table": {
       "date": "Fecha",
@@ -60,30 +60,30 @@
       "type": "Tipo",
       "amount": "Importe",
       "status": "Estado",
-      "operations": "operaciones"
+      "operations": "Operaciones"
     },
     "card": {
-      "title": "Mi Mastercard",
+      "title": "Mi tarjeta Mastercard",
       "add": "Añadir mi tarjeta",
-      "generate": "Generar tarjeta",
-      "freeze": "Bloquear tarjeta",
-      "unfreeze": "Desbloquear tarjeta",
-      "delete": "Eliminar tarjeta",
+      "generate": "Generar una tarjeta",
+      "freeze": "Bloquear mi tarjeta",
+      "unfreeze": "Desbloquear mi tarjeta",
+      "delete": "Eliminar mi tarjeta",
       "frozen": "BLOQUEADA",
       "number": "Número de tarjeta",
       "holder": "Titular",
       "expiry": "Vencimiento",
       "cvv": "CVC",
-      "clickToView": "Haz clic para ver los detalles",
+      "clickToView": "Haga clic para ver los detalles",
       "viewDetails": "Ver todos los detalles",
       "addTitle": "Añadir tarjeta",
       "cardNumber": "Número de tarjeta",
       "holderName": "Nombre en la tarjeta",
       "cancel": "Cancelar",
       "submit": "Añadir",
-      "verificationMessage": "Se realizará un cargo temporal de 2 € para la verificación. Se te enviará un código por SMS.",
+      "verificationMessage": "Para la verificación se realizará un cargo temporal de 2 €. Recibirá un código por SMS.",
       "smsVerification": "Verificación por SMS",
-      "smsSent": "Código SMS enviado a tu teléfono.",
+      "smsSent": "Código SMS enviado a su teléfono.",
       "smsCode": "Código SMS",
       "verify": "Verificar",
       "detailsTitle": "Detalles de la tarjeta",
@@ -91,7 +91,45 @@
       "status": "Estado",
       "active": "Activa",
       "close": "Cerrar",
-      "clickToFlip": "Haz clic para girar la tarjeta"
+      "clickToFlip": "Haga clic para girar",
+      "sendingSms": "Enviando SMS…"
+    }
+  },
+  "transactions": {
+    "title": "Historial de transacciones",
+    "subtitle": "Siga todos los movimientos de su cuenta",
+    "table": {
+      "date": "Fecha",
+      "beneficiary": "Beneficiario",
+      "type": "Tipo",
+      "amount": "Importe",
+      "operations": "Operaciones"
+    }
+  },
+  "profile": {
+    "title": "Perfil",
+    "subtitle": "Gestione su información personal y sus preferencias",
+    "sections": {
+      "identity": "Identidad",
+      "preferences": "Preferencias",
+      "security": "Seguridad"
+    },
+    "fields": {
+      "fullName": "Nombre completo",
+      "phone": "Teléfono",
+      "country": "País",
+      "email": "Correo electrónico",
+      "address": "Dirección",
+      "language": "Idioma",
+      "dateFormat": "Formato de fecha",
+      "currentPassword": "Contraseña actual",
+      "newPassword": "Nueva contraseña",
+      "confirmPassword": "Confirmar contraseña"
+    },
+    "actions": {
+      "saveIdentity": "Guardar identidad",
+      "savePreferences": "Guardar preferencias",
+      "savePassword": "Actualizar contraseña"
     }
   }
 }

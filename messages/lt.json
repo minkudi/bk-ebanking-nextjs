@@ -16,9 +16,9 @@
     "email": "El. paštas",
     "password": "Slaptažodis",
     "confirmPassword": "Patvirtinti slaptažodį",
-    "submit": "Sukurti sąskaitą",
-    "submitting": "Kuriama sąskaita…",
-    "successMessage": "Sąskaita sukurta. Sąskaitos numeris: {accountNumber}",
+    "submit": "Sukurti paskyrą",
+    "submitting": "Kuriama paskyra…",
+    "successMessage": "Paskyra sukurta. Sąskaitos numeris: {accountNumber}",
     "errorNetwork": "Tinklo klaida",
     "errorGeneric": "Klaida"
   },
@@ -31,15 +31,15 @@
     "remember": "Prisiminti mane",
     "forgot": "Pamiršote slaptažodį?",
     "submit": "Prisijungti",
-    "submitting": "Vyksta prisijungimas…",
-    "noAccount": "Dar neturite sąskaitos?",
+    "submitting": "Jungiamasi…",
+    "noAccount": "Neturite paskyros?",
     "register": "Registruotis",
     "errorGeneric": "Klaida",
     "errorNetwork": "Tinklo klaida"
   },
   "dashboard": {
     "loading": "Įkeliama…",
-    "title": "Pagrindinis skydelis",
+    "title": "Valdymo skydelis",
     "menu": {
       "dashboard": "Pradžia",
       "transfer": "Pervedimas",
@@ -51,16 +51,16 @@
     "accountNumber": "Sąskaitos numeris",
     "pendingTransfers": "Laukiantys pervedimai",
     "recentTransactions": "Naujausios operacijos",
-    "recentTransactionsSubtitle": "Naujausių operacijų jūsų sąskaitoje apžvalga",
-    "noTransactions": "Operacijų nėra",
+    "recentTransactionsSubtitle": "Stebėkite naujausius jūsų sąskaitos judėjimus",
+    "noTransactions": "Nėra operacijų",
     "newTransfer": "Naujas pervedimas",
     "table": {
       "date": "Data",
       "beneficiary": "Gavėjas",
       "type": "Tipas",
       "amount": "Suma",
-      "status": "Būsena",
-      "operations": "operacijos"
+      "status": "Būklė",
+      "operations": "Operacijos"
     },
     "card": {
       "title": "Mano Mastercard kortelė",
@@ -71,27 +71,65 @@
       "delete": "Ištrinti kortelę",
       "frozen": "UŽBLOKUOTA",
       "number": "Kortelės numeris",
-      "holder": "Kortelės turėtojas",
-      "expiry": "Galiojimo data",
+      "holder": "Kortelės savininkas",
+      "expiry": "Galioja iki",
       "cvv": "CVC",
-      "clickToView": "Spustelėkite, kad matytumėte išsamią informaciją",
-      "viewDetails": "Peržiūrėti visas detales",
-      "addTitle": "Kortelės pridėjimas",
+      "clickToView": "Spustelėkite, kad pamatytumėte išsamią informaciją",
+      "viewDetails": "Rodyti visas detales",
+      "addTitle": "Pridėti kortelę",
       "cardNumber": "Kortelės numeris",
-      "holderName": "Vardas kortelėje",
+      "holderName": "Vardas ant kortelės",
       "cancel": "Atšaukti",
       "submit": "Pridėti",
-      "verificationMessage": "Patvirtinimui bus atliktas laikinas 2 € nurašymas. Gaunate SMS kodą.",
-      "smsVerification": "Patvirtinimas SMS žinute",
+      "verificationMessage": "Patikrinimui bus laikinai nuskaičiuota 2 €. Jūs gausite SMS kodą.",
+      "smsVerification": "SMS patvirtinimas",
       "smsSent": "SMS kodas išsiųstas į jūsų telefoną.",
       "smsCode": "SMS kodas",
       "verify": "Patvirtinti",
       "detailsTitle": "Kortelės informacija",
       "reveal": "Rodyti",
-      "status": "Būsena",
+      "status": "Būklė",
       "active": "Aktyvi",
       "close": "Uždaryti",
-      "clickToFlip": "Spustelėkite, kad apverstumėte kortelę"
+      "clickToFlip": "Spustelėkite, kad apverstumėte",
+      "sendingSms": "Siunčiamas SMS…"
+    }
+  },
+  "transactions": {
+    "title": "Operacijų istorija",
+    "subtitle": "Stebėkite visas operacijas savo sąskaitoje",
+    "table": {
+      "date": "Data",
+      "beneficiary": "Gavėjas",
+      "type": "Tipas",
+      "amount": "Suma",
+      "operations": "Operacijos"
+    }
+  },
+  "profile": {
+    "title": "Profilis",
+    "subtitle": "Tvarkykite savo asmens duomenis ir nuostatas",
+    "sections": {
+      "identity": "Tapatybė",
+      "preferences": "Nuostatos",
+      "security": "Saugumas"
+    },
+    "fields": {
+      "fullName": "Vardas ir pavardė",
+      "phone": "Telefonas",
+      "country": "Šalis",
+      "email": "El. paštas",
+      "address": "Adresas",
+      "language": "Kalba",
+      "dateFormat": "Datos formatas",
+      "currentPassword": "Dabartinis slaptažodis",
+      "newPassword": "Naujas slaptažodis",
+      "confirmPassword": "Patvirtinti slaptažodį"
+    },
+    "actions": {
+      "saveIdentity": "Išsaugoti tapatybę",
+      "savePreferences": "Išsaugoti nuostatas",
+      "savePassword": "Atnaujinti slaptažodį"
     }
   }
 }

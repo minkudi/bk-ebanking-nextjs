@@ -2,8 +2,8 @@
   "register": {
     "subtitle": "BK E‑BANKING",
     "title": "Άνοιγμα λογαριασμού",
-    "description": "Καθαρό περιβάλλον, μόνο βασικές πληροφορίες, χωρίς περιττά γραφικά.",
-    "fullName": "Πλήρες όνομα",
+    "description": "Καθαρό περιβάλλον, βασικές πληροφορίες, χωρίς περιττά στοιχεία.",
+    "fullName": "Ονοματεπώνυμο",
     "address": "Διεύθυνση",
     "birthDate": "Ημερομηνία γέννησης",
     "birthDatePlaceholder": "ΗΗ/ΜΜ/ΕΕΕΕ",
@@ -13,11 +13,11 @@
     "gender": "Φύλο",
     "genderMale": "Άνδρας",
     "genderFemale": "Γυναίκα",
-    "email": "E‑mail",
+    "email": "Email",
     "password": "Κωδικός πρόσβασης",
     "confirmPassword": "Επιβεβαίωση κωδικού",
     "submit": "Δημιουργία λογαριασμού",
-    "submitting": "Γίνεται δημιουργία λογαριασμού…",
+    "submitting": "Δημιουργία λογαριασμού…",
     "successMessage": "Ο λογαριασμός δημιουργήθηκε. Αριθμός λογαριασμού: {accountNumber}",
     "errorNetwork": "Σφάλμα δικτύου",
     "errorGeneric": "Σφάλμα"
@@ -26,13 +26,13 @@
     "subtitle": "BK E‑BANKING",
     "title": "Σύνδεση",
     "description": "Συνδεθείτε στον τραπεζικό σας λογαριασμό.",
-    "email": "E‑mail",
+    "email": "Email",
     "password": "Κωδικός πρόσβασης",
     "remember": "Να με θυμάσαι",
     "forgot": "Ξεχάσατε τον κωδικό;",
     "submit": "Σύνδεση",
-    "submitting": "Γίνεται σύνδεση…",
-    "noAccount": "Δεν έχετε ακόμα λογαριασμό;",
+    "submitting": "Σύνδεση…",
+    "noAccount": "Δεν έχετε ακόμη λογαριασμό;",
     "register": "Εγγραφή",
     "errorGeneric": "Σφάλμα",
     "errorNetwork": "Σφάλμα δικτύου"
@@ -51,7 +51,7 @@
     "accountNumber": "Αριθμός λογαριασμού",
     "pendingTransfers": "Εκκρεμείς μεταφορές",
     "recentTransactions": "Πρόσφατες συναλλαγές",
-    "recentTransactionsSubtitle": "Επισκόπηση των τελευταίων κινήσεων στον λογαριασμό σας",
+    "recentTransactionsSubtitle": "Παρακολουθήστε τις πιο πρόσφατες κινήσεις του λογαριασμού σας",
     "noTransactions": "Δεν υπάρχουν συναλλαγές",
     "newTransfer": "Νέα μεταφορά",
     "table": {
@@ -60,12 +60,12 @@
       "type": "Τύπος",
       "amount": "Ποσό",
       "status": "Κατάσταση",
-      "operations": "κινήσεις"
+      "operations": "Συναλλαγές"
     },
     "card": {
-      "title": "Η Mastercard μου",
+      "title": "Η κάρτα μου Mastercard",
       "add": "Προσθήκη της κάρτας μου",
-      "generate": "Δημιουργία κάρτας",
+      "generate": "Έκδοση κάρτας",
       "freeze": "Πάγωμα κάρτας",
       "unfreeze": "Ξεπάγωμα κάρτας",
       "delete": "Διαγραφή κάρτας",
@@ -74,24 +74,62 @@
       "holder": "Κάτοχος κάρτας",
       "expiry": "Ημερομηνία λήξης",
       "cvv": "CVC",
-      "clickToView": "Κάντε κλικ για να δείτε τις λεπτομέρειες",
+      "clickToView": "Κάντε κλικ για λεπτομέρειες",
       "viewDetails": "Προβολή όλων των λεπτομερειών",
       "addTitle": "Προσθήκη κάρτας",
       "cardNumber": "Αριθμός κάρτας",
       "holderName": "Όνομα στην κάρτα",
-      "cancel": "Ακύρωση",
+      "cancel": "Άκυρο",
       "submit": "Προσθήκη",
-      "verificationMessage": "Για επαλήθευση θα γίνει προσωρινή χρέωση 2 €. Θα λάβετε έναν κωδικό μέσω SMS.",
+      "verificationMessage": "Για επαλήθευση θα γίνει προσωρινή χρέωση 2 €. Θα λάβετε κωδικό SMS.",
       "smsVerification": "Επαλήθευση με SMS",
       "smsSent": "Ο κωδικός SMS στάλθηκε στο τηλέφωνό σας.",
       "smsCode": "Κωδικός SMS",
       "verify": "Επαλήθευση",
-      "detailsTitle": "Λεπτομέρειες κάρτας",
+      "detailsTitle": "Στοιχεία κάρτας",
       "reveal": "Εμφάνιση",
       "status": "Κατάσταση",
       "active": "Ενεργή",
       "close": "Κλείσιμο",
-      "clickToFlip": "Κάντε κλικ για να γυρίσετε την κάρτα"
+      "clickToFlip": "Κάντε κλικ για να γυρίσει",
+      "sendingSms": "Αποστολή SMS…"
+    }
+  },
+  "transactions": {
+    "title": "Ιστορικό συναλλαγών",
+    "subtitle": "Παρακολουθήστε όλες τις κινήσεις του λογαριασμού σας",
+    "table": {
+      "date": "Ημερομηνία",
+      "beneficiary": "Δικαιούχος",
+      "type": "Τύπος",
+      "amount": "Ποσό",
+      "operations": "Συναλλαγές"
+    }
+  },
+  "profile": {
+    "title": "Προφίλ",
+    "subtitle": "Διαχειριστείτε τα προσωπικά σας δεδομένα και τις προτιμήσεις σας",
+    "sections": {
+      "identity": "Ταυτότητα",
+      "preferences": "Προτιμήσεις",
+      "security": "Ασφάλεια"
+    },
+    "fields": {
+      "fullName": "Ονοματεπώνυμο",
+      "phone": "Τηλέφωνο",
+      "country": "Χώρα",
+      "email": "Email",
+      "address": "Διεύθυνση",
+      "language": "Γλώσσα",
+      "dateFormat": "Μορφή ημερομηνίας",
+      "currentPassword": "Τρέχων κωδικός",
+      "newPassword": "Νέος κωδικός",
+      "confirmPassword": "Επιβεβαίωση κωδικού"
+    },
+    "actions": {
+      "saveIdentity": "Αποθήκευση ταυτότητας",
+      "savePreferences": "Αποθήκευση προτιμήσεων",
+      "savePassword": "Ενημέρωση κωδικού"
     }
   }
 }

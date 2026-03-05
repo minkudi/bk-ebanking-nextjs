@@ -2,8 +2,8 @@
   "register": {
     "subtitle": "BK E‑BANKING",
     "title": "Konta atvēršana",
-    "description": "Pārskatāms interfeiss, tikai būtiskā informācija, bez liekām detaļām.",
-    "fullName": "Vārds, uzvārds",
+    "description": "Pārskatāms interfeiss, tikai būtiska informācija, bez liekām detaļām.",
+    "fullName": "Vārds un uzvārds",
     "address": "Adrese",
     "birthDate": "Dzimšanas datums",
     "birthDatePlaceholder": "DD/MM/GGGG",
@@ -15,31 +15,31 @@
     "genderFemale": "Sieviete",
     "email": "E‑pasts",
     "password": "Parole",
-    "confirmPassword": "Apstiprināt paroli",
+    "confirmPassword": "Apstipriniet paroli",
     "submit": "Izveidot kontu",
-    "submitting": "Notiek konta izveide…",
+    "submitting": "Konts tiek izveidots…",
     "successMessage": "Konts izveidots. Konta numurs: {accountNumber}",
     "errorNetwork": "Tīkla kļūda",
     "errorGeneric": "Kļūda"
   },
   "login": {
     "subtitle": "BK E‑BANKING",
-    "title": "Pieslēgšanās",
-    "description": "Pieslēdzieties savam bankas kontam.",
+    "title": "Pieteikšanās",
+    "description": "Piesakieties savam bankas kontam.",
     "email": "E‑pasts",
     "password": "Parole",
     "remember": "Atcerēties mani",
     "forgot": "Aizmirsi paroli?",
-    "submit": "Pieslēgties",
-    "submitting": "Notiek pieslēgšanās…",
+    "submit": "Pieteikties",
+    "submitting": "Notiek pieteikšanās…",
     "noAccount": "Vēl nav konta?",
     "register": "Reģistrēties",
     "errorGeneric": "Kļūda",
     "errorNetwork": "Tīkla kļūda"
   },
   "dashboard": {
-    "loading": "Ielādē…",
-    "title": "Pārskata panelis",
+    "loading": "Notiek ielāde…",
+    "title": "Panelis",
     "menu": {
       "dashboard": "Sākums",
       "transfer": "Pārskaitījums",
@@ -49,9 +49,9 @@
     },
     "balance": "Pieejamais atlikums",
     "accountNumber": "Konta numurs",
-    "pendingTransfers": "Neapstrādātie pārskaitījumi",
+    "pendingTransfers": "Nepabeigtie pārskaitījumi",
     "recentTransactions": "Jaunākie darījumi",
-    "recentTransactionsSubtitle": "Jaunāko darījumu pārskats jūsu kontā",
+    "recentTransactionsSubtitle": "Sekojiet jaunākajām sava konta operācijām",
     "noTransactions": "Nav darījumu",
     "newTransfer": "Jauns pārskaitījums",
     "table": {
@@ -60,38 +60,77 @@
       "type": "Tips",
       "amount": "Summa",
       "status": "Statuss",
-      "operations": "darījumi"
+      "operations": "Operācijas"
     },
     "card": {
       "title": "Mana Mastercard karte",
       "add": "Pievienot manu karti",
       "generate": "Ģenerēt karti",
-      "freeze": "Iesaldēt karti",
-      "unfreeze": "Atsaldēt karti",
+      "freeze": "Bloķēt karti",
+      "unfreeze": "Atbloķēt karti",
       "delete": "Dzēst karti",
-      "frozen": "IESALDĒTA",
+      "frozen": "BLOĶĒTA",
       "number": "Kartes numurs",
-      "holder": "Kartes turētājs",
-      "expiry": "Derīguma termiņš",
+      "holder": "Kartes īpašnieks",
+      "expiry": "Derīga līdz",
       "cvv": "CVC",
-      "clickToView": "Noklikšķiniet, lai skatītu informāciju",
+      "clickToView": "Klikšķiniet, lai skatītu detaļas",
       "viewDetails": "Skatīt visas detaļas",
-      "addTitle": "Kartes pievienošana",
+      "addTitle": "Pievienot karti",
       "cardNumber": "Kartes numurs",
       "holderName": "Vārds uz kartes",
       "cancel": "Atcelt",
       "submit": "Pievienot",
-      "verificationMessage": "Verifikācijai tiks veikts pagaidu 2 € noņēmums. Jūs saņemsiet SMS kodu.",
-      "smsVerification": "Verifikācija ar SMS",
+      "verificationMessage": "Verifikācijai tiks veikta pagaidu 2 € ieturēšana. Jūs saņemsiet SMS kodu.",
+      "smsVerification": "SMS verifikācija",
       "smsSent": "SMS kods nosūtīts uz jūsu tālruni.",
       "smsCode": "SMS kods",
-      "verify": "Apstiprināt",
-      "detailsTitle": "Kartes informācija",
+      "verify": "Verificēt",
+      "detailsTitle": "Kartes dati",
       "reveal": "Rādīt",
       "status": "Statuss",
       "active": "Aktīva",
       "close": "Aizvērt",
-      "clickToFlip": "Noklikšķiniet, lai apgrieztu karti"
+      "clickToFlip": "Klikšķiniet, lai apgrieztu",
+      "sendingSms": "Tiek sūtīts SMS…"
+    }
+  },
+  "transactions": {
+    "title": "Darījumu vēsture",
+    "subtitle": "Sekojiet visiem darījumiem savā kontā",
+    "table": {
+      "date": "Datums",
+      "beneficiary": "Saņēmējs",
+      "type": "Tips",
+      "amount": "Summa",
+      "operations": "Operācijas"
+    }
+  },
+  "profile": {
+    "title": "Profils",
+    "subtitle": "Pārvaldiet savus personas datus un iestatījumus",
+    "sections": {
+      "identity": "Identitāte",
+      "preferences": "Iestatījumi",
+      "security": "Drošība"
+    },
+    "fields": {
+      "fullName": "Vārds un uzvārds",
+      "phone": "Tālrunis",
+      "country": "Valsts",
+      "email": "E‑pasts",
+      "address": "Adrese",
+      "language": "Valoda",
+      "dateFormat": "Datuma formāts",
+      "currentPassword": "Pašreizējā parole",
+      "newPassword": "Jauna parole",
+      "confirmPassword": "Apstipriniet paroli"
+    },
+    "actions": {
+      "saveIdentity": "Saglabāt identitāti",
+      "savePreferences": "Saglabāt iestatījumus",
+      "savePassword": "Atjaunināt paroli"
     }
   }
 }
+  

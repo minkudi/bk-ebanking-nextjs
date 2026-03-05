@@ -2,7 +2,7 @@
   "register": {
     "subtitle": "BK E‑BANKING",
     "title": "Apertura conto",
-    "description": "Interfaccia chiara, solo le informazioni essenziali, senza elementi superflui.",
+    "description": "Interfaccia chiara, informazioni essenziali, senza elementi superflui.",
     "fullName": "Nome e cognome",
     "address": "Indirizzo",
     "birthDate": "Data di nascita",
@@ -10,14 +10,14 @@
     "country": "Paese",
     "countryPlaceholder": "Seleziona un paese",
     "phone": "Telefono",
-    "gender": "Genere",
+    "gender": "Sesso",
     "genderMale": "Uomo",
     "genderFemale": "Donna",
-    "email": "E‑mail",
+    "email": "Email",
     "password": "Password",
     "confirmPassword": "Conferma password",
     "submit": "Crea il mio conto",
-    "submitting": "Creazione del conto in corso…",
+    "submitting": "Creazione del conto…",
     "successMessage": "Conto creato. Numero di conto: {accountNumber}",
     "errorNetwork": "Errore di rete",
     "errorGeneric": "Errore"
@@ -26,10 +26,10 @@
     "subtitle": "BK E‑BANKING",
     "title": "Accesso",
     "description": "Accedi al tuo conto bancario.",
-    "email": "E‑mail",
+    "email": "Email",
     "password": "Password",
     "remember": "Ricordami",
-    "forgot": "Hai dimenticato la password?",
+    "forgot": "Password dimenticata?",
     "submit": "Accedi",
     "submitting": "Accesso in corso…",
     "noAccount": "Non hai ancora un conto?",
@@ -45,13 +45,13 @@
       "transfer": "Bonifico",
       "history": "Storico",
       "profile": "Profilo",
-      "logout": "Disconnetti"
+      "logout": "Esci"
     },
     "balance": "Saldo disponibile",
     "accountNumber": "Numero di conto",
     "pendingTransfers": "Bonifici in sospeso",
     "recentTransactions": "Operazioni recenti",
-    "recentTransactionsSubtitle": "Panoramica delle ultime operazioni sul tuo conto",
+    "recentTransactionsSubtitle": "Tieni traccia delle ultime operazioni sul tuo conto",
     "noTransactions": "Nessuna operazione",
     "newTransfer": "Nuovo bonifico",
     "table": {
@@ -60,39 +60,76 @@
       "type": "Tipo",
       "amount": "Importo",
       "status": "Stato",
-      "operations": "operazioni"
+      "operations": "Operazioni"
     },
     "card": {
-      "title": "La mia Mastercard",
+      "title": "La mia carta Mastercard",
       "add": "Aggiungi la mia carta",
-      "generate": "Genera carta",
-      "freeze": "Blocca carta",
-      "unfreeze": "Sblocca carta",
-      "delete": "Elimina carta",
+      "generate": "Genera una carta",
+      "freeze": "Blocca la carta",
+      "unfreeze": "Sblocca la carta",
+      "delete": "Elimina la carta",
       "frozen": "BLOCCATA",
-      "number": "Numero carta",
-      "holder": "Titolare carta",
+      "number": "Numero di carta",
+      "holder": "Titolare",
       "expiry": "Scadenza",
       "cvv": "CVC",
       "clickToView": "Clicca per vedere i dettagli",
       "viewDetails": "Vedi tutti i dettagli",
-      "addTitle": "Aggiunta carta",
-      "cardNumber": "Numero carta",
+      "addTitle": "Aggiungi carta",
+      "cardNumber": "Numero di carta",
       "holderName": "Nome sulla carta",
       "cancel": "Annulla",
       "submit": "Aggiungi",
       "verificationMessage": "Per la verifica verrà effettuato un addebito temporaneo di 2 €. Riceverai un codice via SMS.",
-      "smsVerification": "Verifica tramite SMS",
+      "smsVerification": "Verifica SMS",
       "smsSent": "Codice SMS inviato al tuo telefono.",
       "smsCode": "Codice SMS",
       "verify": "Verifica",
-      "detailsTitle": "Dettagli carta",
+      "detailsTitle": "Dettagli della carta",
       "reveal": "Mostra",
       "status": "Stato",
       "active": "Attiva",
       "close": "Chiudi",
-      "clickToFlip": "Clicca per girare la carta"
+      "clickToFlip": "Clicca per girare",
+      "sendingSms": "Invio SMS…"
+    }
+  },
+  "transactions": {
+    "title": "Storico delle operazioni",
+    "subtitle": "Tieni sotto controllo tutti i movimenti del tuo conto",
+    "table": {
+      "date": "Data",
+      "beneficiary": "Beneficiario",
+      "type": "Tipo",
+      "amount": "Importo",
+      "operations": "Operazioni"
+    }
+  },
+  "profile": {
+    "title": "Profilo",
+    "subtitle": "Gestisci i tuoi dati personali e le tue preferenze",
+    "sections": {
+      "identity": "Identità",
+      "preferences": "Preferenze",
+      "security": "Sicurezza"
+    },
+    "fields": {
+      "fullName": "Nome e cognome",
+      "phone": "Telefono",
+      "country": "Paese",
+      "email": "Email",
+      "address": "Indirizzo",
+      "language": "Lingua",
+      "dateFormat": "Formato data",
+      "currentPassword": "Password attuale",
+      "newPassword": "Nuova password",
+      "confirmPassword": "Conferma password"
+    },
+    "actions": {
+      "saveIdentity": "Salva identità",
+      "savePreferences": "Salva preferenze",
+      "savePassword": "Aggiorna password"
     }
   }
 }
-  

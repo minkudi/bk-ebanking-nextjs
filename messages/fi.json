@@ -16,21 +16,21 @@
     "email": "Sähköposti",
     "password": "Salasana",
     "confirmPassword": "Vahvista salasana",
-    "submit": "Luo tili",
-    "submitting": "Luodaan tiliä…",
+    "submit": "Avaa tili",
+    "submitting": "Tiliä luodaan…",
     "successMessage": "Tili luotu. Tilinumero: {accountNumber}",
     "errorNetwork": "Verkkovirhe",
     "errorGeneric": "Virhe"
   },
   "login": {
     "subtitle": "BK E‑BANKING",
-    "title": "Kirjaudu sisään",
+    "title": "Kirjautuminen",
     "description": "Kirjaudu pankkitilillesi.",
     "email": "Sähköposti",
     "password": "Salasana",
     "remember": "Muista minut",
-    "forgot": "Unohtuiko salasana?",
-    "submit": "Kirjaudu sisään",
+    "forgot": "Unohditko salasanan?",
+    "submit": "Kirjaudu",
     "submitting": "Kirjaudutaan…",
     "noAccount": "Ei vielä tiliä?",
     "register": "Rekisteröidy",
@@ -39,59 +39,97 @@
   },
   "dashboard": {
     "loading": "Ladataan…",
-    "title": "Hallintapaneeli",
+    "title": "Koontinäyttö",
     "menu": {
       "dashboard": "Etusivu",
-      "transfer": "Siirto",
-      "history": "Tapahtumat",
+      "transfer": "Tilisiirto",
+      "history": "Historia",
       "profile": "Profiili",
       "logout": "Kirjaudu ulos"
     },
     "balance": "Käytettävissä oleva saldo",
     "accountNumber": "Tilinumero",
-    "pendingTransfers": "Odottavat siirrot",
+    "pendingTransfers": "Odottaa siirtoa",
     "recentTransactions": "Viimeisimmät tapahtumat",
-    "recentTransactionsSubtitle": "Seuraa tilisi viimeisimpiä tapahtumia",
+    "recentTransactionsSubtitle": "Seuraa viimeisimpiä tapahtumia tililläsi",
     "noTransactions": "Ei tapahtumia",
-    "newTransfer": "Uusi siirto",
+    "newTransfer": "Uusi tilisiirto",
     "table": {
-      "date": "Päivä",
+      "date": "Päivämäärä",
       "beneficiary": "Saaja",
       "type": "Tyyppi",
       "amount": "Summa",
       "status": "Tila",
-      "operations": "tapahtumaa"
+      "operations": "Tapahtumat"
     },
     "card": {
       "title": "Oma Mastercard",
       "add": "Lisää korttini",
       "generate": "Luo kortti",
       "freeze": "Lukitse kortti",
-      "unfreeze": "Avaa kortin lukitus",
+      "unfreeze": "Avaa lukitus",
       "delete": "Poista kortti",
       "frozen": "LUKITTU",
       "number": "Kortin numero",
       "holder": "Kortinhaltija",
-      "expiry": "Voimassaoloaika",
+      "expiry": "Viimeinen käyttöpäivä",
       "cvv": "CVC",
-      "clickToView": "Näytä tiedot napsauttamalla",
+      "clickToView": "Näytä lisätiedot napsauttamalla",
       "viewDetails": "Näytä kaikki tiedot",
       "addTitle": "Lisää kortti",
       "cardNumber": "Kortin numero",
       "holderName": "Nimi kortissa",
       "cancel": "Peruuta",
       "submit": "Lisää",
-      "verificationMessage": "Vahvistusta varten veloitetaan tilapäisesti 2 €. Saat SMS‑koodin puhelimeesi.",
-      "smsVerification": "SMS‑vahvistus",
-      "smsSent": "SMS‑koodi lähetetty puhelimeesi.",
-      "smsCode": "SMS‑koodi",
+      "verificationMessage": "Varmennusta varten veloitetaan tilapäisesti 2 €. Saat tekstiviestikoodin.",
+      "smsVerification": "SMS-vahvistus",
+      "smsSent": "SMS-koodi lähetetty puhelimeesi.",
+      "smsCode": "SMS-koodi",
       "verify": "Vahvista",
       "detailsTitle": "Kortin tiedot",
       "reveal": "Näytä",
       "status": "Tila",
       "active": "Aktiivinen",
       "close": "Sulje",
-      "clickToFlip": "Käännä kortti napsauttamalla"
+      "clickToFlip": "Käännä kortti napsauttamalla",
+      "sendingSms": "Lähetetään tekstiviestiä…"
+    }
+  },
+  "transactions": {
+    "title": "Tapahtumahistoria",
+    "subtitle": "Seuraa kaikkia tilisi tapahtumia",
+    "table": {
+      "date": "Päivämäärä",
+      "beneficiary": "Saaja",
+      "type": "Tyyppi",
+      "amount": "Summa",
+      "operations": "Tapahtumat"
+    }
+  },
+  "profile": {
+    "title": "Profiili",
+    "subtitle": "Hallitse henkilötietojasi ja asetuksiasi",
+    "sections": {
+      "identity": "Henkilötiedot",
+      "preferences": "Asetukset",
+      "security": "Turvallisuus"
+    },
+    "fields": {
+      "fullName": "Koko nimi",
+      "phone": "Puhelin",
+      "country": "Maa",
+      "email": "Sähköposti",
+      "address": "Osoite",
+      "language": "Kieli",
+      "dateFormat": "Päivämäärän muoto",
+      "currentPassword": "Nykyinen salasana",
+      "newPassword": "Uusi salasana",
+      "confirmPassword": "Vahvista salasana"
+    },
+    "actions": {
+      "saveIdentity": "Tallenna henkilötiedot",
+      "savePreferences": "Tallenna asetukset",
+      "savePassword": "Päivitä salasana"
     }
   }
 }

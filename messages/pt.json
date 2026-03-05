@@ -2,23 +2,23 @@
   "register": {
     "subtitle": "BK E‑BANKING",
     "title": "Abertura de conta",
-    "description": "Interface limpa, informação essencial, sem decoração desnecessária.",
+    "description": "Interface clara, informação essencial, sem decoração desnecessária.",
     "fullName": "Nome completo",
-    "address": "Endereço",
+    "address": "Morada",
     "birthDate": "Data de nascimento",
     "birthDatePlaceholder": "DD/MM/AAAA",
     "country": "País",
     "countryPlaceholder": "Selecione um país",
     "phone": "Telefone",
     "gender": "Género",
-    "genderMale": "Homem",
-    "genderFemale": "Mulher",
+    "genderMale": "Masculino",
+    "genderFemale": "Feminino",
     "email": "E‑mail",
     "password": "Palavra‑passe",
     "confirmPassword": "Confirmar palavra‑passe",
     "submit": "Criar a minha conta",
     "submitting": "A criar conta…",
-    "successMessage": "Conta criada. Número da conta: {accountNumber}",
+    "successMessage": "Conta criada. Número de conta: {accountNumber}",
     "errorNetwork": "Erro de rede",
     "errorGeneric": "Erro"
   },
@@ -31,7 +31,7 @@
     "remember": "Manter sessão iniciada",
     "forgot": "Esqueceu‑se da palavra‑passe?",
     "submit": "Iniciar sessão",
-    "submitting": "A iniciar sessão…",
+    "submitting": "A autenticar…",
     "noAccount": "Ainda não tem conta?",
     "register": "Registar‑se",
     "errorGeneric": "Erro",
@@ -39,7 +39,7 @@
   },
   "dashboard": {
     "loading": "A carregar…",
-    "title": "Área pessoal",
+    "title": "Painel",
     "menu": {
       "dashboard": "Início",
       "transfer": "Transferência",
@@ -48,11 +48,11 @@
       "logout": "Terminar sessão"
     },
     "balance": "Saldo disponível",
-    "accountNumber": "Número da conta",
+    "accountNumber": "Número de conta",
     "pendingTransfers": "Transferências pendentes",
     "recentTransactions": "Transações recentes",
-    "recentTransactionsSubtitle": "Resumo das últimas operações na sua conta",
-    "noTransactions": "Nenhuma transação",
+    "recentTransactionsSubtitle": "Acompanhe as operações mais recentes na sua conta",
+    "noTransactions": "Sem transações",
     "newTransfer": "Nova transferência",
     "table": {
       "date": "Data",
@@ -60,10 +60,10 @@
       "type": "Tipo",
       "amount": "Montante",
       "status": "Estado",
-      "operations": "operações"
+      "operations": "Operações"
     },
     "card": {
-      "title": "O meu Mastercard",
+      "title": "O meu cartão Mastercard",
       "add": "Adicionar o meu cartão",
       "generate": "Gerar cartão",
       "freeze": "Bloquear cartão",
@@ -91,7 +91,45 @@
       "status": "Estado",
       "active": "Ativo",
       "close": "Fechar",
-      "clickToFlip": "Clique para virar o cartão"
+      "clickToFlip": "Clique para virar",
+      "sendingSms": "A enviar SMS…"
+    }
+  },
+  "transactions": {
+    "title": "Histórico de transações",
+    "subtitle": "Acompanhe todos os movimentos da sua conta",
+    "table": {
+      "date": "Data",
+      "beneficiary": "Beneficiário",
+      "type": "Tipo",
+      "amount": "Montante",
+      "operations": "Operações"
+    }
+  },
+  "profile": {
+    "title": "Perfil",
+    "subtitle": "Gestione os seus dados pessoais e preferências",
+    "sections": {
+      "identity": "Identidade",
+      "preferences": "Preferências",
+      "security": "Segurança"
+    },
+    "fields": {
+      "fullName": "Nome completo",
+      "phone": "Telefone",
+      "country": "País",
+      "email": "E‑mail",
+      "address": "Morada",
+      "language": "Idioma",
+      "dateFormat": "Formato de data",
+      "currentPassword": "Palavra‑passe atual",
+      "newPassword": "Nova palavra‑passe",
+      "confirmPassword": "Confirmar palavra‑passe"
+    },
+    "actions": {
+      "saveIdentity": "Guardar identidade",
+      "savePreferences": "Guardar preferências",
+      "savePassword": "Atualizar palavra‑passe"
     }
   }
 }

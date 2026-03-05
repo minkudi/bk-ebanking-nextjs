@@ -1,8 +1,8 @@
 {
   "register": {
     "subtitle": "BK E‑BANKING",
-    "title": "Отваряне на сметка",
-    "description": "Чист интерфейс, основна информация, без излишна декорация.",
+    "title": "Откриване на сметка",
+    "description": "Ясен интерфейс, основна информация, без излишна украса.",
     "fullName": "Пълно име",
     "address": "Адрес",
     "birthDate": "Дата на раждане",
@@ -15,31 +15,31 @@
     "genderFemale": "Жена",
     "email": "Имейл",
     "password": "Парола",
-    "confirmPassword": "Потвърди паролата",
-    "submit": "Създай акаунт",
-    "submitting": "Създаване на акаунт…",
-    "successMessage": "Акаунтът е създаден. Номер на сметката: {accountNumber}",
-    "errorNetwork": "Мрежова грешка",
+    "confirmPassword": "Потвърдете паролата",
+    "submit": "Създаване на сметка",
+    "submitting": "Създаване на сметка…",
+    "successMessage": "Сметката е създадена. Номер на сметка: {accountNumber}",
+    "errorNetwork": "Грешка в мрежата",
     "errorGeneric": "Грешка"
   },
   "login": {
     "subtitle": "BK E‑BANKING",
     "title": "Вход",
-    "description": "Влезте в своята банкова сметка.",
+    "description": "Влезте във вашата банкова сметка.",
     "email": "Имейл",
     "password": "Парола",
     "remember": "Запомни ме",
     "forgot": "Забравена парола?",
     "submit": "Вход",
     "submitting": "Влизане…",
-    "noAccount": "Нямате акаунт?",
+    "noAccount": "Все още нямате сметка?",
     "register": "Регистрация",
     "errorGeneric": "Грешка",
-    "errorNetwork": "Мрежова грешка"
+    "errorNetwork": "Грешка в мрежата"
   },
   "dashboard": {
     "loading": "Зареждане…",
-    "title": "Табло за управление",
+    "title": "Табло",
     "menu": {
       "dashboard": "Начало",
       "transfer": "Превод",
@@ -48,50 +48,88 @@
       "logout": "Изход"
     },
     "balance": "Наличен баланс",
-    "accountNumber": "Номер на сметката",
+    "accountNumber": "Номер на сметка",
     "pendingTransfers": "Чакащи преводи",
     "recentTransactions": "Последни транзакции",
-    "recentTransactionsSubtitle": "Проследяване на последните операции по вашата сметка",
+    "recentTransactionsSubtitle": "Следете последните операции по вашата сметка",
     "noTransactions": "Няма транзакции",
     "newTransfer": "Нов превод",
     "table": {
       "date": "Дата",
       "beneficiary": "Получател",
-      "type": "Тип",
+      "type": "Вид",
       "amount": "Сума",
       "status": "Статус",
-      "operations": "операции"
+      "operations": "Операции"
     },
     "card": {
       "title": "Моята карта Mastercard",
-      "add": "Добави карта",
-      "generate": "Генерирай карта",
-      "freeze": "Замрази картата",
-      "unfreeze": "Размрази картата",
-      "delete": "Изтрий картата",
-      "frozen": "ЗАМРАЗЕНА",
-      "number": "Номер на картата",
-      "holder": "Притежател",
-      "expiry": "Валидност",
+      "add": "Добавяне на моята карта",
+      "generate": "Генериране на карта",
+      "freeze": "Блокиране на карта",
+      "unfreeze": "Деблокиране на карта",
+      "delete": "Изтриване на карта",
+      "frozen": "БЛОКИРАНА",
+      "number": "Номер на карта",
+      "holder": "Картодържател",
+      "expiry": "Валидна до",
       "cvv": "CVC",
-      "clickToView": "Кликнете за детайли",
-      "viewDetails": "Вижте всички детайли",
-      "addTitle": "Добави карта",
-      "cardNumber": "Номер на картата",
+      "clickToView": "Кликнете за подробности",
+      "viewDetails": "Виж всички подробности",
+      "addTitle": "Добавяне на карта",
+      "cardNumber": "Номер на карта",
       "holderName": "Име върху картата",
       "cancel": "Отказ",
-      "submit": "Добави",
-      "verificationMessage": "За верификация ще бъде направено временно задържане от 2€. Ще ви бъде изпратен SMS код.",
-      "smsVerification": "SMS верификация",
-      "smsSent": "SMS кодът е изпратен на телефона ви.",
+      "submit": "Добавяне",
+      "verificationMessage": "За потвърждение ще бъде направено временно теглене от 2 €. Ще получите SMS код.",
+      "smsVerification": "SMS потвърждение",
+      "smsSent": "SMS кодът е изпратен на вашия телефон.",
       "smsCode": "SMS код",
       "verify": "Потвърди",
-      "detailsTitle": "Детайли на картата",
+      "detailsTitle": "Данни за картата",
       "reveal": "Покажи",
       "status": "Статус",
       "active": "Активна",
       "close": "Затвори",
-      "clickToFlip": "Кликнете за завъртане"
+      "clickToFlip": "Кликнете, за да обърнете",
+      "sendingSms": "Изпращане на SMS…"
+    }
+  },
+  "transactions": {
+    "title": "История на транзакциите",
+    "subtitle": "Следете всички операции по вашата сметка",
+    "table": {
+      "date": "Дата",
+      "beneficiary": "Получател",
+      "type": "Вид",
+      "amount": "Сума",
+      "operations": "Операции"
+    }
+  },
+  "profile": {
+    "title": "Профил",
+    "subtitle": "Управлявайте личните си данни и предпочитания",
+    "sections": {
+      "identity": "Идентичност",
+      "preferences": "Предпочитания",
+      "security": "Сигурност"
+    },
+    "fields": {
+      "fullName": "Пълно име",
+      "phone": "Телефон",
+      "country": "Държава",
+      "email": "Имейл",
+      "address": "Адрес",
+      "language": "Език",
+      "dateFormat": "Формат на датата",
+      "currentPassword": "Текуща парола",
+      "newPassword": "Нова парола",
+      "confirmPassword": "Потвърдете паролата"
+    },
+    "actions": {
+      "saveIdentity": "Запази идентичност",
+      "savePreferences": "Запази предпочитания",
+      "savePassword": "Актуализирай паролата"
     }
   }
 }

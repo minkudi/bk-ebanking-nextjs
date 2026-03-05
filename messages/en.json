@@ -1,8 +1,8 @@
 {
   "register": {
     "subtitle": "BK E‑BANKING",
-    "title": "Open an account",
-    "description": "Clean interface, essential information, no unnecessary decoration.",
+    "title": "Account opening",
+    "description": "Clear interface, essential information, no unnecessary decoration.",
     "fullName": "Full name",
     "address": "Address",
     "birthDate": "Date of birth",
@@ -24,15 +24,15 @@
   },
   "login": {
     "subtitle": "BK E‑BANKING",
-    "title": "Sign in",
+    "title": "Login",
     "description": "Access your bank account.",
     "email": "Email",
     "password": "Password",
     "remember": "Remember me",
     "forgot": "Forgot password?",
-    "submit": "Sign in",
-    "submitting": "Signing in…",
-    "noAccount": "Don't have an account?",
+    "submit": "Log in",
+    "submitting": "Logging in…",
+    "noAccount": "No account yet?",
     "register": "Sign up",
     "errorGeneric": "Error",
     "errorNetwork": "Network error"
@@ -51,7 +51,7 @@
     "accountNumber": "Account number",
     "pendingTransfers": "Pending transfers",
     "recentTransactions": "Recent transactions",
-    "recentTransactionsSubtitle": "Track your latest account operations",
+    "recentTransactionsSubtitle": "Track the latest operations on your account",
     "noTransactions": "No transactions",
     "newTransfer": "New transfer",
     "table": {
@@ -60,7 +60,7 @@
       "type": "Type",
       "amount": "Amount",
       "status": "Status",
-      "operations": "operations"
+      "operations": "Operations"
     },
     "card": {
       "title": "My Mastercard",
@@ -72,7 +72,7 @@
       "frozen": "FROZEN",
       "number": "Card number",
       "holder": "Cardholder",
-      "expiry": "Expiry",
+      "expiry": "Expiry date",
       "cvv": "CVC",
       "clickToView": "Click to view details",
       "viewDetails": "View all details",
@@ -81,7 +81,7 @@
       "holderName": "Name on card",
       "cancel": "Cancel",
       "submit": "Add",
-      "verificationMessage": "A temporary charge of €2 will be made for verification. An SMS code will be sent to you.",
+      "verificationMessage": "A temporary charge of 2€ will be made for verification. An SMS code will be sent to you.",
       "smsVerification": "SMS verification",
       "smsSent": "SMS code sent to your phone.",
       "smsCode": "SMS code",
@@ -91,7 +91,45 @@
       "status": "Status",
       "active": "Active",
       "close": "Close",
-      "clickToFlip": "Click to flip"
+      "clickToFlip": "Click to flip",
+      "sendingSms": "Sending SMS…"
+    }
+  },
+  "transactions": {
+    "title": "Transaction history",
+    "subtitle": "Track all movements on your account",
+    "table": {
+      "date": "Date",
+      "beneficiary": "Beneficiary",
+      "type": "Type",
+      "amount": "Amount",
+      "operations": "Operations"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Manage your personal information and preferences",
+    "sections": {
+      "identity": "Identity",
+      "preferences": "Preferences",
+      "security": "Security"
+    },
+    "fields": {
+      "fullName": "Full name",
+      "phone": "Phone",
+      "country": "Country",
+      "email": "Email",
+      "address": "Address",
+      "language": "Language",
+      "dateFormat": "Date format",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password"
+    },
+    "actions": {
+      "saveIdentity": "Save identity",
+      "savePreferences": "Save preferences",
+      "savePassword": "Update password"
     }
   }
 }

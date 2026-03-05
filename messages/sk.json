@@ -2,7 +2,7 @@
   "register": {
     "subtitle": "BK E‑BANKING",
     "title": "Otvorenie účtu",
-    "description": "Prehľadné rozhranie, len podstatné informácie, bez zbytočných prvkov.",
+    "description": "Prehľadné rozhranie, len podstatné informácie, bez zbytočných ozdôb.",
     "fullName": "Meno a priezvisko",
     "address": "Adresa",
     "birthDate": "Dátum narodenia",
@@ -17,7 +17,7 @@
     "password": "Heslo",
     "confirmPassword": "Potvrdenie hesla",
     "submit": "Vytvoriť účet",
-    "submitting": "Prebieha vytváranie účtu…",
+    "submitting": "Vytváranie účtu…",
     "successMessage": "Účet bol vytvorený. Číslo účtu: {accountNumber}",
     "errorNetwork": "Chyba siete",
     "errorGeneric": "Chyba"
@@ -28,10 +28,10 @@
     "description": "Prihláste sa do svojho bankového účtu.",
     "email": "E‑mail",
     "password": "Heslo",
-    "remember": "Zapamätať prihlásenie",
+    "remember": "Zapamätať si ma",
     "forgot": "Zabudli ste heslo?",
     "submit": "Prihlásiť sa",
-    "submitting": "Prebieha prihlasovanie…",
+    "submitting": "Prihlasovanie…",
     "noAccount": "Ešte nemáte účet?",
     "register": "Zaregistrovať sa",
     "errorGeneric": "Chyba",
@@ -39,7 +39,7 @@
   },
   "dashboard": {
     "loading": "Načítava sa…",
-    "title": "Hlavný panel",
+    "title": "Panel",
     "menu": {
       "dashboard": "Domov",
       "transfer": "Prevod",
@@ -51,7 +51,7 @@
     "accountNumber": "Číslo účtu",
     "pendingTransfers": "Čakajúce prevody",
     "recentTransactions": "Posledné transakcie",
-    "recentTransactionsSubtitle": "Prehľad posledných operácií na vašom účte",
+    "recentTransactionsSubtitle": "Sledujte najnovšie operácie na svojom účte",
     "noTransactions": "Žiadne transakcie",
     "newTransfer": "Nový prevod",
     "table": {
@@ -60,7 +60,7 @@
       "type": "Typ",
       "amount": "Suma",
       "status": "Stav",
-      "operations": "operácie"
+      "operations": "Operácie"
     },
     "card": {
       "title": "Moja karta Mastercard",
@@ -68,30 +68,68 @@
       "generate": "Vygenerovať kartu",
       "freeze": "Zablokovať kartu",
       "unfreeze": "Odblokovať kartu",
-      "delete": "Vymazať kartu",
+      "delete": "Odstrániť kartu",
       "frozen": "ZABLOKOVANÁ",
       "number": "Číslo karty",
       "holder": "Držiteľ karty",
       "expiry": "Dátum platnosti",
       "cvv": "CVC",
-      "clickToView": "Kliknite pre zobrazenie podrobností",
+      "clickToView": "Kliknutím zobrazíte podrobnosti",
       "viewDetails": "Zobraziť všetky podrobnosti",
-      "addTitle": "Pridanie karty",
+      "addTitle": "Pridať kartu",
       "cardNumber": "Číslo karty",
       "holderName": "Meno na karte",
       "cancel": "Zrušiť",
       "submit": "Pridať",
-      "verificationMessage": "Na overenie bude dočasne zaúčtovaný poplatok 2 €. Obdržíte SMS kód.",
-      "smsVerification": "Overenie cez SMS",
+      "verificationMessage": "Na overenie bude dočasne zaúčtovaný poplatok 2 €. Dostanete SMS kód.",
+      "smsVerification": "Overenie SMS",
       "smsSent": "SMS kód bol odoslaný na váš telefón.",
       "smsCode": "SMS kód",
       "verify": "Overiť",
-      "detailsTitle": "Podrobnosti karty",
+      "detailsTitle": "Podrobnosti o karte",
       "reveal": "Zobraziť",
       "status": "Stav",
       "active": "Aktívna",
       "close": "Zavrieť",
-      "clickToFlip": "Kliknite pre otočenie karty"
+      "clickToFlip": "Kliknutím kartu otočíte",
+      "sendingSms": "Odosiela sa SMS…"
+    }
+  },
+  "transactions": {
+    "title": "História transakcií",
+    "subtitle": "Sledujte všetky operácie na svojom účte",
+    "table": {
+      "date": "Dátum",
+      "beneficiary": "Príjemca",
+      "type": "Typ",
+      "amount": "Suma",
+      "operations": "Operácie"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Spravujte svoje osobné údaje a preferencie",
+    "sections": {
+      "identity": "Identita",
+      "preferences": "Preferencie",
+      "security": "Zabezpečenie"
+    },
+    "fields": {
+      "fullName": "Meno a priezvisko",
+      "phone": "Telefón",
+      "country": "Krajina",
+      "email": "E‑mail",
+      "address": "Adresa",
+      "language": "Jazyk",
+      "dateFormat": "Formát dátumu",
+      "currentPassword": "Aktuálne heslo",
+      "newPassword": "Nové heslo",
+      "confirmPassword": "Potvrdenie hesla"
+    },
+    "actions": {
+      "saveIdentity": "Uložiť identitu",
+      "savePreferences": "Uložiť preferencie",
+      "savePassword": "Aktualizovať heslo"
     }
   }
 }

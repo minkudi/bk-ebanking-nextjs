@@ -1,8 +1,8 @@
 {
   "register": {
     "subtitle": "BK E‑BANKING",
-    "title": "Konto eröffnen",
-    "description": "Übersichtliches Interface, nur die wichtigsten Informationen, ohne unnötige Dekoration.",
+    "title": "Kontoeröffnung",
+    "description": "Übersichtliche Oberfläche, nur die wichtigsten Informationen, kein unnötiger Schnickschnack.",
     "fullName": "Vollständiger Name",
     "address": "Adresse",
     "birthDate": "Geburtsdatum",
@@ -13,10 +13,10 @@
     "gender": "Geschlecht",
     "genderMale": "Männlich",
     "genderFemale": "Weiblich",
-    "email": "E-Mail",
+    "email": "E‑Mail",
     "password": "Passwort",
     "confirmPassword": "Passwort bestätigen",
-    "submit": "Konto erstellen",
+    "submit": "Mein Konto eröffnen",
     "submitting": "Konto wird erstellt…",
     "successMessage": "Konto erstellt. Kontonummer: {accountNumber}",
     "errorNetwork": "Netzwerkfehler",
@@ -26,7 +26,7 @@
     "subtitle": "BK E‑BANKING",
     "title": "Anmeldung",
     "description": "Greifen Sie auf Ihr Bankkonto zu.",
-    "email": "E-Mail",
+    "email": "E‑Mail",
     "password": "Passwort",
     "remember": "Angemeldet bleiben",
     "forgot": "Passwort vergessen?",
@@ -51,47 +51,85 @@
     "accountNumber": "Kontonummer",
     "pendingTransfers": "Ausstehende Überweisungen",
     "recentTransactions": "Letzte Transaktionen",
-    "recentTransactionsSubtitle": "Verfolgung der letzten Vorgänge auf Ihrem Konto",
+    "recentTransactionsSubtitle": "Verfolgen Sie die letzten Vorgänge auf Ihrem Konto",
     "noTransactions": "Keine Transaktionen",
     "newTransfer": "Neue Überweisung",
     "table": {
       "date": "Datum",
-      "beneficiary": "Begünstigter",
-      "type": "Typ",
+      "beneficiary": "Empfänger",
+      "type": "Art",
       "amount": "Betrag",
       "status": "Status",
       "operations": "Vorgänge"
     },
     "card": {
       "title": "Meine Mastercard",
-      "add": "Karte hinzufügen",
+      "add": "Meine Karte hinzufügen",
       "generate": "Karte generieren",
-      "freeze": "Karte sperren",
+      "freeze": "Karte einfrieren",
       "unfreeze": "Karte entsperren",
       "delete": "Karte löschen",
       "frozen": "GESPERRT",
       "number": "Kartennummer",
       "holder": "Karteninhaber",
-      "expiry": "Gültig bis",
+      "expiry": "Ablaufdatum",
       "cvv": "CVC",
-      "clickToView": "Für Details klicken",
+      "clickToView": "Zum Anzeigen der Details klicken",
       "viewDetails": "Alle Details anzeigen",
       "addTitle": "Karte hinzufügen",
       "cardNumber": "Kartennummer",
       "holderName": "Name auf der Karte",
       "cancel": "Abbrechen",
       "submit": "Hinzufügen",
-      "verificationMessage": "Zur Verifizierung wird eine temporäre Belastung von 2 € vorgenommen. Ein SMS-Code wird Ihnen zugesandt.",
+      "verificationMessage": "Zur Verifizierung wird eine vorübergehende Belastung von 2 € vorgenommen. Ein SMS-Code wird an Sie gesendet.",
       "smsVerification": "SMS-Verifizierung",
       "smsSent": "SMS-Code an Ihr Telefon gesendet.",
       "smsCode": "SMS-Code",
-      "verify": "Bestätigen",
+      "verify": "Verifizieren",
       "detailsTitle": "Kartendetails",
       "reveal": "Anzeigen",
       "status": "Status",
       "active": "Aktiv",
       "close": "Schließen",
-      "clickToFlip": "Zum Umdrehen klicken"
+      "clickToFlip": "Zum Umdrehen klicken",
+      "sendingSms": "SMS wird gesendet…"
+    }
+  },
+  "transactions": {
+    "title": "Transaktionshistorie",
+    "subtitle": "Verfolgen Sie alle Bewegungen auf Ihrem Konto",
+    "table": {
+      "date": "Datum",
+      "beneficiary": "Empfänger",
+      "type": "Art",
+      "amount": "Betrag",
+      "operations": "Vorgänge"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Verwalten Sie Ihre persönlichen Daten und Einstellungen",
+    "sections": {
+      "identity": "Identität",
+      "preferences": "Einstellungen",
+      "security": "Sicherheit"
+    },
+    "fields": {
+      "fullName": "Vollständiger Name",
+      "phone": "Telefon",
+      "country": "Land",
+      "email": "E‑Mail",
+      "address": "Adresse",
+      "language": "Sprache",
+      "dateFormat": "Datumsformat",
+      "currentPassword": "Aktuelles Passwort",
+      "newPassword": "Neues Passwort",
+      "confirmPassword": "Passwort bestätigen"
+    },
+    "actions": {
+      "saveIdentity": "Identität speichern",
+      "savePreferences": "Einstellungen speichern",
+      "savePassword": "Passwort aktualisieren"
     }
   }
 }

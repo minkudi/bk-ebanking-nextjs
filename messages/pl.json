@@ -2,7 +2,7 @@
   "register": {
     "subtitle": "BK E‑BANKING",
     "title": "Otwarcie konta",
-    "description": "Przejrzysty interfejs, tylko najważniejsze informacje, bez zbędnych ozdobników.",
+    "description": "Przejrzysty interfejs, najważniejsze informacje, bez zbędnych dodatków.",
     "fullName": "Imię i nazwisko",
     "address": "Adres",
     "birthDate": "Data urodzenia",
@@ -18,14 +18,14 @@
     "confirmPassword": "Potwierdź hasło",
     "submit": "Utwórz konto",
     "submitting": "Tworzenie konta…",
-    "successMessage": "Konto zostało utworzone. Numer konta: {accountNumber}",
+    "successMessage": "Konto utworzone. Numer konta: {accountNumber}",
     "errorNetwork": "Błąd sieci",
     "errorGeneric": "Błąd"
   },
   "login": {
     "subtitle": "BK E‑BANKING",
     "title": "Logowanie",
-    "description": "Zaloguj się do swojego rachunku bankowego.",
+    "description": "Zaloguj się do swojego konta bankowego.",
     "email": "E‑mail",
     "password": "Hasło",
     "remember": "Zapamiętaj mnie",
@@ -39,9 +39,9 @@
   },
   "dashboard": {
     "loading": "Ładowanie…",
-    "title": "Panel główny",
+    "title": "Panel",
     "menu": {
-      "dashboard": "Start",
+      "dashboard": "Strona główna",
       "transfer": "Przelew",
       "history": "Historia",
       "profile": "Profil",
@@ -51,7 +51,7 @@
     "accountNumber": "Numer konta",
     "pendingTransfers": "Oczekujące przelewy",
     "recentTransactions": "Ostatnie transakcje",
-    "recentTransactionsSubtitle": "Podgląd ostatnich operacji na Twoim koncie",
+    "recentTransactionsSubtitle": "Śledź ostatnie operacje na swoim koncie",
     "noTransactions": "Brak transakcji",
     "newTransfer": "Nowy przelew",
     "table": {
@@ -60,7 +60,7 @@
       "type": "Typ",
       "amount": "Kwota",
       "status": "Status",
-      "operations": "operacje"
+      "operations": "Operacje"
     },
     "card": {
       "title": "Moja karta Mastercard",
@@ -71,17 +71,17 @@
       "delete": "Usuń kartę",
       "frozen": "ZABLOKOWANA",
       "number": "Numer karty",
-      "holder": "Posiadacz karty",
+      "holder": "Właściciel karty",
       "expiry": "Data ważności",
       "cvv": "CVC",
       "clickToView": "Kliknij, aby zobaczyć szczegóły",
       "viewDetails": "Zobacz wszystkie szczegóły",
-      "addTitle": "Dodawanie karty",
+      "addTitle": "Dodaj kartę",
       "cardNumber": "Numer karty",
       "holderName": "Imię i nazwisko na karcie",
       "cancel": "Anuluj",
       "submit": "Dodaj",
-      "verificationMessage": "W celu weryfikacji zostanie pobrana tymczasowa opłata w wysokości 2 €. Otrzymasz kod SMS.",
+      "verificationMessage": "W celu weryfikacji zostanie pobrana tymczasowa opłata 2 €. Otrzymasz kod SMS.",
       "smsVerification": "Weryfikacja SMS",
       "smsSent": "Kod SMS został wysłany na Twój telefon.",
       "smsCode": "Kod SMS",
@@ -91,7 +91,45 @@
       "status": "Status",
       "active": "Aktywna",
       "close": "Zamknij",
-      "clickToFlip": "Kliknij, aby obrócić kartę"
+      "clickToFlip": "Kliknij, aby odwrócić",
+      "sendingSms": "Wysyłanie SMS…"
+    }
+  },
+  "transactions": {
+    "title": "Historia transakcji",
+    "subtitle": "Śledź wszystkie operacje na swoim koncie",
+    "table": {
+      "date": "Data",
+      "beneficiary": "Odbiorca",
+      "type": "Typ",
+      "amount": "Kwota",
+      "operations": "Operacje"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Zarządzaj swoimi danymi osobowymi i preferencjami",
+    "sections": {
+      "identity": "Tożsamość",
+      "preferences": "Preferencje",
+      "security": "Bezpieczeństwo"
+    },
+    "fields": {
+      "fullName": "Imię i nazwisko",
+      "phone": "Telefon",
+      "country": "Kraj",
+      "email": "E‑mail",
+      "address": "Adres",
+      "language": "Język",
+      "dateFormat": "Format daty",
+      "currentPassword": "Aktualne hasło",
+      "newPassword": "Nowe hasło",
+      "confirmPassword": "Potwierdź hasło"
+    },
+    "actions": {
+      "saveIdentity": "Zapisz tożsamość",
+      "savePreferences": "Zapisz preferencje",
+      "savePassword": "Zaktualizuj hasło"
     }
   }
 }
