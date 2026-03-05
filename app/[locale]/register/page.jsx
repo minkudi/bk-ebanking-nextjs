@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { PhoneInput } from 'react-international-phone';
-import { COUNTRIES } from '../countries';
+import { COUNTRIES } from '../../countries';
 import { useParams, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
