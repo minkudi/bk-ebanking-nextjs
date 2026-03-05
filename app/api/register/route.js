@@ -5,13 +5,13 @@ import nodemailer from 'nodemailer';
 // Templates d'email multilingues
 const emailTemplates = {
 fr: {
-  subject: "Bienvenue sur BK e‑Banking",
+  subject: "Bienvenue sur OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Cher client";
     return [
       `Bonjour ${name},`,
       ``,
-      `Bienvenue sur BK e‑Banking.`,
+      `Bienvenue sur OLAKRED.`,
       ``,
       `Votre espace bancaire en ligne a été créé avec succès.`,
       `Numéro de compte : ${accountNumber}`,
@@ -24,7 +24,7 @@ fr: {
       `Pour votre sécurité, ne partagez jamais vos identifiants ou codes de connexion.`,
       ``,
       `Cordialement,`,
-      `L'équipe BK e‑Banking`,
+      `L'équipe OLAKRED`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -34,7 +34,7 @@ fr: {
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>Bienvenue sur BK e‑Banking</title>
+  <title>Bienvenue sur OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -48,7 +48,7 @@ fr: {
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
                     <!-- Remplace par un <img src="https://.../logo.png" /> si tu veux -->
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Confirmation de création de compte
@@ -65,7 +65,7 @@ fr: {
                 Bonjour ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                Nous avons le plaisir de vous confirmer la création de votre compte BK e‑Banking.
+                Nous avons le plaisir de vous confirmer la création de votre compte OLAKRED.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -115,7 +115,7 @@ fr: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Plateforme de services bancaires en ligne.
+                OLAKRED – Plateforme de services bancaires en ligne.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Ce message est généré automatiquement, merci de ne pas y répondre.
@@ -125,7 +125,7 @@ fr: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Tous droits réservés.
+          &copy; ${new Date().getFullYear()} OLAKRED. Tous droits réservés.
         </p>
       </td>
     </tr>
@@ -136,13 +136,13 @@ fr: {
 },
 
 en: {
-  subject: "Welcome to BK e‑Banking",
+  subject: "Welcome to OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Dear customer";
     return [
       `Hello ${name},`,
       ``,
-      `Welcome to BK e‑Banking.`,
+      `Welcome to OLAKRED.`,
       ``,
       `Your online banking profile has been successfully created.`,
       `Account number: ${accountNumber}`,
@@ -155,7 +155,7 @@ en: {
       `For your security, never share your login details or security codes with anyone.`,
       ``,
       `Best regards,`,
-      `The BK e‑Banking Team`,
+      `The OLAKRED Team`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -165,7 +165,7 @@ en: {
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Welcome to BK e‑Banking</title>
+  <title>Welcome to OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -178,7 +178,7 @@ en: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Account creation confirmation
@@ -195,7 +195,7 @@ en: {
                 Hello ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                We are pleased to confirm that your BK e‑Banking account has been created.
+                We are pleased to confirm that your OLAKRED account has been created.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -245,7 +245,7 @@ en: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Online banking services platform.
+                OLAKRED – Online banking services platform.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 This is an automated message, please do not reply to this email.
@@ -255,7 +255,7 @@ en: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. All rights reserved.
+          &copy; ${new Date().getFullYear()} OLAKRED. All rights reserved.
         </p>
       </td>
     </tr>
@@ -266,13 +266,13 @@ en: {
 },
 
 de: {
-  subject: "Willkommen bei BK e‑Banking",
+  subject: "Willkommen bei OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Sehr geehrte Kundin, sehr geehrter Kunde";
     return [
       `Hallo ${name},`,
       ``,
-      `willkommen bei BK e‑Banking.`,
+      `willkommen bei OLAKRED.`,
       ``,
       `Ihr Online‑Banking-Zugang wurde erfolgreich eingerichtet.`,
       `Kontonummer: ${accountNumber}`,
@@ -285,7 +285,7 @@ de: {
       `Zu Ihrer Sicherheit geben Sie Ihre Zugangsdaten oder Sicherheitscodes niemals an Dritte weiter.`,
       ``,
       `Mit freundlichen Grüßen`,
-      `Ihr BK e‑Banking Team`,
+      `Ihr OLAKRED Team`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -295,7 +295,7 @@ de: {
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <title>Willkommen bei BK e‑Banking</title>
+  <title>Willkommen bei OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -308,7 +308,7 @@ de: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Bestätigung der Kontoeröffnung
@@ -325,7 +325,7 @@ de: {
                 Hallo ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                wir freuen uns, Ihnen die erfolgreiche Einrichtung Ihres BK e‑Banking‑Kontos bestätigen zu können.
+                wir freuen uns, Ihnen die erfolgreiche Einrichtung Ihres OLAKRED‑Kontos bestätigen zu können.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -375,7 +375,7 @@ de: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Plattform für digitales Bankwesen.
+                OLAKRED – Plattform für digitales Bankwesen.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Diese Nachricht wurde automatisch erstellt. Bitte antworten Sie nicht auf diese E‑Mail.
@@ -385,7 +385,7 @@ de: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Alle Rechte vorbehalten.
+          &copy; ${new Date().getFullYear()} OLAKRED. Alle Rechte vorbehalten.
         </p>
       </td>
     </tr>
@@ -396,13 +396,13 @@ de: {
 },
 
 nl: {
-  subject: "Welkom bij BK e‑Banking",
+  subject: "Welkom bij OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Beste klant";
     return [
       `Hallo ${name},`,
       ``,
-      `Welkom bij BK e‑Banking.`,
+      `Welkom bij OLAKRED.`,
       ``,
       `Uw online bankomgeving is succesvol aangemaakt.`,
       `Rekeningnummer: ${accountNumber}`,
@@ -415,7 +415,7 @@ nl: {
       `Deel uw inloggegevens of beveiligingscodes nooit met iemand anders.`,
       ``,
       `Met vriendelijke groet,`,
-      `Het BK e‑Banking team`,
+      `Het OLAKRED team`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -425,7 +425,7 @@ nl: {
 <html lang="nl">
 <head>
   <meta charset="utf-8" />
-  <title>Welkom bij BK e‑Banking</title>
+  <title>Welkom bij OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -438,7 +438,7 @@ nl: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Bevestiging van rekeningopening
@@ -455,7 +455,7 @@ nl: {
                 Hallo ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                We bevestigen graag dat uw BK e‑Banking account succesvol is aangemaakt.
+                We bevestigen graag dat uw OLAKRED account succesvol is aangemaakt.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -505,7 +505,7 @@ nl: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Platform voor online bankdiensten.
+                OLAKRED – Platform voor online bankdiensten.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Dit is een automatisch gegenereerd bericht. Gelieve niet op deze e‑mail te antwoorden.
@@ -515,7 +515,7 @@ nl: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Alle rechten voorbehouden.
+          &copy; ${new Date().getFullYear()} OLAKRED. Alle rechten voorbehouden.
         </p>
       </td>
     </tr>
@@ -526,13 +526,13 @@ nl: {
 },
 
 fi: {
-  subject: "Tervetuloa BK e‑Bankingiin",
+  subject: "Tervetuloa OLAKREDiin",
   text: (fullName, accountNumber) => {
     const name = fullName || "Hyvä asiakas";
     return [
       `Hei ${name},`,
       ``,
-      `Tervetuloa BK e‑Bankingiin.`,
+      `Tervetuloa OLAKREDiin.`,
       ``,
       `Verkkopankkitilisi on luotu onnistuneesti.`,
       `Tilinumero: ${accountNumber}`,
@@ -545,7 +545,7 @@ fi: {
       `Älä koskaan jaa kirjautumistietojasi tai turvakoodejasi muiden kanssa.`,
       ``,
       `Ystävällisin terveisin,`,
-      `BK e‑Banking -tiimi`,
+      `OLAKRED -tiimi`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -555,7 +555,7 @@ fi: {
 <html lang="fi">
 <head>
   <meta charset="utf-8" />
-  <title>Tervetuloa BK e‑Bankingiin</title>
+  <title>Tervetuloa OLAKREDiin</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -568,7 +568,7 @@ fi: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Tilin avaamisen vahvistus
@@ -585,7 +585,7 @@ fi: {
                 Hei ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                Meillä on ilo vahvistaa, että BK e‑Banking -verkkopankkitilisi on luotu onnistuneesti.
+                Meillä on ilo vahvistaa, että OLAKRED -verkkopankkitilisi on luotu onnistuneesti.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -635,7 +635,7 @@ fi: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Verkkopankkipalvelualusta.
+                OLAKRED – Verkkopankkipalvelualusta.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Tämä viesti on lähetetty automaattisesti. Älä vastaa tähän sähköpostiin.
@@ -645,7 +645,7 @@ fi: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Kaikki oikeudet pidätetään.
+          &copy; ${new Date().getFullYear()} OLAKRED. Kaikki oikeudet pidätetään.
         </p>
       </td>
     </tr>
@@ -656,13 +656,13 @@ fi: {
 },
 
 es: {
-  subject: "Bienvenido a BK e‑Banking",
+  subject: "Bienvenido a OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Estimado cliente";
     return [
       `Hola ${name},`,
       ``,
-      `Bienvenido a BK e‑Banking.`,
+      `Bienvenido a OLAKRED.`,
       ``,
       `Su banca en línea se ha creado correctamente.`,
       `Número de cuenta: ${accountNumber}`,
@@ -675,7 +675,7 @@ es: {
       `Por su seguridad, no comparta nunca sus credenciales ni sus códigos de seguridad con nadie.`,
       ``,
       `Atentamente,`,
-      `El equipo de BK e‑Banking`,
+      `El equipo de OLAKRED`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -685,7 +685,7 @@ es: {
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>Bienvenido a BK e‑Banking</title>
+  <title>Bienvenido a OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -698,7 +698,7 @@ es: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Confirmación de apertura de cuenta
@@ -715,7 +715,7 @@ es: {
                 Hola ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                Nos complace confirmar que su cuenta de BK e‑Banking se ha creado correctamente.
+                Nos complace confirmar que su cuenta de OLAKRED se ha creado correctamente.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -765,7 +765,7 @@ es: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Plataforma de servicios bancarios en línea.
+                OLAKRED – Plataforma de servicios bancarios en línea.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Este es un mensaje automático, por favor no responda a este correo.
@@ -775,7 +775,7 @@ es: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Todos los derechos reservados.
+          &copy; ${new Date().getFullYear()} OLAKRED. Todos los derechos reservados.
         </p>
       </td>
     </tr>
@@ -786,13 +786,13 @@ es: {
 },
 
 pl: {
-  subject: "Witamy w BK e‑Banking",
+  subject: "Witamy w OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Drogi Kliencie";
     return [
       `Witaj ${name},`,
       ``,
-      `Witamy w BK e‑Banking.`,
+      `Witamy w OLAKRED.`,
       ``,
       `Twoje konto bankowości internetowej zostało pomyślnie utworzone.`,
       `Numer konta: ${accountNumber}`,
@@ -805,7 +805,7 @@ pl: {
       `Ze względów bezpieczeństwa nigdy nie udostępniaj swoich danych logowania ani kodów bezpieczeństwa osobom trzecim.`,
       ``,
       `Z poważaniem,`,
-      `Zespół BK e‑Banking`,
+      `Zespół OLAKRED`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -815,7 +815,7 @@ pl: {
 <html lang="pl">
 <head>
   <meta charset="utf-8" />
-  <title>Witamy w BK e‑Banking</title>
+  <title>Witamy w OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -828,7 +828,7 @@ pl: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Potwierdzenie utworzenia konta
@@ -845,7 +845,7 @@ pl: {
                 Witaj ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                Z przyjemnością potwierdzamy, że Twoje konto BK e‑Banking zostało pomyślnie utworzone.
+                Z przyjemnością potwierdzamy, że Twoje konto OLAKRED zostało pomyślnie utworzone.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -862,7 +862,7 @@ pl: {
               </table>
 
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                Możesz teraz zalogować się do swojego bezpiecznego panelu BK e‑Banking, aby:
+                Możesz teraz zalogować się do swojego bezpiecznego panelu OLAKRED, aby:
               </p>
               <ul style="margin:0 0 16px 20px;padding:0;font-size:13px;color:#4B5563;line-height:1.6;">
                 <li>sprawdzać salda swoich rachunków,</li>
@@ -895,7 +895,7 @@ pl: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Platforma bankowości internetowej.
+                OLAKRED – Platforma bankowości internetowej.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Ta wiadomość została wygenerowana automatycznie. Prosimy na nią nie odpowiadać.
@@ -905,7 +905,7 @@ pl: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Wszystkie prawa zastrzeżone.
+          &copy; ${new Date().getFullYear()} OLAKRED. Wszystkie prawa zastrzeżone.
         </p>
       </td>
     </tr>
@@ -916,13 +916,13 @@ pl: {
 },
 
 pt: {
-  subject: "Bem-vindo ao BK e‑Banking",
+  subject: "Bem-vindo ao OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Caro cliente";
     return [
       `Olá ${name},`,
       ``,
-      `Bem-vindo ao BK e‑Banking.`,
+      `Bem-vindo ao OLAKRED.`,
       ``,
       `A sua conta de banca online foi criada com sucesso.`,
       `Número da conta: ${accountNumber}`,
@@ -935,7 +935,7 @@ pt: {
       `Por motivos de segurança, nunca partilhe as suas credenciais ou códigos de segurança com terceiros.`,
       ``,
       `Com os melhores cumprimentos,`,
-      `Equipa BK e‑Banking`,
+      `Equipa OLAKRED`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -945,7 +945,7 @@ pt: {
 <html lang="pt">
 <head>
   <meta charset="utf-8" />
-  <title>Bem-vindo ao BK e‑Banking</title>
+  <title>Bem-vindo ao OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -958,7 +958,7 @@ pt: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Confirmação de criação de conta
@@ -975,7 +975,7 @@ pt: {
                 Olá ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                Temos o prazer de confirmar que a sua conta BK e‑Banking foi criada com sucesso.
+                Temos o prazer de confirmar que a sua conta OLAKRED foi criada com sucesso.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -1025,7 +1025,7 @@ pt: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Plataforma de serviços bancários online.
+                OLAKRED – Plataforma de serviços bancários online.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Esta é uma mensagem automática, por favor não responda a este e‑mail.
@@ -1035,7 +1035,7 @@ pt: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Todos os direitos reservados.
+          &copy; ${new Date().getFullYear()} OLAKRED. Todos os direitos reservados.
         </p>
       </td>
     </tr>
@@ -1046,13 +1046,13 @@ pt: {
 },
 
 sk: {
-  subject: "Vitajte v BK e‑Banking",
+  subject: "Vitajte v OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Vážený klient";
     return [
       `Ahoj ${name},`,
       ``,
-      `Vitajte v BK e‑Banking.`,
+      `Vitajte v OLAKRED.`,
       ``,
       `Váš účet internetového bankovníctva bol úspešne vytvorený.`,
       `Číslo účtu: ${accountNumber}`,
@@ -1065,7 +1065,7 @@ sk: {
       `Z bezpečnostných dôvodov nikdy nezdieľajte svoje prihlasovacie údaje ani bezpečnostné kódy s tretími osobami.`,
       ``,
       `S pozdravom,`,
-      `Tím BK e‑Banking`,
+      `Tím OLAKRED`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -1075,7 +1075,7 @@ sk: {
 <html lang="sk">
 <head>
   <meta charset="utf-8" />
-  <title>Vitajte v BK e‑Banking</title>
+  <title>Vitajte v OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -1088,7 +1088,7 @@ sk: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Potvrdenie vytvorenia účtu
@@ -1105,7 +1105,7 @@ sk: {
                 Ahoj ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                s radosťou potvrdzujeme, že váš účet BK e‑Banking bol úspešne vytvorený.
+                s radosťou potvrdzujeme, že váš účet OLAKRED bol úspešne vytvorený.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -1155,7 +1155,7 @@ sk: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Platforma pre internetové bankovníctvo.
+                OLAKRED – Platforma pre internetové bankovníctvo.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Táto správa bola vygenerovaná automaticky. Prosím, neodpovedajte na tento e‑mail.
@@ -1165,7 +1165,7 @@ sk: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Všetky práva vyhradené.
+          &copy; ${new Date().getFullYear()} OLAKRED. Všetky práva vyhradené.
         </p>
       </td>
     </tr>
@@ -1176,13 +1176,13 @@ sk: {
 },
 
 bg: {
-  subject: "Добре дошли в BK e‑Banking",
+  subject: "Добре дошли в OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Уважаеми клиент";
     return [
       `Здравейте ${name},`,
       ``,
-      `Добре дошли в BK e‑Banking.`,
+      `Добре дошли в OLAKRED.`,
       ``,
       `Вашият профил за онлайн банкиране беше успешно създаден.`,
       `Номер на сметка: ${accountNumber}`,
@@ -1195,7 +1195,7 @@ bg: {
       `От съображения за сигурност никога не споделяйте своите данни за вход или защитни кодове с трети лица.`,
       ``,
       `С уважение,`,
-      `Екипът на BK e‑Banking`,
+      `Екипът на OLAKRED`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -1205,7 +1205,7 @@ bg: {
 <html lang="bg">
 <head>
   <meta charset="utf-8" />
-  <title>Добре дошли в BK e‑Banking</title>
+  <title>Добре дошли в OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -1218,7 +1218,7 @@ bg: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Потвърждение за създаване на сметка
@@ -1235,7 +1235,7 @@ bg: {
                 Здравейте ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                С удоволствие потвърждаваме, че вашият акаунт в BK e‑Banking беше успешно създаден.
+                С удоволствие потвърждаваме, че вашият акаунт в OLAKRED беше успешно създаден.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -1285,7 +1285,7 @@ bg: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Платформа за онлайн банкови услуги.
+                OLAKRED – Платформа за онлайн банкови услуги.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Това съобщение е генерирано автоматично. Моля, не отговаряйте на този имейл.
@@ -1295,7 +1295,7 @@ bg: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Всички права запазени.
+          &copy; ${new Date().getFullYear()} OLAKRED. Всички права запазени.
         </p>
       </td>
     </tr>
@@ -1306,13 +1306,13 @@ bg: {
 },
 
 el: {
-  subject: "Καλώς ήρθατε στο BK e‑Banking",
+  subject: "Καλώς ήρθατε στο OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Αγαπητέ πελάτη";
     return [
       `Γεια σας ${name},`,
       ``,
-      `Καλώς ήρθατε στο BK e‑Banking.`,
+      `Καλώς ήρθατε στο OLAKRED.`,
       ``,
       `Ο λογαριασμός σας για ηλεκτρονική τραπεζική δημιουργήθηκε με επιτυχία.`,
       `Αριθμός λογαριασμού: ${accountNumber}`,
@@ -1325,7 +1325,7 @@ el: {
       `Για λόγους ασφαλείας, μην κοινοποιείτε ποτέ τα στοιχεία σύνδεσης ή τους κωδικούς ασφαλείας σας σε τρίτους.`,
       ``,
       `Με εκτίμηση,`,
-      `Η ομάδα του BK e‑Banking`,
+      `Η ομάδα του OLAKRED`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -1335,7 +1335,7 @@ el: {
 <html lang="el">
 <head>
   <meta charset="utf-8" />
-  <title>Καλώς ήρθατε στο BK e‑Banking</title>
+  <title>Καλώς ήρθατε στο OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -1348,7 +1348,7 @@ el: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Επιβεβαίωση δημιουργίας λογαριασμού
@@ -1365,7 +1365,7 @@ el: {
                 Γεια σας ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                Με χαρά σας ενημερώνουμε ότι ο λογαριασμός σας στο BK e‑Banking δημιουργήθηκε με επιτυχία.
+                Με χαρά σας ενημερώνουμε ότι ο λογαριασμός σας στο OLAKRED δημιουργήθηκε με επιτυχία.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -1415,7 +1415,7 @@ el: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Πλατφόρμα υπηρεσιών ηλεκτρονικής τραπεζικής.
+                OLAKRED – Πλατφόρμα υπηρεσιών ηλεκτρονικής τραπεζικής.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Αυτό είναι αυτοματοποιημένο μήνυμα· παρακαλούμε μην απαντάτε σε αυτό το email.
@@ -1425,7 +1425,7 @@ el: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Με επιφύλαξη παντός δικαιώματος.
+          &copy; ${new Date().getFullYear()} OLAKRED. Με επιφύλαξη παντός δικαιώματος.
         </p>
       </td>
     </tr>
@@ -1436,13 +1436,13 @@ el: {
 },
 
 sl: {
-  subject: "Dobrodošli v BK e‑Banking",
+  subject: "Dobrodošli v OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Spoštovani klient";
     return [
       `Pozdravljeni ${name},`,
       ``,
-      `Dobrodošli v BK e‑Banking.`,
+      `Dobrodošli v OLAKRED.`,
       ``,
       `Vaš račun za spletno bančništvo je bil uspešno ustvarjen.`,
       `Številka računa: ${accountNumber}`,
@@ -1455,7 +1455,7 @@ sl: {
       `Zaradi varnosti svojih podatkov svojih prijavnih podatkov ali varnostnih kod nikoli ne delite z drugimi osebami.`,
       ``,
       `Lep pozdrav,`,
-      `Ekipa BK e‑Banking`,
+      `Ekipa OLAKRED`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -1465,7 +1465,7 @@ sl: {
 <html lang="sl">
 <head>
   <meta charset="utf-8" />
-  <title>Dobrodošli v BK e‑Banking</title>
+  <title>Dobrodošli v OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -1478,7 +1478,7 @@ sl: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Potrditev odprtja računa
@@ -1495,7 +1495,7 @@ sl: {
                 Pozdravljeni ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                Z veseljem potrjujemo, da je bil vaš račun BK e‑Banking uspešno ustvarjen.
+                Z veseljem potrjujemo, da je bil vaš račun OLAKRED uspešno ustvarjen.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -1545,7 +1545,7 @@ sl: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Platforma za spletne bančne storitve.
+                OLAKRED – Platforma za spletne bančne storitve.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 To sporočilo je bilo ustvarjeno samodejno. Prosimo, ne odgovarjajte na ta e‑poštni naslov.
@@ -1555,7 +1555,7 @@ sl: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Vse pravice pridržane.
+          &copy; ${new Date().getFullYear()} OLAKRED. Vse pravice pridržane.
         </p>
       </td>
     </tr>
@@ -1566,13 +1566,13 @@ sl: {
 },
 
 lt: {
-  subject: "Sveiki atvykę į BK e‑Banking",
+  subject: "Sveiki atvykę į OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Gerbiamas kliente";
     return [
       `Sveiki ${name},`,
       ``,
-      `Sveiki atvykę į BK e‑Banking.`,
+      `Sveiki atvykę į OLAKRED.`,
       ``,
       `Jūsų internetinės bankininkystės paskyra sėkmingai sukurta.`,
       `Sąskaitos numeris: ${accountNumber}`,
@@ -1585,7 +1585,7 @@ lt: {
       `Saugumo sumetimais niekada nesidalykite savo prisijungimo duomenimis ar saugos kodais su trečiosiomis šalimis.`,
       ``,
       `Pagarbiai,`,
-      `BK e‑Banking komanda`,
+      `OLAKRED komanda`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -1595,7 +1595,7 @@ lt: {
 <html lang="lt">
 <head>
   <meta charset="utf-8" />
-  <title>Sveiki atvykę į BK e‑Banking</title>
+  <title>Sveiki atvykę į OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -1608,7 +1608,7 @@ lt: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Paskyros sukūrimo patvirtinimas
@@ -1625,7 +1625,7 @@ lt: {
                 Sveiki ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                Su džiaugsmu patvirtiname, kad jūsų BK e‑Banking paskyra buvo sėkmingai sukurta.
+                Su džiaugsmu patvirtiname, kad jūsų OLAKRED paskyra buvo sėkmingai sukurta.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -1675,7 +1675,7 @@ lt: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Internetinės bankininkystės paslaugų platforma.
+                OLAKRED – Internetinės bankininkystės paslaugų platforma.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Ši žinutė sukurta automatiškai. Prašome neatsakinėti į šį el. laišką.
@@ -1685,7 +1685,7 @@ lt: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Visos teisės saugomos.
+          &copy; ${new Date().getFullYear()} OLAKRED. Visos teisės saugomos.
         </p>
       </td>
     </tr>
@@ -1696,13 +1696,13 @@ lt: {
 },
 
 lv: {
-  subject: "Laipni lūdzam BK e‑Banking",
+  subject: "Laipni lūdzam OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Cienījamais klients";
     return [
       `Sveicināti, ${name},`,
       ``,
-      `Laipni lūdzam BK e‑Banking.`,
+      `Laipni lūdzam OLAKRED.`,
       ``,
       `Jūsu internetbankas konts ir veiksmīgi izveidots.`,
       `Konta numurs: ${accountNumber}`,
@@ -1715,7 +1715,7 @@ lv: {
       `Drošības nolūkos nekad nekopīgojiet savus pieteikšanās datus vai drošības kodus ar trešajām personām.`,
       ``,
       `Ar cieņu,`,
-      `BK e‑Banking komanda`,
+      `OLAKRED komanda`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -1725,7 +1725,7 @@ lv: {
 <html lang="lv">
 <head>
   <meta charset="utf-8" />
-  <title>Laipni lūdzam BK e‑Banking</title>
+  <title>Laipni lūdzam OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -1738,7 +1738,7 @@ lv: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Konta izveides apstiprinājums
@@ -1755,7 +1755,7 @@ lv: {
                 Sveicināti, ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                Ar prieku apstiprinām, ka jūsu BK e‑Banking konts ir veiksmīgi izveidots.
+                Ar prieku apstiprinām, ka jūsu OLAKRED konts ir veiksmīgi izveidots.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -1805,7 +1805,7 @@ lv: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Tiešsaistes bankas pakalpojumu platforma.
+                OLAKRED – Tiešsaistes bankas pakalpojumu platforma.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Šis ir automātiski ģenerēts ziņojums. Lūdzu, neatbildiet uz šo e‑pastu.
@@ -1815,7 +1815,7 @@ lv: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Visas tiesības aizsargātas.
+          &copy; ${new Date().getFullYear()} OLAKRED. Visas tiesības aizsargātas.
         </p>
       </td>
     </tr>
@@ -1826,13 +1826,13 @@ lv: {
 },
 
 it: {
-  subject: "Benvenuto su BK e‑Banking",
+  subject: "Benvenuto su OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Gentile cliente";
     return [
       `Ciao ${name},`,
       ``,
-      `Benvenuto su BK e‑Banking.`,
+      `Benvenuto su OLAKRED.`,
       ``,
       `Il tuo profilo di internet banking è stato creato con successo.`,
       `Numero di conto: ${accountNumber}`,
@@ -1845,7 +1845,7 @@ it: {
       `Per motivi di sicurezza non condividere mai le tue credenziali di accesso o i codici di sicurezza con terzi.`,
       ``,
       `Cordiali saluti,`,
-      `Il team BK e‑Banking`,
+      `Il team OLAKRED`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -1855,7 +1855,7 @@ it: {
 <html lang="it">
 <head>
   <meta charset="utf-8" />
-  <title>Benvenuto su BK e‑Banking</title>
+  <title>Benvenuto su OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -1868,7 +1868,7 @@ it: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Conferma creazione conto
@@ -1885,7 +1885,7 @@ it: {
                 Ciao ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                Siamo lieti di confermare che il tuo conto BK e‑Banking è stato creato con successo.
+                Siamo lieti di confermare che il tuo conto OLAKRED è stato creato con successo.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -1935,7 +1935,7 @@ it: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Piattaforma di servizi bancari online.
+                OLAKRED – Piattaforma di servizi bancari online.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Questo è un messaggio automatico, si prega di non rispondere a questa email.
@@ -1945,7 +1945,7 @@ it: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Tutti i diritti riservati.
+          &copy; ${new Date().getFullYear()} OLAKRED. Tutti i diritti riservati.
         </p>
       </td>
     </tr>
@@ -1956,13 +1956,13 @@ it: {
 },
 
 cs: {
-  subject: "Vítejte v BK e‑Banking",
+  subject: "Vítejte v OLAKRED",
   text: (fullName, accountNumber) => {
     const name = fullName || "Vážený kliente";
     return [
       `Ahoj ${name},`,
       ``,
-      `Vítejte v BK e‑Banking.`,
+      `Vítejte v OLAKRED.`,
       ``,
       `Váš účet pro internetové bankovnictví byl úspěšně vytvořen.`,
       `Číslo účtu: ${accountNumber}`,
@@ -1975,7 +1975,7 @@ cs: {
       `Z bezpečnostních důvodů nikdy nesdílejte své přihlašovací údaje ani bezpečnostní kódy s třetími osobami.`,
       ``,
       `S pozdravem,`,
-      `Tým BK e‑Banking`,
+      `Tým OLAKRED`,
     ].join("\n");
   },
   html: (fullName, accountNumber) => {
@@ -1985,7 +1985,7 @@ cs: {
 <html lang="cs">
 <head>
   <meta charset="utf-8" />
-  <title>Vítejte v BK e‑Banking</title>
+  <title>Vítejte v OLAKRED</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F3F4F6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F3F4F6;padding:24px 0;">
@@ -1998,7 +1998,7 @@ cs: {
               <table width="100%" role="presentation">
                 <tr>
                   <td style="font-size:20px;font-weight:700;">
-                    BK e‑Banking
+                    OLAKRED
                   </td>
                   <td align="right" style="font-size:12px;opacity:0.9;">
                     Potvrzení vytvoření účtu
@@ -2015,7 +2015,7 @@ cs: {
                 Ahoj ${name},
               </p>
               <p style="margin:0 0 12px 0;font-size:13px;color:#4B5563;line-height:1.5;">
-                s potěšením potvrzujeme, že váš účet BK e‑Banking byl úspěšně vytvořen.
+                s potěšením potvrzujeme, že váš účet OLAKRED byl úspěšně vytvořen.
               </p>
 
               <table role="presentation" width="100%" style="margin:16px 0 20px 0;">
@@ -2065,7 +2065,7 @@ cs: {
           <tr>
             <td style="padding:16px 24px 20px 24px;border-top:1px solid #E5E7EB;background-color:#F9FAFB;">
               <p style="margin:0 0 4px 0;font-size:11px;color:#9CA3AF;">
-                BK e‑Banking – Platforma pro internetové bankovnictví.
+                OLAKRED – Platforma pro internetové bankovnictví.
               </p>
               <p style="margin:0;font-size:11px;color:#9CA3AF;">
                 Tato zpráva byla vygenerována automaticky. Prosím, neodpovídejte na tento e‑mail.
@@ -2075,7 +2075,7 @@ cs: {
         </table>
 
         <p style="margin:12px 0 0 0;font-size:10px;color:#9CA3AF;">
-          &copy; ${new Date().getFullYear()} BK e‑Banking. Všechna práva vyhrazena.
+          &copy; ${new Date().getFullYear()} OLAKRED. Všechna práva vyhrazena.
         </p>
       </td>
     </tr>

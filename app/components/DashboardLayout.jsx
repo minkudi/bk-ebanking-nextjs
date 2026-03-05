@@ -76,7 +76,7 @@ export default function DashboardLayout({ children, activeKey }) {
             </div>
             <div className="flex flex-col">
               <span className="text-sm font-semibold text-slate-900 tracking-tight">
-                BK E‑BANKING
+                OLAKRED
               </span>
               <span className="text-[11px] text-slate-400 uppercase tracking-[0.16em]">
                 Menu
@@ -122,7 +122,7 @@ export default function DashboardLayout({ children, activeKey }) {
           <LanguageSwitcher currentLocale={locale} />
         </div>
         <div className="px-6 py-2 text-[11px] text-slate-400">
-          © 2026 BK E‑BANKING
+          © 2026 OLAKRED
         </div>
       </aside>
 
@@ -143,7 +143,7 @@ export default function DashboardLayout({ children, activeKey }) {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-sm font-semibold text-slate-900 tracking-tight">
-                    BK E‑BANKING
+                    OLAKRED
                   </span>
                   <span className="text-[11px] text-slate-400 uppercase tracking-[0.16em]">
                     Menu

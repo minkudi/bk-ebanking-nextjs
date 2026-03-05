@@ -1,6 +1,6 @@
 {
   "register": {
-    "subtitle": "BK E‑BANKING",
+    "subtitle": "OLAKRED",
     "title": "Tilin avaaminen",
     "description": "Selkeä käyttöliittymä, vain oleelliset tiedot, ei turhaa koristelua.",
     "fullName": "Koko nimi",
@@ -23,7 +23,7 @@
     "errorGeneric": "Virhe"
   },
   "login": {
-    "subtitle": "BK E‑BANKING",
+    "subtitle": "OLAKRED",
     "title": "Kirjautuminen",
     "description": "Kirjaudu pankkitilillesi.",
     "email": "Sähköposti",

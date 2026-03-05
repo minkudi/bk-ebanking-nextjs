@@ -1,6 +1,6 @@
 {
   "register": {
-    "subtitle": "BK E‑BANKING",
+    "subtitle": "OLAKRED",
     "title": "Otvorenie účtu",
     "description": "Prehľadné rozhranie, len podstatné informácie, bez zbytočných ozdôb.",
     "fullName": "Meno a priezvisko",
@@ -23,7 +23,7 @@
     "errorGeneric": "Chyba"
   },
   "login": {
-    "subtitle": "BK E‑BANKING",
+    "subtitle": "OLAKRED",
     "title": "Prihlásenie",
     "description": "Prihláste sa do svojho bankového účtu.",
     "email": "E‑mail",

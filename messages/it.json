@@ -1,6 +1,6 @@
 {
   "register": {
-    "subtitle": "BK E‑BANKING",
+    "subtitle": "OLAKRED",
     "title": "Apertura conto",
     "description": "Interfaccia chiara, informazioni essenziali, senza elementi superflui.",
     "fullName": "Nome e cognome",
@@ -23,7 +23,7 @@
     "errorGeneric": "Errore"
   },
   "login": {
-    "subtitle": "BK E‑BANKING",
+    "subtitle": "OLAKRED",
     "title": "Accesso",
     "description": "Accedi al tuo conto bancario.",
     "email": "Email",

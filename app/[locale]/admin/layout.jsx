@@ -124,7 +124,7 @@ export default function AdminLayout({ children }) {
           <LanguageSwitcher currentLocale={locale} />
         </div>
         <div className="px-6 py-2 text-[11px] text-slate-400">
-          © 2026 BK E‑BANKING Admin
+          © 2026 OLAKRED Admin
         </div>
       </aside>
 

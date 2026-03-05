@@ -1,6 +1,6 @@
 {
   "register": {
-    "subtitle": "BK E‑BANKING",
+    "subtitle": "OLAKRED",
     "title": "Sąskaitos atidarymas",
     "description": "Aiški sąsaja, tik esminė informacija, be nereikalingų detalių.",
     "fullName": "Vardas ir pavardė",
@@ -23,7 +23,7 @@
     "errorGeneric": "Klaida"
   },
   "login": {
-    "subtitle": "BK E‑BANKING",
+    "subtitle": "OLAKRED",
     "title": "Prisijungimas",
     "description": "Prisijunkite prie savo banko sąskaitos.",
     "email": "El. paštas",

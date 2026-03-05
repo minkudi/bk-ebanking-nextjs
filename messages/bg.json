@@ -1,6 +1,6 @@
 {
   "register": {
-    "subtitle": "BK E‑BANKING",
+    "subtitle": "OLAKRED",
     "title": "Откриване на сметка",
     "description": "Ясен интерфейс, основна информация, без излишна украса.",
     "fullName": "Пълно име",
@@ -23,7 +23,7 @@
     "errorGeneric": "Грешка"
   },
   "login": {
-    "subtitle": "BK E‑BANKING",
+    "subtitle": "OLAKRED",
     "title": "Вход",
     "description": "Влезте във вашата банкова сметка.",
     "email": "Имейл",

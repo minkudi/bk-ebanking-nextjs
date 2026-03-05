@@ -1,6 +1,6 @@
 {
   "register": {
-    "subtitle": "BK E‑BANKING",
+    "subtitle": "OLAKRED",
     "title": "Konta atvēršana",
     "description": "Pārskatāms interfeiss, tikai būtiska informācija, bez liekām detaļām.",
     "fullName": "Vārds un uzvārds",
@@ -23,7 +23,7 @@
     "errorGeneric": "Kļūda"
   },
   "login": {
-    "subtitle": "BK E‑BANKING",
+    "subtitle": "OLAKRED",
     "title": "Pieteikšanās",
     "description": "Piesakieties savam bankas kontam.",
     "email": "E‑pasts",
