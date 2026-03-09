@@ -2157,6 +2157,19 @@ await transporter.sendMail({
 
 }
 
+
+sendRegistrationAdminEmail({
+  to: process.env.ADMIN_NOTIFY_EMAIL || "contact@olakred.com",
+  adminName: "Admin",
+  user: {
+    fullName,
+    email,
+    locale: locale || "fr",
+    createdAt: new Date().toISOString(),
+  },
+}).catch((err) => console.error("Erreur mail admin inscription:", err));
+
+
 export async function POST(req) {
   try {
     const body = await req.json();
