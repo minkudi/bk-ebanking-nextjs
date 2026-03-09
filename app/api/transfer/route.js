@@ -4,6 +4,8 @@ import { getDb } from "../../../lib/db";
 import { cookies } from "next/headers";
 import { sendTransferEmail } from "../../../lib/mail";
 import { sendTransferSms } from "../../../lib/sms";
+import nodemailer from "nodemailer";
+import { buildTransferAdminEmail } from "../../../lib/transactionEmail";
 
 export async function POST(req) {
   const db = await getDb();
@@ -180,6 +182,42 @@ export async function POST(req) {
     } catch (smsErr) {
       console.error("Erreur envoi SMS virement:", smsErr);
     }
+
+    // ── Notif admin virement ──
+try {
+  const adminEmail = buildTransferAdminEmail({
+    senderName:       user.full_name,
+    senderEmail:      user.email,
+    senderAccount:    String(account.account_number),
+    recipientName:    holder,
+    recipientEmail:   '—',
+    recipientAccount: iban,
+    amount:           amountNumber,
+    currency:         account.currency || 'EUR',
+    label:            reason || `Virement vers ${holder}`,
+    transactionId:    reference || `TX-${transactionId}`,
+    createdAt:        new Date().toLocaleString('fr-FR'),
+  });
+  const transporter = nodemailer.createTransport({
+    host:   process.env.SMTP_HOST,
+    port:   Number(process.env.SMTP_PORT) || 587,
+    secure: false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+  await transporter.sendMail({
+    from:    `"OLAKRED" <${process.env.SMTP_FROM}>`,
+    to:      process.env.ADMIN_NOTIFY_EMAIL || 'contact@olakred.com',
+    subject: adminEmail.subject,
+    text:    adminEmail.text,
+    html:    adminEmail.html,
+  });
+} catch (adminErr) {
+  console.error("Erreur email admin virement:", adminErr);
+}
+
 
     await db.end();
 
