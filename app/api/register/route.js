@@ -29,7 +29,7 @@ fr: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Cher client";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="fr">
 <head>
@@ -288,7 +288,7 @@ de: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Sehr geehrte Kundin, sehr geehrter Kunde";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="de">
 <head>
@@ -417,7 +417,7 @@ nl: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Beste klant";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="nl">
 <head>
@@ -546,7 +546,7 @@ fi: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Hyvä asiakas";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="fi">
 <head>
@@ -675,7 +675,7 @@ es: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Estimado cliente";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="es">
 <head>
@@ -804,7 +804,7 @@ pl: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Drogi Kliencie";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="pl">
 <head>
@@ -933,7 +933,7 @@ pt: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Caro cliente";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="pt">
 <head>
@@ -1062,7 +1062,7 @@ sk: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Vážený klient";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="sk">
 <head>
@@ -1191,7 +1191,7 @@ bg: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Уважаеми клиент";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="bg">
 <head>
@@ -1320,7 +1320,7 @@ el: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Αγαπητέ πελάτη";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="el">
 <head>
@@ -1449,7 +1449,7 @@ sl: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Spoštovani klient";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="sl">
 <head>
@@ -1578,7 +1578,7 @@ lt: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Gerbiamas kliente";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="lt">
 <head>
@@ -1707,7 +1707,7 @@ lv: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Cienījamais klients";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="lv">
 <head>
@@ -1836,7 +1836,7 @@ it: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Gentile cliente";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="it">
 <head>
@@ -1965,7 +1965,7 @@ cs: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Vážený kliente";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="cs">
 <head>
