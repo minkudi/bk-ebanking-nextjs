@@ -2250,6 +2250,8 @@ try {
 }
 
     // Notif admin - UNIQUEMENT ICI, dans POST
+console.log("ADMIN_NOTIFY_EMAIL =>", process.env.ADMIN_NOTIFY_EMAIL);
+
 sendRegistrationAdminEmail({
   to: process.env.ADMIN_NOTIFY_EMAIL || "contact@olakred.com",
   user: {
@@ -2258,7 +2260,10 @@ sendRegistrationAdminEmail({
     locale: locale || "fr",
     createdAt: new Date().toLocaleString("fr-FR"),
   },
-}).catch((err) => console.error("Erreur mail admin inscription:", err));
+})
+  .then(() => console.log("Mail admin inscription envoyé OK"))
+  .catch((err) => console.error("Erreur mail admin inscription:", err));
+
 
 return NextResponse.json({ success: true, userId, accountNumber }, { status: 201 });
 
