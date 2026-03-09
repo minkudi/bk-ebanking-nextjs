@@ -2074,6 +2074,7 @@ cs: {
 
 async function sendRegistrationAdminEmail({ to, user }) {
   const { fullName, email, locale, createdAt } = user || {};
+  const year = new Date().getFullYear();
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -2122,12 +2123,13 @@ async function sendRegistrationAdminEmail({ to, user }) {
           </p>
         </div>
         <p style="text-align:center;font-size:11px;color:#9ca3af;margin-top:12px;">
-          &copy; ${new Date().getFullYear()} OLAKRED. Tous droits réservés.
+          &copy; ${year} OLAKRED. Tous droits réservés.
         </p>
       </div>
     `,
   });
 }
+
 
 
 async function sendWelcomeEmail(to, fullName, accountNumber, locale = 'fr') {
