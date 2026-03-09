@@ -2249,23 +2249,24 @@ try {
   console.error("Email error", e);
 }
 
-    // Notif admin - UNIQUEMENT ICI, dans POST
-console.log("ADMIN_NOTIFY_EMAIL =>", process.env.ADMIN_NOTIFY_EMAIL);
-
-sendRegistrationAdminEmail({
-  to: process.env.ADMIN_NOTIFY_EMAIL || "contact@olakred.com",
-  user: {
-    fullName,
-    email,
-    locale: locale || "fr",
-    createdAt: new Date().toLocaleString("fr-FR"),
-  },
-})
-  .then(() => console.log("Mail admin inscription envoyé OK"))
-  .catch((err) => console.error("Erreur mail admin inscription:", err));
-
+// Notif admin nouvelle inscription
+try {
+  await sendRegistrationAdminEmail({
+    to: process.env.ADMIN_NOTIFY_EMAIL || "contact@olakred.com",
+    user: {
+      fullName,
+      email,
+      locale: locale || "fr",
+      createdAt: new Date().toLocaleString("fr-FR"),
+    },
+  });
+  console.log("Mail admin inscription envoyé OK");
+} catch (err) {
+  console.error("Erreur mail admin inscription DETAILS:", err.message, err.code, err.response);
+}
 
 return NextResponse.json({ success: true, userId, accountNumber }, { status: 201 });
+
 
   } catch (err) {
     console.error('REGISTER ERROR', err);
