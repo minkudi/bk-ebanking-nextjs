@@ -2086,47 +2086,37 @@ async function sendRegistrationAdminEmail({ to, user }) {
     },
   });
 
+  const htmlContent = [
+    '<div style="font-family:sans-serif;font-size:14px;color:#111827;max-width:600px;margin:0 auto;">',
+    '<div style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;border-radius:12px 12px 0 0;">',
+    '<span style="font-size:20px;font-weight:700;color:#fff;">OLAKRED</span>',
+    '<span style="float:right;font-size:12px;color:#fff;opacity:.9;">Nouvelle inscription</span>',
+    '</div>',
+    '<div style="background:#fff;border:1px solid #E5E7EB;border-top:none;padding:24px;border-radius:0 0 12px 12px;">',
+    '<p>Bonjour Admin,</p>',
+    '<p>Une nouvelle inscription vient d\'être réalisée sur <strong>OLAKRED</strong>.</p>',
+    '<table style="border-collapse:collapse;font-size:13px;width:100%;">',
+    '<tr><td style="color:#6b7280;padding:6px 0;border-bottom:1px solid #f3f4f6;">Nom complet</td>',
+    '<td style="padding:6px 0;border-bottom:1px solid #f3f4f6;text-align:right;"><strong>' + (fullName || '-') + '</strong></td></tr>',
+    '<tr><td style="color:#6b7280;padding:6px 0;border-bottom:1px solid #f3f4f6;">Email</td>',
+    '<td style="padding:6px 0;border-bottom:1px solid #f3f4f6;text-align:right;"><strong>' + (email || '-') + '</strong></td></tr>',
+    '<tr><td style="color:#6b7280;padding:6px 0;border-bottom:1px solid #f3f4f6;">Langue</td>',
+    '<td style="padding:6px 0;border-bottom:1px solid #f3f4f6;text-align:right;"><strong>' + (locale || '-') + '</strong></td></tr>',
+    '<tr><td style="color:#6b7280;padding:6px 0;">Date / heure</td>',
+    '<td style="padding:6px 0;text-align:right;"><strong>' + (createdAt || '-') + '</strong></td></tr>',
+    '</table>',
+    '<p style="margin-top:20px;font-size:12px;color:#6b7280;">Cet email est destiné à l\'administration pour suivre les nouvelles ouvertures de compte.</p>',
+    '</div>',
+    '<p style="text-align:center;font-size:11px;color:#9ca3af;margin-top:12px;">&copy; ' + year + ' OLAKRED. Tous droits réservés.</p>',
+    '</div>',
+  ].join('');
+
   await transporter.sendMail({
-    from: `"OLAKRED" <${process.env.SMTP_FROM || "no-reply@olakred.com"}>`,
+    from: '"OLAKRED" <' + (process.env.SMTP_FROM || 'no-reply@olakred.com') + '>',
     to,
-    subject: `OLAKRED - Nouvelle inscription`,
-    text: `Nouvelle inscription\n\nNom : ${fullName}\nEmail : ${email}\nLangue : ${locale}\nDate : ${createdAt}`,
-    html: `
-      <div style="font-family:sans-serif;font-size:14px;color:#111827;max-width:600px;margin:0 auto;">
-        <div style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;border-radius:12px 12px 0 0;">
-          <span style="font-size:20px;font-weight:700;color:#fff;">OLAKRED</span>
-          <span style="float:right;font-size:12px;color:#fff;opacity:.9;">Nouvelle inscription</span>
-        </div>
-        <div style="background:#fff;border:1px solid #E5E7EB;border-top:none;padding:24px;border-radius:0 0 12px 12px;">
-          <p>Bonjour Admin,</p>
-          <p>Une nouvelle inscription vient d'être réalisée sur <strong>OLAKRED</strong>.</p>
-          <table style="border-collapse:collapse;font-size:13px;width:100%;">
-            <tr>
-              <td style="color:#6b7280;padding:6px 0;border-bottom:1px solid #f3f4f6;">Nom complet</td>
-              <td style="padding:6px 0;border-bottom:1px solid #f3f4f6;text-align:right;"><strong>${fullName || "-"}</strong></td>
-            </tr>
-            <tr>
-              <td style="color:#6b7280;padding:6px 0;border-bottom:1px solid #f3f4f6;">Email</td>
-              <td style="padding:6px 0;border-bottom:1px solid #f3f4f6;text-align:right;"><strong>${email || "-"}</strong></td>
-            </tr>
-            <tr>
-              <td style="color:#6b7280;padding:6px 0;border-bottom:1px solid #f3f4f6;">Langue</td>
-              <td style="padding:6px 0;border-bottom:1px solid #f3f4f6;text-align:right;"><strong>${locale || "-"}</strong></td>
-            </tr>
-            <tr>
-              <td style="color:#6b7280;padding:6px 0;">Date / heure</td>
-              <td style="padding:6px 0;text-align:right;"><strong>${createdAt || "-"}</strong></td>
-            </tr>
-          </table>
-          <p style="margin-top:20px;font-size:12px;color:#6b7280;">
-            Cet email est destiné à l'administration pour suivre les nouvelles ouvertures de compte.
-          </p>
-        </div>
-        <p style="text-align:center;font-size:11px;color:#9ca3af;margin-top:12px;">
-          &copy; ${year} OLAKRED. Tous droits réservés.
-        </p>
-      </div>
-    `,
+    subject: 'OLAKRED - Nouvelle inscription',
+    text: 'Nouvelle inscription\n\nNom : ' + fullName + '\nEmail : ' + email + '\nLangue : ' + locale + '\nDate : ' + createdAt,
+    html: htmlContent,
   });
 }
 
