@@ -2087,6 +2087,65 @@ cs: {
 
 };
 
+
+async function sendRegistrationAdminEmail({ to, user }) {
+  const { fullName, email, locale, createdAt } = user || {};
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT || 587),
+    secure: false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+
+  await transporter.sendMail({
+    from: `"OLAKRED" <${process.env.SMTP_FROM || "no-reply@olakred.com"}>`,
+    to,
+    subject: `OLAKRED - Nouvelle inscription`,
+    text: `Nouvelle inscription\n\nNom : ${fullName}\nEmail : ${email}\nLangue : ${locale}\nDate : ${createdAt}`,
+    html: `
+      <div style="font-family:sans-serif;font-size:14px;color:#111827;max-width:600px;margin:0 auto;">
+        <div style="background:linear-gradient(90deg,#0F766E,#3B82F6);padding:20px 24px;border-radius:12px 12px 0 0;">
+          <span style="font-size:20px;font-weight:700;color:#fff;">OLAKRED</span>
+          <span style="float:right;font-size:12px;color:#fff;opacity:.9;">Nouvelle inscription</span>
+        </div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-top:none;padding:24px;border-radius:0 0 12px 12px;">
+          <p>Bonjour Admin,</p>
+          <p>Une nouvelle inscription vient d'être réalisée sur <strong>OLAKRED</strong>.</p>
+          <table style="border-collapse:collapse;font-size:13px;width:100%;">
+            <tr>
+              <td style="color:#6b7280;padding:6px 0;border-bottom:1px solid #f3f4f6;">Nom complet</td>
+              <td style="padding:6px 0;border-bottom:1px solid #f3f4f6;text-align:right;"><strong>${fullName || "-"}</strong></td>
+            </tr>
+            <tr>
+              <td style="color:#6b7280;padding:6px 0;border-bottom:1px solid #f3f4f6;">Email</td>
+              <td style="padding:6px 0;border-bottom:1px solid #f3f4f6;text-align:right;"><strong>${email || "-"}</strong></td>
+            </tr>
+            <tr>
+              <td style="color:#6b7280;padding:6px 0;border-bottom:1px solid #f3f4f6;">Langue</td>
+              <td style="padding:6px 0;border-bottom:1px solid #f3f4f6;text-align:right;"><strong>${locale || "-"}</strong></td>
+            </tr>
+            <tr>
+              <td style="color:#6b7280;padding:6px 0;">Date / heure</td>
+              <td style="padding:6px 0;text-align:right;"><strong>${createdAt || "-"}</strong></td>
+            </tr>
+          </table>
+          <p style="margin-top:20px;font-size:12px;color:#6b7280;">
+            Cet email est destiné à l'administration pour suivre les nouvelles ouvertures de compte.
+          </p>
+        </div>
+        <p style="text-align:center;font-size:11px;color:#9ca3af;margin-top:12px;">
+          &copy; ${new Date().getFullYear()} OLAKRED. Tous droits réservés.
+        </p>
+      </div>
+    `,
+  });
+}
+
+
 async function sendWelcomeEmail(to, fullName, accountNumber, locale = 'fr') {
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -2207,17 +2266,26 @@ const [resultUser] = await db.execute(
 
     await db.end();
 
-    // Envoi de l'email dans la bonne langue
-    try {
-      await sendWelcomeEmail(email, fullName, accountNumber, locale);
-    } catch (e) {
-      console.error('Email error', e);
-    }
+// Envoi de l'email dans la bonne langue
+try {
+  await sendWelcomeEmail(email, fullName, accountNumber, locale);
+} catch (e) {
+  console.error("Email error", e);
+}
 
-    return NextResponse.json(
-      { success: true, userId, accountNumber },
-      { status: 201 }
-    );
+// Notif admin nouvelle inscription
+sendRegistrationAdminEmail({
+  to: process.env.ADMIN_NOTIFY_EMAIL || "contact@olakred.com",
+  user: {
+    fullName,
+    email,
+    locale: locale || "fr",
+    createdAt: new Date().toLocaleString("fr-FR"),
+  },
+}).catch((err) => console.error("Erreur mail admin inscription:", err));
+
+return NextResponse.json({ success: true, userId, accountNumber }, { status: 201 });
+
   } catch (err) {
     console.error('REGISTER ERROR', err);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
