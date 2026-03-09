@@ -103,7 +103,6 @@ fr: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Pour votre sécurité, ne communiquez jamais vos identifiants ou codes de connexion à une autre personne, y compris quelqu'un se présentant comme un conseiller bancaire.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 En cas de doute, contactez immédiatement votre service client.
@@ -160,7 +159,7 @@ en: {
   },
   html: (fullName, accountNumber) => {
     const name = fullName || "Dear customer";
-    const baseUrl = process.env.APP_BASE_URL || "https://bk-ebanking.test";
+    const baseUrl = process.env.APP_BASE_URL || "https://groups.olakred.com";
     return `<!doctype html>
 <html lang="en">
 <head>
@@ -233,7 +232,6 @@ en: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                For your security, never share your login details or security codes with anyone, including someone claiming to be a bank representative.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 If you ever have any doubts, please contact customer support immediately.
@@ -363,7 +361,6 @@ de: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Aus Sicherheitsgründen dürfen Sie Ihre Zugangsdaten oder Sicherheitscodes niemals an andere Personen weitergeben – auch nicht an Personen, die sich als Bankmitarbeitende ausgeben.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 Bei Unsicherheit wenden Sie sich bitte umgehend an unseren Kundenservice.
@@ -493,7 +490,6 @@ nl: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Deel uw inloggegevens of beveiligingscodes nooit met iemand anders, ook niet met iemand die zich voordoet als bankmedewerker.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 Neem bij twijfel onmiddellijk contact op met onze klantenservice.
@@ -623,7 +619,6 @@ fi: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Älä koskaan jaa kirjautumistietojasi tai turvakoodejasi kenellekään, ei edes henkilölle, joka väittää olevansa pankin edustaja.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 Jos sinulla on epäilyksiä, ota välittömästi yhteyttä asiakaspalveluun.
@@ -753,7 +748,6 @@ es: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Por su seguridad, no comparta jamás sus credenciales ni códigos de seguridad con nadie, tampoco con personas que se identifiquen como representantes del banco.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 Si tiene alguna duda, póngase en contacto de inmediato con nuestro servicio de atención al cliente.
@@ -883,7 +877,6 @@ pl: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Ze względów bezpieczeństwa nigdy nie udostępniaj swoich danych logowania ani kodów bezpieczeństwa innym osobom, nawet jeśli podają się za pracowników banku.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 W razie wątpliwości niezwłocznie skontaktuj się z naszym działem obsługi klienta.
@@ -1013,7 +1006,6 @@ pt: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Por motivos de segurança, nunca partilhe as suas credenciais de acesso ou códigos de segurança com ninguém, mesmo que a pessoa se identifique como colaborador do banco.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 Em caso de dúvida, contacte de imediato o nosso serviço de apoio ao cliente.
@@ -1143,7 +1135,6 @@ sk: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Z bezpečnostných dôvodov nikdy neposkytujte svoje prihlasovacie údaje ani bezpečnostné kódy iným osobám, ani tým, ktoré sa vydávajú za pracovníkov banky.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 V prípade pochybností sa okamžite obráťte na zákaznícky servis.
@@ -1273,7 +1264,6 @@ bg: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                От съображения за сигурност никога не предоставяйте своите данни за вход или защитни кодове на други лица, дори ако се представят за служители на банката.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 При съмнение незабавно се свържете с отдела за обслужване на клиенти.
@@ -1403,7 +1393,6 @@ el: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Για λόγους ασφαλείας, μην κοινοποιείτε ποτέ τα στοιχεία σύνδεσης ή τους κωδικούς ασφαλείας σας σε άλλους, ακόμη και αν ισχυρίζονται ότι είναι εκπρόσωποι της τράπεζας.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 Σε περίπτωση αμφιβολιών, επικοινωνήστε άμεσα με την εξυπηρέτηση πελατών.
@@ -1533,7 +1522,6 @@ sl: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Zaradi varnosti nikoli ne razkrivajte svojih prijavnih podatkov ali varnostnih kod drugim osebam, tudi če se predstavijo kot bančni svetovalci.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 V primeru dvoma se nemudoma obrnite na službo za podporo strankam.
@@ -1663,7 +1651,6 @@ lt: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Saugumo sumetimais niekada neatskleiskite savo prisijungimo duomenų ar saugos kodų kitiems asmenims, net jei jie prisistato kaip banko darbuotojai.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 Kilus abejonių, nedelsdami susisiekite su klientų aptarnavimo centru.
@@ -1793,7 +1780,6 @@ lv: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Drošības nolūkos nekad neizpaudiet savus pieteikšanās datus vai drošības kodus citām personām, pat ja tās uzdodas par bankas darbiniekiem.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 Ja rodas šaubas, nekavējoties sazinieties ar klientu apkalpošanas dienestu.
@@ -1923,7 +1909,6 @@ it: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Per la tua sicurezza non comunicare mai le tue credenziali di accesso o i codici di sicurezza ad altre persone, nemmeno a chi si presenta come operatore della banca.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 In caso di dubbi contatta immediatamente il servizio clienti.
@@ -2053,7 +2038,6 @@ cs: {
               </table>
 
               <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;line-height:1.5;">
-                Z bezpečnostních důvodů nikdy nesdělujte své přihlašovací údaje ani bezpečnostní kódy jiným osobám, ani těm, které se vydávají za pracovníky banky.
               </p>
               <p style="margin:0;font-size:12px;color:#6B7280;line-height:1.5;">
                 V případě pochybností kontaktujte neprodleně zákaznickou podporu.
