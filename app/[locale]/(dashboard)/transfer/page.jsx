@@ -289,7 +289,7 @@ const handleConfirm = async () => {
                 value={values.iban}
                 onChange={handleChange("iban")}
                 className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-black"
-                placeholder="FR76 3000 ..."
+                placeholder="."
               />
             </div>
 
@@ -303,7 +303,7 @@ const handleConfirm = async () => {
                 value={values.bic}
                 onChange={handleChange("bic")}
                 className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-black"
-                placeholder="ABCDEFGHXXX"
+                placeholder=""
               />
             </div>
 
@@ -362,7 +362,7 @@ const handleConfirm = async () => {
                 value={values.country}
                 onChange={handleChange("country")}
                 className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-black"
-                placeholder="France, Belgique, ..."
+                placeholder=""
               />
             </div>
           </div>

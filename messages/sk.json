@@ -81,7 +81,7 @@
       "holderName": "Meno na karte",
       "cancel": "Zrušiť",
       "submit": "Pridať",
-      "verificationMessage": "Na overenie bude dočasne zaúčtovaný poplatok 2 €. Dostanete SMS kód.",
+      "verificationMessage": "Na overenie bude dočasne zaúčtovaný poplatok 1 €. Dostanete SMS kód.",
       "smsVerification": "Overenie SMS",
       "smsSent": "SMS kód bol odoslaný na váš telefón.",
       "smsCode": "SMS kód",
