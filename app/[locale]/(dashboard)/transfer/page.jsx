@@ -275,7 +275,7 @@ const handleConfirm = async () => {
                 value={values.holder}
                 onChange={handleChange("holder")}
                 className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-black"
-                placeholder="Nom complet du bénéficiaire"
+                placeholder=""
               />
             </div>
 
@@ -317,7 +317,7 @@ const handleConfirm = async () => {
     value={values.bankName}
     onChange={handleChange("bankName")}
     className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-black"
-    placeholder="Nom de la banque du bénéficiaire"
+    placeholder=""
   />
 </div>
 
@@ -348,7 +348,7 @@ const handleConfirm = async () => {
                 value={values.reason}
                 onChange={handleChange("reason")}
                 className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-black"
-                placeholder="Facture, loyer, remboursement..."
+                placeholder=""
               />
             </div>
 
