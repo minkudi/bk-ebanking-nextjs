@@ -86,7 +86,7 @@ export default function RegisterPage() {
           address,
           birthDate,
           country,
-          phone,
+          phone: phone.replace(/^\+/, ''),
           gender,
           email,
           password,
