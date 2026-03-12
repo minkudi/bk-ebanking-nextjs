@@ -20,6 +20,14 @@
     "submitting": "Tworzenie konta…",
     "successMessage": "Konto utworzone. Numer konta: {accountNumber}",
     "errorNetwork": "Błąd sieci",
+    "successTitle": "Konto utworzone pomyślnie",
+"successWelcome": "Witamy w OLAKRED.",
+"successBody": "Gratulacje, Twoje konto zostało pomyślnie zarejestrowane w naszym systemie.",
+"successRedirect": "Za chwilę zostaniesz przekierowany do strony logowania. Pozostało",
+"successSecond": "sekunda",
+"successSeconds": "sekund",
+"successManual": "Jeśli przekierowanie nie nastąpi automatycznie, możesz kontynuować ręcznie.",
+"successButton": "Przejdź do logowania teraz",
     "errorGeneric": "Błąd"
   },
   "login": {

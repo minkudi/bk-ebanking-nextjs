@@ -20,6 +20,14 @@
     "submitting": "Създаване на сметка…",
     "successMessage": "Сметката е създадена. Номер на сметка: {accountNumber}",
     "errorNetwork": "Грешка в мрежата",
+    "successTitle": "Акаунтът е създаден успешно",
+"successWelcome": "Добре дошли в OLAKRED.",
+"successBody": "Поздравления, вашият акаунт беше успешно регистриран в нашата система.",
+"successRedirect": "Ще бъдете пренасочени към страницата за вход след",
+"successSecond": "секунда",
+"successSeconds": "секунди",
+"successManual": "Ако пренасочването не се извърши автоматично, можете да продължите ръчно.",
+"successButton": "Към входа сега",
     "errorGeneric": "Грешка"
   },
   "login": {

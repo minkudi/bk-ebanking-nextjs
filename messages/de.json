@@ -20,6 +20,14 @@
     "submitting": "Konto wird erstellt…",
     "successMessage": "Konto erstellt. Kontonummer: {accountNumber}",
     "errorNetwork": "Netzwerkfehler",
+    "successTitle": "Konto erfolgreich erstellt",
+"successWelcome": "Willkommen bei OLAKRED.",
+"successBody": "Herzlichen Glückwunsch, Ihr Konto wurde erfolgreich in unserem System registriert.",
+"successRedirect": "Sie werden in",
+"successSecond": "Sekunde",
+"successSeconds": "Sekunden",
+"successManual": "Falls die Weiterleitung nicht automatisch erfolgt, können Sie manuell fortfahren.",
+"successButton": "Jetzt zur Anmeldung",
     "errorGeneric": "Fehler"
   },
   "login": {

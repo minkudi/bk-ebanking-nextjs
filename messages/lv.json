@@ -20,6 +20,14 @@
     "submitting": "Konts tiek izveidots…",
     "successMessage": "Konts izveidots. Konta numurs: {accountNumber}",
     "errorNetwork": "Tīkla kļūda",
+    "successTitle": "Konts veiksmīgi izveidots",
+"successWelcome": "Laipni lūdzam OLAKRED.",
+"successBody": "Apsveicam, jūsu konts ir veiksmīgi reģistrēts mūsu sistēmā.",
+"successRedirect": "Jūs tiksiet novirzīts uz pieteikšanās lapu pēc",
+"successSecond": "sekundes",
+"successSeconds": "sekundēm",
+"successManual": "Ja novirzīšana nenotiek automātiski, varat turpināt manuāli.",
+"successButton": "Doties uz pieteikšanos tagad",
     "errorGeneric": "Kļūda"
   },
   "login": {

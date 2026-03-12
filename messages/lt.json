@@ -20,6 +20,14 @@
     "submitting": "Kuriama paskyra…",
     "successMessage": "Paskyra sukurta. Sąskaitos numeris: {accountNumber}",
     "errorNetwork": "Tinklo klaida",
+    "successTitle": "Paskyra sėkmingai sukurta",
+"successWelcome": "Sveiki atvykę į OLAKRED.",
+"successBody": "Sveikiname, jūsų paskyra sėkmingai užregistruota mūsų sistemoje.",
+"successRedirect": "Po",
+"successSecond": "sekundės",
+"successSeconds": "sekundžių",
+"successManual": "Jei peradresavimas nevyksta automatiškai, galite tęsti rankiniu būdu.",
+"successButton": "Pereiti prie prisijungimo dabar",
     "errorGeneric": "Klaida"
   },
   "login": {

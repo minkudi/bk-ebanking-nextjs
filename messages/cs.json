@@ -20,6 +20,15 @@
     "submitting": "Vytváření účtu…",
     "successMessage": "Účet byl vytvořen. Číslo účtu: {accountNumber}",
     "errorNetwork": "Chyba sítě",
+    "successTitle": "Účet byl úspěšně vytvořen",
+"successWelcome": "Vítejte v OLAKRED.",
+"successBody": "Gratulujeme, váš účet byl úspěšně zaregistrován v našem systému.",
+"successRedirect": "Budete přesměrováni na přihlašovací stránku za",
+"successSecond": "sekundu",
+"successSeconds": "sekund",
+"successManual": "Pokud přesměrování neproběhne automaticky, můžete pokračovat ručně.",
+"successButton": "Přejít na přihlášení nyní",
+
     "errorGeneric": "Chyba"
   },
   "login": {

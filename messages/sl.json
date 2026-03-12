@@ -20,6 +20,14 @@
     "submitting": "Ustvarjanje računa…",
     "successMessage": "Račun je bil ustvarjen. Številka računa: {accountNumber}",
     "errorNetwork": "Napaka omrežja",
+    "successTitle": "Račun uspešno ustvarjen",
+"successWelcome": "Dobrodošli v OLAKRED.",
+"successBody": "Čestitamo, vaš račun je bil uspešno registriran v našem sistemu.",
+"successRedirect": "Preusmerjeni boste na stran za prijavo čez",
+"successSecond": "sekundo",
+"successSeconds": "sekund",
+"successManual": "Če preusmeritev ne poteka samodejno, lahko nadaljujete ročno.",
+"successButton": "Pojdi na prijavo zdaj",
     "errorGeneric": "Napaka"
   },
   "login": {

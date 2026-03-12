@@ -20,6 +20,14 @@
     "submitting": "Rekening wordt aangemaakt…",
     "successMessage": "Rekening aangemaakt. Rekeningnummer: {accountNumber}",
     "errorNetwork": "Netwerkfout",
+    "successTitle": "Account succesvol aangemaakt",
+"successWelcome": "Welkom bij OLAKRED.",
+"successBody": "Gefeliciteerd, uw account is succesvol geregistreerd in ons systeem.",
+"successRedirect": "U wordt over",
+"successSecond": "seconde",
+"successSeconds": "seconden",
+"successManual": "Als de doorverwijzing niet automatisch plaatsvindt, kunt u handmatig doorgaan.",
+"successButton": "Nu naar inloggen",
     "errorGeneric": "Fout"
   },
   "login": {

@@ -20,6 +20,14 @@
     "submitting": "Tiliä luodaan…",
     "successMessage": "Tili luotu. Tilinumero: {accountNumber}",
     "errorNetwork": "Verkkovirhe",
+    "successTitle": "Tili luotu onnistuneesti",
+"successWelcome": "Tervetuloa OLAKREDiin.",
+"successBody": "Onnittelut, tilisi on rekisteröity onnistuneesti järjestelmäämme.",
+"successRedirect": "Sinut ohjataan kirjautumissivulle",
+"successSecond": "sekunnin",
+"successSeconds": "sekunnin",
+"successManual": "Jos uudelleenohjaus ei tapahdu automaattisesti, voit jatkaa manuaalisesti.",
+"successButton": "Siirry kirjautumiseen nyt",
     "errorGeneric": "Virhe"
   },
   "login": {

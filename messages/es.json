@@ -20,6 +20,14 @@
     "submitting": "Creando la cuenta…",
     "successMessage": "Cuenta creada. Número de cuenta: {accountNumber}",
     "errorNetwork": "Error de red",
+    "successTitle": "Cuenta creada con éxito",
+"successWelcome": "Bienvenido a OLAKRED.",
+"successBody": "Felicitaciones, su cuenta ha sido registrada con éxito en nuestro sistema.",
+"successRedirect": "Será redirigido a la página de inicio de sesión en",
+"successSecond": "segundo",
+"successSeconds": "segundos",
+"successManual": "Si la redirección no se produce automáticamente, puede continuar manualmente.",
+"successButton": "Ir al inicio de sesión ahora",
     "errorGeneric": "Error"
   },
   "login": {

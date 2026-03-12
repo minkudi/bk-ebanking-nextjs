@@ -20,6 +20,14 @@
     "submitting": "Creating account…",
     "successMessage": "Account created. Account number: {accountNumber}",
     "errorNetwork": "Network error",
+    "successTitle": "Account created successfully",
+"successWelcome": "Welcome to OLAKRED.",
+"successBody": "Congratulations, your account has been successfully registered in our system.",
+"successRedirect": "You will be redirected to the login page in",
+"successSecond": "second",
+"successSeconds": "seconds",
+"successManual": "If the redirect does not happen automatically, you can continue manually.",
+"successButton": "Go to login now",
     "errorGeneric": "Error"
   },
   "login": {
