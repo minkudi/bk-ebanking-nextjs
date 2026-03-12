@@ -6,6 +6,8 @@ import {
   sendTransactionalSMS,
 } from "../../../../../../lib/notifications";
 import { buildTransactionEmail } from "../../../../../../lib/transactionEmail";
+import { buildCreditSms } from "../../../../../../lib/smsTemplates";
+
 
 async function assertAdmin() {
   const cookieStore = await cookies();
@@ -110,17 +112,19 @@ export async function POST(req, ctx) {
         });
       }
 
-      if (user.phone) {
-        // SMS, tu peux aussi le traduire par locale si tu veux
-        await sendTransactionalSMS({
-          to: user.phone,
-          body: `OLAKRED Crédit de ${amount.toFixed(
-            2
-          )} ${account.currency} sur votre compte ${
-            account.accountNumber
-          }. Libellé: ${label}. Réf: ${transactionId}. Si vous n'êtes pas à l'origine, contactez la banque.`,
-        });
-      }
+if (user.phone) {
+  await sendTransactionalSMS({
+    to: user.phone,
+    body: buildCreditSms({
+      locale,
+      amount,
+      currency: account.currency,
+      accountNumber: account.accountNumber,
+      transactionId,
+    }),
+  });
+}
+
     } catch (notifyErr) {
       console.error("Credit notification error:", notifyErr);
     }

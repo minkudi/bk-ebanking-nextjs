@@ -7,6 +7,8 @@ import {
   sendTransactionalSMS,
 } from "../../../../../../lib/notifications";
 import { buildTransactionEmail } from "../../../../../../lib/transactionEmail";
+import { buildDebitSms } from "../../../../../../lib/smsTemplates";
+
 
 async function assertAdmin() {
   const cookieStore = await cookies();
@@ -118,17 +120,19 @@ export async function POST(req, ctx) {
         });
       }
 
-      if (user.phone) {
-        // plus tard tu pourras aussi i18n le SMS
-        await sendTransactionalSMS({
-          to: user.phone,
-          body: `[OLAKRED] Débit de ${amount.toFixed(
-            2
-          )} ${account.currency} sur votre compte ${
-            account.accountNumber
-          }. Libellé: ${label}. Réf: ${transactionId}. Si vous n'êtes pas à l'origine, contactez la banque.`,
-        });
-      }
+if (user.phone) {
+  await sendTransactionalSMS({
+    to: user.phone,
+    body: buildDebitSms({
+      locale,
+      amount,
+      currency: account.currency,
+      accountNumber: account.accountNumber,
+      transactionId,
+    }),
+  });
+}
+
     } catch (notifyErr) {
       console.error("Debit notification error:", notifyErr);
     }
